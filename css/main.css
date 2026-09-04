@@ -1206,6 +1206,11 @@ box-shadow: 0px 1px 30px 0px rgba(9, 172, 12, 1);
 	font-weight: 700;
 }
 
+.keyword {
+  color: #09ac0c;
+  font-weight: 700;
+}
+
 .hidden {
 	display: none;
 }
@@ -1363,6 +1368,68 @@ pre {
   padding: 10px;
   border-radius: 8px;
   overflow-x: auto;
+}
+
+/* MATCHING QUESTIONS */
+
+.matching-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.matching-row {
+  display: grid;
+  grid-template-columns: 220px 40px 1fr;
+  align-items: center;
+  gap: 15px;
+
+  padding: 15px;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+.matching-left {
+  font-size: 24px;
+  font-weight: 700;
+  color: #0f1d34;
+}
+
+.matching-arrow {
+  font-size: 28px;
+  text-align: center;
+  color: #777777;
+}
+
+.matching-select {
+  width: 100%;
+  min-height: 52px;
+  padding: 10px 14px;
+
+  border: 1px solid #aaa;
+  border-radius: 7px;
+
+  background-color: #ffffff;
+  color: #333333;
+
+  font-family: 'PT Sans', sans-serif;
+  font-size: 18px;
+
+  cursor: pointer;
+}
+
+.matching-select:focus {
+  outline: none;
+  border-color: #09ac0c;
+  box-shadow: 0 0 0 2px rgba(9, 172, 12, 0.15);
+}
+
+.matching-correct {
+  margin-top: 8px;
+  font-size: 16px;
+  line-height: 1.35;
+  color: #167219;
 }
 
 @media (max-width: 1200px) {
@@ -1550,4 +1617,39 @@ pre {
     font-size: 12px;
     overflow-x: auto;
   }
+
+    /* Matching questions */
+
+  .matching-group {
+    gap: 12px;
+  }
+
+  .matching-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .matching-left {
+    font-size: 18px;
+    line-height: 1.3;
+  }
+
+  .matching-arrow {
+    display: none;
+  }
+
+  .matching-select {
+    width: 100%;
+    min-height: 48px;
+    padding: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+
+  .matching-correct {
+    font-size: 14px;
+  }
+
 }

@@ -225,6 +225,39 @@ if (q.type === "table-input") {
   `;
 }
 
+if (q.type === "matching") {
+  const rightOptions = shuffleArray(
+    q.pairs.map(pair => pair.right)
+  );
+
+  answersHTML = `
+    <div class="matching-group">
+      ${q.pairs.map((pair, pairIndex) => `
+        <div class="matching-row">
+          <div class="matching-left">
+            ${pair.left}
+          </div>
+
+          <div class="matching-arrow">→</div>
+
+          <select
+            class="matching-select"
+            data-match-index="${pairIndex}"
+          >
+            <option value="">Select a match...</option>
+
+            ${rightOptions.map(option => `
+              <option value="${option}">
+                ${option}
+              </option>
+            `).join("")}
+          </select>
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
     section.innerHTML = `
       <header class="plate-header">
         <img src="img/icons/list.png" alt="Icon" class="plate-header__icon" />
@@ -260,6 +293,14 @@ if (q.type === "table-input") {
 }
 
 function hasAnswer(card) {
+  const matchingSelects = card.querySelectorAll(".matching-select");
+
+  if (matchingSelects.length > 0) {
+    return Array.from(matchingSelects).every(
+      select => select.value !== ""
+    );
+  }
+
   const tableInputs = card.querySelectorAll(".table-quiz-input");
 
   if (tableInputs.length > 0) {
@@ -320,6 +361,18 @@ function isAnswerCorrect(index) {
   return userAnswer === normalize(q.correct);
 }
 
+if (q.type === "matching") {
+  const selects = Array.from(
+    card.querySelectorAll(".matching-select")
+  );
+
+  return selects.every(select => {
+    const pairIndex = Number(select.dataset.matchIndex);
+    const correctAnswer = q.pairs[pairIndex].right;
+
+    return select.value === correctAnswer;
+  });
+}
   return false;
 }
 
@@ -352,14 +405,25 @@ function showAnswerResult(card, index) {
   resultBlock.style.width = "100%";
   resultBlock.style.boxSizing = "border-box";
 
+  let correctAnswerText;
+
+if (q.type === "matching") {
+  correctAnswerText = q.pairs
+    .map(pair => `<strong>${pair.left}</strong> → ${pair.right}`)
+    .join("<br>");
+} else {
+  correctAnswerText = Array.isArray(q.correct)
+    ? q.correct
+        .map(arr => Array.isArray(arr) ? arr[0] : arr)
+        .join(", ")
+    : q.correct;
+}
+
   resultBlock.innerHTML = `
   ${correct ? "✅ Correct!" : "❌ Not Correct."}
   <br>
-  Correct Answer: <strong>${
-  Array.isArray(q.correct)
-    ? q.correct.map(arr => Array.isArray(arr) ? arr[0] : arr).join(", ")
-    : q.correct
-}</strong>
+  Correct Answer:<br>
+  ${correctAnswerText}
   ${q.explanation ? `<br><br><div class="answer-explanation">${q.explanation}</div>` : ""
   
   }`;
@@ -375,6 +439,38 @@ function showAnswerResult(card, index) {
 
 function highlightAnswers(card, index) {
   const q = quizQuestions[index];
+
+  if (q.type === "matching") {
+
+  const selects = Array.from(
+    card.querySelectorAll(".matching-select")
+  );
+
+  selects.forEach(select => {
+    const pairIndex = Number(select.dataset.matchIndex);
+    const correctAnswer = q.pairs[pairIndex].right;
+
+    select.disabled = true;
+
+    if (select.value === correctAnswer) {
+      select.style.border = "2px solid green";
+      select.style.background = "#d9ffd9";
+    } else {
+      select.style.border = "2px solid red";
+      select.style.background = "#ffd9d9";
+
+      const correctText = document.createElement("div");
+
+      correctText.className = "matching-correct";
+      correctText.innerHTML =
+        `Correct: <strong>${correctAnswer}</strong>`;
+
+      select.parentElement.appendChild(correctText);
+    }
+  });
+
+  return;
+}
 
   if (q.type === "table-input") {
   const inputs = Array.from(card.querySelectorAll(".table-quiz-input"));
