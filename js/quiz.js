@@ -4,6 +4,9 @@ const form = document.querySelector(".quiz-form");
 const SHUFFLE_QUESTIONS = true;
 const SHUFFLE_ANSWERS = true;
 
+const quizTitle =
+  document.body.dataset.quizTitle || "Quiz Trainer";
+
 let quizQuestions = [];
 let currentIndex = 0;
 let cards = [];
@@ -12,6 +15,26 @@ function shuffleArray(array) {
   return [...array].sort(() => Math.random() - 0.5);
 }
 
+// function isCode(text) {
+//     if (typeof text !== "string") return false;
+
+//     return (
+//         text.includes("\n") ||          
+//         text.includes("def ") ||
+//         text.includes("class ") ||
+//         text.includes("public ") ||
+//         text.includes("import ") ||
+//         text.includes("return ") ||
+//         text.includes("for ") ||
+//         text.includes("while ") ||
+//         text.includes("if ") ||
+//         text.includes("else:") ||
+//         text.includes("range(") ||
+//         text.includes("random.") ||
+//         text.includes("print(") ||
+//         text.includes("=") && text.includes("(")
+//     );
+// }
 
 prepareQuestions();
 
@@ -74,7 +97,7 @@ window.addEventListener("click", function(event) {
       card.classList.add("answered");
 
       if (currentIndex === cards.length - 1) {
-        nextBtn.innerText = "Показать итог";
+        nextBtn.innerText = "Show Results";
       }
 
       return;
@@ -94,6 +117,7 @@ window.addEventListener("click", function(event) {
     
   }
 });
+
 
 function renderQuestions() {
   form.innerHTML = "";
@@ -150,11 +174,7 @@ function renderQuestions() {
         <div class="radio-block__fake"></div>
         <div class="radio-block__text">
 
-  ${text.includes("class") || text.includes("import")
-
-    ? `<pre><code class="language-java">${text}</code></pre>`
-
-    : text}
+        ${text}
 
 </div>
       </label>
@@ -176,7 +196,9 @@ if (q.type === "checkbox") {
           class="checkbox-block__real"
         />
         <div class="checkbox-block__fake"></div>
-        <div class="checkbox-block__text">${text}</div>
+        <div class="checkbox-block__text">
+          ${text}
+        </div>
       </label>
     `;
   }).join("");
@@ -261,7 +283,7 @@ if (q.type === "matching") {
     section.innerHTML = `
       <header class="plate-header">
         <img src="img/icons/list.png" alt="Icon" class="plate-header__icon" />
-        Java / Data Structures Quiz Trainer
+        ${quizTitle}
       </header>
 
       <div class="plate-content">
@@ -271,7 +293,7 @@ if (q.type === "matching") {
 
       <footer class="plate-footer">
         <div class="plate-footer__progress progress">
-          <div class="progress__label">Готово: <strong>0%</strong></div>
+          <div class="progress__label">Progress: <strong>0%</strong></div>
           <div class="progress__line-wrapper">
             <div class="progress__line-bar" style="width: 0%"></div>
           </div>
@@ -281,9 +303,9 @@ if (q.type === "matching") {
           ${
             index === 0
               ? ""
-              : `<button type="button" class="button button--back" data-nav="prev">Назад</button>`
+              : `<button type="button" class="button button--back" data-nav="prev">Back</button>`
           }
-          <button type="button" class="button" data-nav="next">Проверить</button>
+          <button type="button" class="button" data-nav="next">Check</button>
         </div>
       </footer>
     `;
@@ -379,12 +401,12 @@ if (q.type === "matching") {
 function normalize(str) {
   return String(str)
     .toLowerCase()
-    .replace(/\s+/g, "")     // убираем пробелы
-    .replace(/,/g, "")       // убираем запятые
-    .replace(/\*/g, "")      // убираем *
-    .replace(/block/g, "")   // убираем слово block
-    .replace(/set/g, "")     // убираем слово set
-    .replace(/блок/g, "")    // на всякий случай русский
+    .replace(/\s+/g, "")     
+    .replace(/,/g, "")       
+    .replace(/\*/g, "")      
+    .replace(/block/g, "")   
+    .replace(/set/g, "")     
+    .replace(/блок/g, "")    
 }
 
 
@@ -431,11 +453,12 @@ if (q.type === "matching") {
   card.querySelector(".plate-content").appendChild(resultBlock);
 }
 
-// function escapeHTML(str) {
-//   return String(str)
-//     .replace(/</g, "&lt;")
-//     .replace(/>/g, "&gt;");
-// }
+function escapeHTML(str) {
+    return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+}
 
 function highlightAnswers(card, index) {
   const q = quizQuestions[index];
@@ -624,8 +647,8 @@ function showFinalResult() {
       text-align: center;
       box-shadow: 0 10px 35px rgba(0,0,0,0.15);
     ">
-      <h1>Итоговый результат</h1>
-      <p>Правильных ответов: ${score} из ${quizQuestions.length}</p>
+      <h1>Final Result</h1>
+      <p>Correct answers: ${score} out of ${quizQuestions.length}</p>
       <p>${score === quizQuestions.length ? "Great ✅" : "Try Again ❌"}</p>
 
       <button onclick="location.reload()" style="
@@ -638,7 +661,7 @@ function showFinalResult() {
         border-radius: 10px;
         cursor: pointer;
       ">
-        🔄 Повторить
+        🔄 Try again
       </button>
     </div>
   `;

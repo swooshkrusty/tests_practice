@@ -1103,54 +1103,63 @@ table.append([6, 7, 8, 9])</code></pre>
 {
   type: "radio",
   question: `
-    Which of the following code will initialize a 3 × 2 matrix (3 rows and 2 columns) with random values between 0 and 99?<br><br>
+    Which of the following code will initialize a 3 × 2 matrix
+    (3 rows and 2 columns) with random values between 0 and 99?<br><br>
 
     Assume:<br>
     <code>matrix = []</code><br>
     <code>ROW = 3</code><br>
     <code>COL = 2</code>
   `,
+
   answers: [
-    `<pre><code class="language-python">for r in range(ROW):
+    {
+      text: `<pre><code class="language-python">for r in range(ROW):
     matrix.append([])
     for c in range(COL):
         matrix[r].append(0)</code></pre>`,
+      value: "option1"
+    },
 
-    `<pre><code class="language-python">for r in range(ROW):
+    {
+      text: `<pre><code class="language-python">for r in range(ROW):
     matrix.append([])
     for c in range(COL):
         matrix[r].append(random.randint(100))</code></pre>`,
+      value: "option2"
+    },
 
-    `<pre><code class="language-python">for c in range(COL):
+    {
+      text: `<pre><code class="language-python">for c in range(COL):
     matrix.append([])
     for r in range(ROW):
         matrix[c].append(random.randint(0, 99))</code></pre>`,
+      value: "option3"
+    },
 
-    `<pre><code class="language-python">for r in range(ROW):
-    matrix.append([])
-    for c in range(COL):
-        matrix[r].append(random.randint(0, 99))</code></pre>`
-  ],
-  correct: `<pre><code class="language-python">for r in range(ROW):
+    {
+      text: `<pre><code class="language-python">for r in range(ROW):
     matrix.append([])
     for c in range(COL):
         matrix[r].append(random.randint(0, 99))</code></pre>`,
+      value: "option4"
+    }
+  ],
+
+  correct: "option4",
+
   explanation: `
-  The outer loop must run once for each <strong>row</strong>.<br><br>
+    The outer loop creates the <strong>3 rows</strong>.<br><br>
 
-  For every row, an empty list is added with:<br>
-  <code>matrix.append([])</code><br><br>
+    For each row, <code>matrix.append([])</code> creates an empty list.<br><br>
 
-  The inner loop then runs once for each <strong>column</strong> and appends a random integer from <code>0</code> through <code>99</code>:<br>
-  <code>random.randint(0, 99)</code><br><br>
+    The inner loop runs <strong>2 times</strong> because <code>COL = 2</code>.<br><br>
 
-  Therefore, the correct structure is:<br><br>
+    <code>random.randint(0, 99)</code> generates a random integer from
+    <strong>0 through 99</strong>.<br><br>
 
-  <pre><code class="language-python">for r in range(ROW):
-    matrix.append([])
-    for c in range(COL):
-        matrix[r].append(random.randint(0, 99))</code></pre>
-`
+    Therefore, the correct answer is the fourth code block.
+  `
 },
 {
   type: "radio",
