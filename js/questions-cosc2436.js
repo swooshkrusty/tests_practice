@@ -950,4 +950,661 @@ Therefore, the correct answer is
 <strong>recursiveBinarySearchHelper(lst, key, low, high)</strong>.
 `
 },
+
+{
+  type: "radio",
+  question: `
+The time complexity for the selection sort algorithm in the text is ________.
+`,
+  answers: [
+    "O(nlogn)",
+    "O(n^2)",
+    "O(logn)",
+    "O(2^n)"
+  ],
+  correct: "O(n^2)",
+  explanation: `
+Selection sort repeatedly scans the unsorted portion of the array to find the smallest element.
+
+It performs approximately <strong>n × n / 2</strong> comparisons, giving a time complexity of:
+
+<pre><code>O(n²)</code></pre>
+
+Therefore, the correct answer is <strong>O(n²)</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+The time complexity for the Towers of Hanoi algorithm in the text is ________.
+`,
+  answers: [
+    "O(n)",
+    "O(n^2)",
+    "O(n^3)",
+    "O(2^n)"
+  ],
+  correct: "O(2^n)",
+  explanation: `
+The recursive Towers of Hanoi algorithm satisfies the recurrence:
+
+<pre><code>T(n) = 2T(n - 1) + 1</code></pre>
+
+Its solution is:
+
+<pre><code>T(n) = 2ⁿ - 1</code></pre>
+
+Ignoring constants, the time complexity is:
+
+<pre><code>O(2ⁿ)</code></pre>
+
+Therefore, the correct answer is <strong>O(2^n)</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+The gift-wrapping algorithm for finding a convex hull takes ____________ time.
+`,
+  answers: [
+    "O(n)",
+    "O(nlogn)",
+    "O(logn)",
+    "O(n^2)"
+  ],
+  correct: "O(n^2)",
+  explanation: `
+The <strong>gift-wrapping (Jarvis March)</strong> algorithm repeatedly finds the next point on the convex hull by scanning all points.
+
+In the worst case, it performs approximately <strong>n</strong> scans of <strong>n</strong> points, giving a worst-case time complexity of:
+
+<pre><code>O(n²)</code></pre>
+
+Therefore, the correct answer is <strong>O(n²)</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+Estimating an algorithm efficiency is ________.
+`,
+  answers: [
+    "to measure its actual execution time.",
+    "to estimate its execution time.",
+    "to estimate its growth function."
+  ],
+  correct: "to estimate its growth function.",
+  explanation: `
+Algorithm analysis focuses on how an algorithm's running time grows as the input size increases.
+
+Rather than measuring the actual execution time on a specific computer, we estimate the algorithm's <strong>growth function</strong> (Big-O notation).
+
+Therefore, the correct answer is <strong>to estimate its growth function.</strong>
+`
+},
+{
+  type: "radio",
+  question: `
+On an average, linear search searches ________ if the element is in the list.
+`,
+  answers: [
+    "the whole list",
+    "half of the list",
+    "just one element in the list",
+    "one fourth of the list"
+  ],
+  correct: "half of the list",
+  explanation: `
+In a linear search, the algorithm checks elements one by one from the beginning of the list.
+
+If the target element is present, it is found after checking about <strong>half of the list on average</strong>.
+
+Therefore, the correct answer is <strong>half of the list</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+<strong>______________</strong> approach is the process of solving subproblems, then combining the solutions of the subproblems to obtain an overall solution.
+
+This naturally leads to a recursive solution. However, it would be inefficient to use recursion, because the subproblems overlap.
+
+The key idea behind dynamic programming is to solve each subproblem only once and store the results for subproblems for later use to avoid redundant computing of the subproblems.
+`,
+  answers: [
+    "Divide-and-conquer",
+    "Dynamic programming",
+    "Brutal-force",
+    "Backtracking"
+  ],
+  correct: "Dynamic programming",
+  explanation: `
+<strong>Dynamic programming</strong> solves problems by breaking them into overlapping subproblems, solving each subproblem only once, and storing its result for future use.
+
+This avoids redundant computations and greatly improves efficiency compared to a naive recursive solution.
+
+Therefore, the correct answer is <strong>Dynamic programming</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+The time complexity for the closest pair of points problem using divide-and-conquer is ________.
+`,
+  answers: [
+    "O(n)",
+    "O(nlogn)",
+    "O(logn)",
+    "O(2^n)"
+  ],
+  correct: "O(nlogn)",
+  explanation: `
+The divide-and-conquer algorithm for the closest pair of points recursively divides the points into two halves and combines the results efficiently.
+
+Its running time satisfies the recurrence:
+
+<pre><code>T(n) = 2T(n/2) + O(n)</code></pre>
+
+which solves to:
+
+<pre><code>O(n log n)</code></pre>
+
+Therefore, the correct answer is <strong>O(nlogn)</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+O(1) is ________.
+`,
+  answers: [
+    "constant time",
+    "logarithmic time",
+    "linear time",
+    "log-linear time"
+  ],
+  correct: "constant time",
+  explanation: `
+<strong>O(1)</strong> means the running time does not depend on the input size.
+
+The algorithm always performs the same amount of work regardless of how large the input is.
+
+Therefore, <strong>O(1)</strong> is called <strong>constant time</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+The time complexity for the Sieve of Eratosthenes algorithm is ________.
+`,
+  answers: [
+    "O(n)",
+    "O(n log log n)",
+    "O(logn)",
+    "O(2^n)"
+  ],
+  correct: "O(n log log n)",
+  explanation: `
+The <strong>Sieve of Eratosthenes</strong> finds all prime numbers up to <code>n</code> by repeatedly marking multiples of each prime number.
+
+Its time complexity is:
+
+<pre><code>O(n log log n)</code></pre>
+
+which is much more efficient than checking each number individually.
+
+Therefore, the correct answer is <strong>O(n log log n)</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+The ________ approach searches for a candidate solution incrementally, abandoning that option as soon as it determines that the candidate cannot possibly be a valid solution, and then looks for a new candidate.
+`,
+  answers: [
+    "Divide-and-conquer",
+    "Dynamic programming",
+    "Brutal-force",
+    "Backtracking"
+  ],
+  correct: "Backtracking",
+  explanation: `
+<strong>Backtracking</strong> builds a solution step by step.
+
+Whenever a partial solution cannot possibly lead to a valid complete solution, the algorithm abandons it (backtracks) and tries another possibility.
+
+Therefore, the correct answer is <strong>Backtracking</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+The time complexity for the Euclid's algorithm is ________.
+`,
+  answers: [
+    "O(n)",
+    "O(n^2)",
+    "O(logn)",
+    "O(2^n)"
+  ],
+  correct: "O(logn)",
+  explanation: `
+Euclid's algorithm computes the greatest common divisor (GCD) by repeatedly replacing the larger number with the remainder of the division.
+
+The number of recursive (or iterative) steps grows logarithmically with the input size.
+
+Its time complexity is:
+
+<pre><code>O(log n)</code></pre>
+
+Therefore, the correct answer is <strong>O(logn)</strong>.
+`
+},
+{
+  type: "checkbox",
+  question: `
+Which of the following complexity is <strong>O(nlogn)</strong>? Please select all that apply.
+`,
+  answers: [
+    "300n + 400n*n",
+    "23nlogn + 50",
+    "45n + 45nlogn + 503",
+    "n*n*n + nlogn"
+  ],
+  correct: [
+    "23nlogn + 50",
+    "45n + 45nlogn + 503"
+  ],
+  explanation: `
+Big-O notation ignores constants and lower-order terms.
+
+<ul>
+<li><strong>300n + 400n²</strong> → <strong>O(n²)</strong></li>
+<li><strong>23nlogn + 50</strong> → <strong>O(nlogn)</strong></li>
+<li><strong>45n + 45nlogn + 503</strong> → <strong>O(nlogn)</strong></li>
+<li><strong>n³ + nlogn</strong> → <strong>O(n³)</strong></li>
+</ul>
+
+Therefore, the correct answers are:
+
+<ul>
+<li><strong>23nlogn + 50</strong></li>
+<li><strong>45n + 45nlogn + 503</strong></li>
+</ul>
+`
+},
+{
+  type: "radio",
+  question: `
+An input that results in the shortest execution time is called the ____________.
+`,
+  answers: [
+    "best-case input",
+    "worst-case input",
+    "average-case input"
+  ],
+  correct: "best-case input",
+  explanation: `
+The <strong>best-case input</strong> is the input that allows an algorithm to finish in the shortest possible execution time.
+
+Therefore, the correct answer is <strong>best-case input</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+For a sorted list of <strong>1024</strong> elements, a binary search takes at most ________ comparisons.
+
+Note that checking whether an element is greater than, equal to, or less than another element counts as one comparison.
+`,
+  answers: [
+    "11",
+    "100",
+    "512",
+    "6"
+  ],
+  correct: "11",
+  explanation: `
+Binary search has a worst-case time complexity of <strong>O(log₂ n)</strong>.
+
+Since:
+
+<pre><code>1024 = 2¹⁰</code></pre>
+
+the maximum number of comparisons is:
+
+<pre><code>log₂(1024) + 1 = 10 + 1 = 11</code></pre>
+
+Therefore, the correct answer is <strong>11</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+The time complexity for the algorithm using the dynamic programming approach for finding Fibonacci numbers is ________.
+`,
+  answers: [
+    "O(n)",
+    "O(n^2)",
+    "O(logn)",
+    "O(2^n)"
+  ],
+  correct: "O(n)",
+  explanation: `
+Using <strong>dynamic programming</strong>, each Fibonacci number is computed only once and stored for later use.
+
+This eliminates repeated computations performed by the recursive algorithm.
+
+The running time is:
+
+<pre><code>O(n)</code></pre>
+
+Therefore, the correct answer is <strong>O(n)</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+The time complexity for the recursive Fibonacci algorithm in the text is ________.
+`,
+  answers: [
+    "O(nlogn)",
+    "O(n^2)",
+    "O(logn)",
+    "O(2^n)"
+  ],
+  correct: "O(2^n)",
+  explanation: `
+The naive recursive Fibonacci algorithm repeatedly recomputes the same subproblems.
+
+Its recurrence is:
+
+<pre><code>T(n) = T(n - 1) + T(n - 2) + O(1)</code></pre>
+
+This results in an exponential running time:
+
+<pre><code>O(2^n)</code></pre>
+
+Therefore, the correct answer is <strong>O(2^n)</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+________ approach divides the problem into subproblems, solves the subproblems, then combines the solutions of the subproblems to obtain the solution for the entire problem.
+
+Unlike the ________ approach, the subproblems in the divide-and-conquer approach don't overlap. A subproblem is like the original problem with a smaller size, so you can apply recursion to solve the problem.
+`,
+  answers: [
+    "Divide-and-conquer/dynamic programming",
+    "Dynamic programming/divide-and-conquer",
+    "Brutal-force/divide-and-conquer",
+    "Backtracking/dynamic programming"
+  ],
+  correct: "Divide-and-conquer/dynamic programming",
+  explanation: `
+<strong>Divide-and-conquer</strong> recursively divides a problem into smaller independent subproblems, solves them, and combines their solutions.
+
+<strong>Dynamic programming</strong> also breaks a problem into subproblems, but those subproblems overlap, so previously computed results are stored and reused.
+
+Therefore, the correct answer is:
+
+<strong>Divide-and-conquer / dynamic programming</strong>.
+`
+},
+{
+  type: "checkbox",
+  question: `
+Why is the analysis often for the worst case? Please select all that apply.
+`,
+  answers: [
+    "Best-case is not representative.",
+    "Worst-case is not representative, but worst-case analysis is very useful. You can show that the algorithm will never be slower than the worst-case.",
+    "Average-case analysis is ideal, but difficult to perform, because it is hard to determine the relative probabilities and distributions of various input instances for many problems."
+  ],
+  correct: [
+    "Best-case is not representative.",
+    "Worst-case is not representative, but worst-case analysis is very useful. You can show that the algorithm will never be slower than the worst-case.",
+    "Average-case analysis is ideal, but difficult to perform, because it is hard to determine the relative probabilities and distributions of various input instances for many problems."
+  ],
+  explanation: `
+All three statements are true.
+
+<ul>
+<li><strong>Best-case analysis</strong> is usually not representative of typical performance.</li>
+<li><strong>Worst-case analysis</strong> provides an upper bound on running time, guaranteeing the algorithm will never perform worse than that bound.</li>
+<li><strong>Average-case analysis</strong> is often more realistic but usually much harder because it requires knowledge of the probability distribution of inputs.</li>
+</ul>
+
+Therefore, <strong>all three answers are correct.</strong>
+`
+},
+{
+  type: "radio",
+  question: `
+To find a match for a string of size <strong>m</strong> in a text of size <strong>n</strong>, the Boyer-Moore algorithm would take ____________ in the worst case.
+`,
+  answers: [
+    "O(n) time",
+    "O(m) time",
+    "O(n + m) time",
+    "O(m*n) time"
+  ],
+  correct: "O(m*n) time",
+  explanation: `
+Although Boyer-Moore is very efficient in practice, its classical worst-case running time is
+
+<pre><code>O(m × n)</code></pre>
+
+where:
+<ul>
+<li><strong>m</strong> = pattern length</li>
+<li><strong>n</strong> = text length</li>
+</ul>
+
+Therefore, the correct answer is <strong>O(m*n) time</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+To find a match for a string of size <strong>m</strong> in a text of size <strong>n</strong>, the KMP algorithm would take ____________ in the worst case.
+`,
+  answers: [
+    "O(n) time",
+    "O(m) time",
+    "O(n + m) time",
+    "O(m*n) time"
+  ],
+  correct: "O(n + m) time",
+  explanation: `
+The Knuth-Morris-Pratt (KMP) algorithm first preprocesses the pattern in <strong>O(m)</strong> time and then scans the text in <strong>O(n)</strong> time.
+
+Therefore, the total worst-case running time is
+
+<pre><code>O(n + m)</code></pre>
+
+where:
+<ul>
+<li><strong>m</strong> = pattern length</li>
+<li><strong>n</strong> = text length</li>
+</ul>
+
+Therefore, the correct answer is <strong>O(n + m) time</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+The Graham's algorithm for finding a convex hull takes ____________ time.
+`,
+  answers: [
+    "O(n)",
+    "O(nlogn)",
+    "O(logn)",
+    "O(n^2)"
+  ],
+  correct: "O(nlogn)",
+  explanation: `
+Graham's scan first sorts all points by polar angle, which requires
+<strong>O(n log n)</strong> time.
+
+The scan itself is linear, so the overall time complexity is:
+
+<pre><code>O(n log n)</code></pre>
+
+Therefore, the correct answer is <strong>O(nlogn)</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+To find a match for a string of size <strong>m</strong> in a text of size <strong>n</strong>, the brute-force algorithm would take ____________ in the worst case.
+`,
+  answers: [
+    "O(n) time",
+    "O(m) time",
+    "O(n + m) time",
+    "O(m*n) time"
+  ],
+  correct: "O(m*n) time",
+  explanation: `
+The brute-force string matching algorithm compares the pattern with every possible position in the text.
+
+In the worst case, this requires:
+
+<pre><code>O(m × n)</code></pre>
+
+where:
+<ul>
+<li><strong>m</strong> = pattern length</li>
+<li><strong>n</strong> = text length</li>
+</ul>
+
+Therefore, the correct answer is <strong>O(m*n) time</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+What is the number of iterations in the following loop?
+
+<pre><code class="language-python">count = 5
+
+while count < n:
+    count = count + 3</code></pre>
+`,
+  answers: [
+    "n - 5",
+    "n - 3",
+    "n / 3 - 1",
+    "(n - 5) / 3",
+    "the ceiling of (n - 5) / 3"
+  ],
+  correct: "the ceiling of (n - 5) / 3",
+  explanation: `
+The loop starts with:
+
+<pre><code>count = 5</code></pre>
+
+Each iteration increases <code>count</code> by <strong>3</strong>.
+
+The loop stops when <code>count ≥ n</code>.
+
+Since the value increases in steps of 3, the number of iterations is:
+
+<pre><code>⌈(n - 5) / 3⌉</code></pre>
+
+where ⌈x⌉ denotes the ceiling function.
+
+Therefore, the correct answer is:
+
+<strong>the ceiling of (n - 5) / 3</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+[3.1.b.4] What's the worst-case time complexity of the following algorithm where <strong>N</strong> is a large number?
+
+Express in Big-O notation. Assume <code>data</code> is initialized with a value.
+
+<pre><code class="language-python">N = int(input())
+threshold = float(input())
+
+sum = 0.0
+for i in range(N):
+    for j in range(N):
+        sum += data</code></pre>
+`,
+  answers: [
+    "O(N^2)",
+    "O(N)",
+    "O(log₂N)",
+    "O(2N)"
+  ],
+  correct: "O(N^2)",
+  explanation: `
+There are two nested <code>for</code> loops.
+
+The outer loop executes <strong>N</strong> times.
+
+For each iteration of the outer loop, the inner loop also executes <strong>N</strong> times.
+
+Therefore, the total number of iterations is:
+
+<pre><code>N × N = N²</code></pre>
+
+Thus, the worst-case time complexity is:
+
+<strong>O(N²)</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+[3.1.b.4] What's the worst-case time complexity of the following code?
+
+Express in Big-O notation.
+
+<pre><code class="language-python">sum = 0.0
+n = int(input())
+i = 1
+
+while i < n:
+    data = float(input())
+    sum += data
+
+    if sum >= 10000:
+        break
+
+    i = i + 2</code></pre>
+`,
+  answers: [
+    "O(log₂n)",
+    "O(n)",
+    "O(1)",
+    "O(n²)",
+    "None of the other answer choices is correct"
+  ],
+  correct: "O(n)",
+  explanation: `
+The loop variable <code>i</code> starts at <code>1</code> and increases by <code>2</code> each iteration.
+
+In the worst case, the <code>break</code> statement is never executed.
+
+The loop therefore runs approximately:
+
+<pre><code>n / 2</code></pre>
+
+times.
+
+Since constants are ignored in Big-O notation,
+
+<pre><code>O(n / 2) = O(n)</code></pre>
+
+Therefore, the correct answer is <strong>O(n)</strong>.
+`
+},
 ];
