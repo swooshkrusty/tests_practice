@@ -1738,7 +1738,6 @@ Which of the following statements are true? Please select all that apply.
   ],
   correct: [
     "A heap is a complete binary tree.",
-    "Each node of a heap is greater than or equal to any of its children.",
     "A binary tree is complete if every level of the tree is full except that the last level may not be full and all the leaves on the last level are placed left-most."
   ],
   explanation: `
@@ -1746,13 +1745,12 @@ For the <strong>max-heap</strong> described in the text:
 
 <ul>
   <li>A heap is a <strong>complete binary tree</strong>.</li>
-  <li>Each parent node is <strong>greater than or equal to its children</strong>.</li>
   <li>In a complete binary tree, every level is full except possibly the last level, and the nodes on the last level are filled from <strong>left to right</strong>.</li>
 </ul>
 
 A heap does <strong>not</strong> have to be a full binary tree.
 
-Therefore, the first <strong>three statements</strong> are correct.
+
 `
 },
 
