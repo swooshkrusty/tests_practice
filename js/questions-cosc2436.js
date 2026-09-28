@@ -1607,4 +1607,881 @@ Since constants are ignored in Big-O notation,
 Therefore, the correct answer is <strong>O(n)</strong>.
 `
 },
+{
+  type: "radio",
+  question: `
+A heap is represented using a list. Is the list
+<code>[64, 42, 59, 32, 39, 44]</code> a heap?
+`,
+  answers: [
+    "Yes",
+    "No"
+  ],
+  correct: "Yes",
+  explanation: `
+This list represents a <strong>max-heap</strong>.
+
+For a max-heap, every parent node must be greater than or equal to its children.
+
+The relationships are:
+
+<pre><code>64 → children: 42, 59
+42 → children: 32, 39
+59 → child: 44</code></pre>
+
+Check the heap property:
+
+<pre><code>64 >= 42 and 64 >= 59
+42 >= 32 and 42 >= 39
+59 >= 44</code></pre>
+
+All parent nodes are greater than or equal to their children.
+
+Therefore, the correct answer is <strong>Yes</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+The worst-time complexity for insertion sort is ____________.
+`,
+  answers: [
+    "O(1)",
+    "O(logn)",
+    "O(n)",
+    "O(nlogn)",
+    "O(n*n)"
+  ],
+  correct: "O(n*n)",
+  explanation: `
+In the worst case, insertion sort may need to compare and shift many elements for each item in the list.
+
+For example, when the list is in reverse order, each new element may need to move through almost the entire sorted portion.
+
+The total number of operations grows approximately as:
+
+<pre><code>1 + 2 + 3 + ... + (n - 1)</code></pre>
+
+This results in:
+
+<pre><code>O(n²)</code></pre>
+
+In the answer choices, this is written as <strong>O(n*n)</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+To remove the root, you need to start a process by first placing __________ to the place of the root and move it down to maintain the heap property.
+`,
+  answers: [
+    "one of the root's children",
+    "the larger child of the root",
+    "the smaller child of the root",
+    "the last node in the heap"
+  ],
+  correct: "the last node in the heap",
+  explanation: `
+When removing the root of a heap, the root cannot simply be deleted because the heap must remain a complete binary tree.
+
+The usual process is:
+
+<ol>
+  <li>Move the <strong>last node in the heap</strong> to the root position.</li>
+  <li>Remove the last position.</li>
+  <li>Move the new root downward until the heap property is restored.</li>
+</ol>
+
+This downward adjustment is often called <strong>heapify down</strong> or <strong>sift down</strong>.
+
+Therefore, the correct answer is <strong>the last node in the heap</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+The average-time complexity for quick sort is __________.
+`,
+  answers: [
+    "O(1)",
+    "O(logn)",
+    "O(n)",
+    "O(nlogn)",
+    "O(n*n)"
+  ],
+  correct: "O(nlogn)",
+  explanation: `
+In the average case, quick sort divides the list into reasonably balanced partitions.
+
+There are approximately <strong>log n</strong> levels of partitioning, and each level processes about <strong>n</strong> elements.
+
+Therefore, the average-time complexity is:
+
+<pre><code>O(n log n)</code></pre>
+
+In the answer choices, this is written as <strong>O(nlogn)</strong>.
+`
+},
+
+{
+  type: "checkbox",
+  question: `
+Which of the following statements are true? Please select all that apply.
+`,
+  answers: [
+    "A heap is a complete binary tree.",
+    "Each node of a heap is greater than or equal to any of its children.",
+    "A binary tree is complete if every level of the tree is full except that the last level may not be full and all the leaves on the last level are placed left-most.",
+    "A heap is a full binary tree."
+  ],
+  correct: [
+    "A heap is a complete binary tree.",
+    "Each node of a heap is greater than or equal to any of its children.",
+    "A binary tree is complete if every level of the tree is full except that the last level may not be full and all the leaves on the last level are placed left-most."
+  ],
+  explanation: `
+For the <strong>max-heap</strong> described in the text:
+
+<ul>
+  <li>A heap is a <strong>complete binary tree</strong>.</li>
+  <li>Each parent node is <strong>greater than or equal to its children</strong>.</li>
+  <li>In a complete binary tree, every level is full except possibly the last level, and the nodes on the last level are filled from <strong>left to right</strong>.</li>
+</ul>
+
+A heap does <strong>not</strong> have to be a full binary tree.
+
+Therefore, the first <strong>three statements</strong> are correct.
+`
+},
+
+{
+  type: "radio",
+  question: `
+The worst-time complexity for heap sort is __________.
+`,
+  answers: [
+    "O(1)",
+    "O(logn)",
+    "O(n)",
+    "O(nlogn)",
+    "O(n*n)"
+  ],
+  correct: "O(nlogn)",
+  explanation: `
+Heap sort repeatedly removes the root of the heap and restores the heap property.
+
+There are approximately <strong>n</strong> removals, and each heap adjustment takes at most <strong>O(log n)</strong> time.
+
+Therefore, the worst-time complexity is:
+
+<pre><code>O(n log n)</code></pre>
+
+In the answer choices, this is written as <strong>O(nlogn)</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+The worst-time complexity for heap sort is __________.
+`,
+  answers: [
+    "O(1)",
+    "O(logn)",
+    "O(n)",
+    "O(nlogn)",
+    "O(n*n)"
+  ],
+  correct: "O(nlogn)",
+  explanation: `
+Heap sort first builds a heap and then repeatedly removes the root while restoring the heap property.
+
+Building the heap takes <strong>O(n)</strong> time, and each of the <strong>n</strong> removals requires at most <strong>O(log n)</strong> time.
+
+Therefore, the overall worst-case time complexity is:
+
+<pre><code>O(n log n)</code></pre>
+
+In the answer choices, this is written as <strong>O(nlogn)</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+Suppose a heap is stored in a list as follows:
+
+<pre><code>[100, 55, 92, 23, 33, 81]</code></pre>
+
+The parent of <strong>81</strong> is __________.
+`,
+  answers: [
+    "100",
+    "55",
+    "92",
+    "23",
+    "33"
+  ],
+  correct: "92",
+  explanation: `
+The heap is stored using a zero-based array.
+
+The indexes are:
+
+<pre><code>Index : 0   1   2   3   4   5
+Value :100 55 92 23 33 81</code></pre>
+
+The value <strong>81</strong> is at index <strong>5</strong>.
+
+For a heap stored in an array, the parent index is:
+
+<pre><code>(childIndex - 1) // 2</code></pre>
+
+So:
+
+<pre><code>(5 - 1) // 2 = 2</code></pre>
+
+Index <strong>2</strong> contains <strong>92</strong>.
+
+Therefore, the correct answer is <strong>92</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+Suppose a list is:
+
+<pre><code>[2, 9, 5, 4, 8, 1]</code></pre>
+
+After the first pass of bubble sort, the list becomes __________.
+`,
+  answers: [
+    "2, 9, 5, 4, 8, 1",
+    "2, 9, 5, 4, 1, 8",
+    "2, 5, 9, 4, 8, 1",
+    "2, 5, 4, 8, 1, 9",
+    "2, 1, 5, 4, 8, 9"
+  ],
+  correct: "2, 5, 4, 8, 1, 9",
+  explanation: `
+Bubble sort compares neighboring elements and swaps them when they are in the wrong order.
+
+Starting list:
+
+<pre><code>[2, 9, 5, 4, 8, 1]</code></pre>
+
+First pass:
+
+<pre><code>2, 9 → no swap
+9, 5 → swap → [2, 5, 9, 4, 8, 1]
+9, 4 → swap → [2, 5, 4, 9, 8, 1]
+9, 8 → swap → [2, 5, 4, 8, 9, 1]
+9, 1 → swap → [2, 5, 4, 8, 1, 9]</code></pre>
+
+After the first pass, the largest value <strong>9</strong> has moved to the end.
+
+Therefore, the correct answer is:
+
+<strong>2, 5, 4, 8, 1, 9</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+A heap is represented using a list.
+
+Is the list
+
+<pre><code>[1, 2, 4, 5, 9, 3]</code></pre>
+
+a heap?
+`,
+  answers: [
+    "Yes",
+    "No"
+  ],
+  correct: "No",
+  explanation: `
+The heap used in this chapter is a <strong>max-heap</strong>, where every parent must be greater than or equal to its children.
+
+The list is:
+
+<pre><code>Index:  0  1  2  3  4  5
+Value:  1  2  4  5  9  3</code></pre>
+
+The root is <strong>1</strong>, and its children are <strong>2</strong> and <strong>4</strong>.
+
+For a max-heap, we would need:
+
+<pre><code>1 >= 2
+1 >= 4</code></pre>
+
+Both conditions are false.
+
+Therefore, the list does not satisfy the max-heap property.
+
+The correct answer is <strong>No</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+The worst-time complexity for bubble sort is __________.
+`,
+  answers: [
+    "O(1)",
+    "O(logn)",
+    "O(n)",
+    "O(nlogn)",
+    "O(n*n)"
+  ],
+  correct: "O(n*n)",
+  explanation: `
+In the worst case, bubble sort performs many passes through the list.
+
+For approximately <strong>n</strong> passes, it may perform approximately <strong>n</strong> comparisons.
+
+Therefore, the number of operations grows proportionally to:
+
+<pre><code>n × n = n²</code></pre>
+
+So the worst-time complexity is:
+
+<pre><code>O(n²)</code></pre>
+
+In the answer choices, this is written as <strong>O(n*n)</strong>.
+`
+},
+{
+  type: "checkbox",
+  question: `
+What is correct about a pivot? Please select all that apply.
+`,
+  answers: [
+    "A pivot divides a list into two sublists of equal size.",
+    "A pivot can be chosen arbitrarily.",
+    "A pivot divides a list into two sublists, the elements in the first list are no larger than the pivot and the elements in the second list are larger than the pivot.",
+    "You should always choose a pivot that divides the list evenly."
+  ],
+  correct: [
+    "A pivot can be chosen arbitrarily.",
+    "A pivot divides a list into two sublists, the elements in the first list are no larger than the pivot and the elements in the second list are larger than the pivot."
+  ],
+  explanation: `
+In quick sort, the <strong>pivot</strong> is used to partition the list.
+
+A pivot may be chosen in different ways, so it can be chosen <strong>arbitrarily</strong>.
+
+After partitioning:
+
+<ul>
+  <li>Elements in one sublist are no larger than the pivot.</li>
+  <li>Elements in the other sublist are larger than the pivot.</li>
+</ul>
+
+The pivot does <strong>not</strong> necessarily divide the list into two equal-sized sublists.
+
+Also, although a balanced partition is desirable for efficiency, it is not always possible to choose a pivot that divides the list evenly.
+
+Therefore, the correct statements are the <strong>second and third choices</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+The most efficient algorithm for sorting integer keys is __________.
+`,
+  answers: [
+    "quick sort",
+    "merge sort",
+    "heap sort",
+    "radix sort"
+  ],
+  correct: "radix sort",
+  explanation: `
+<strong>Radix sort</strong> is designed specifically for sorting keys such as integers by processing their digits or groups of bits.
+
+Unlike comparison-based algorithms such as quick sort, merge sort, and heap sort, radix sort does not have to compare every pair of keys.
+
+For integer keys with a bounded number of digits, radix sort can achieve nearly linear performance.
+
+Therefore, the correct answer is <strong>radix sort</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+The best-time complexity for bubble sort is __________.
+`,
+  answers: [
+    "O(1)",
+    "O(logn)",
+    "O(n)",
+    "O(nlogn)",
+    "O(n*n)"
+  ],
+  correct: "O(n)",
+  explanation: `
+For an optimized bubble sort, the algorithm can detect when no swaps occur during a pass.
+
+If the list is already sorted, bubble sort makes one pass through the list and performs approximately <strong>n</strong> comparisons.
+
+Therefore, the best-time complexity is:
+
+<pre><code>O(n)</code></pre>
+
+The correct answer is <strong>O(n)</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+The best-time complexity for bubble sort is __________.
+`,
+  answers: [
+    "O(1)",
+    "O(logn)",
+    "O(n)",
+    "O(nlogn)",
+    "O(n*n)"
+  ],
+  correct: "O(n)",
+  explanation: `
+For an optimized bubble sort, if the list is already sorted, no swaps are needed.
+
+The algorithm makes one pass through the list to verify that no swaps occur.
+
+Therefore, the best-time complexity is:
+
+<pre><code>O(n)</code></pre>
+
+The correct answer is <strong>O(n)</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+The best-time complexity for insertion sort is __________.
+`,
+  answers: [
+    "O(1)",
+    "O(logn)",
+    "O(n)",
+    "O(nlogn)",
+    "O(n*n)"
+  ],
+  correct: "O(n)",
+  explanation: `
+Insertion sort performs best when the list is already sorted.
+
+In this case, each element only needs to be compared with the element immediately before it, and no shifting is required.
+
+The algorithm therefore performs approximately <strong>n</strong> comparisons.
+
+So the best-time complexity is:
+
+<pre><code>O(n)</code></pre>
+
+The correct answer is <strong>O(n)</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+The average-time complexity for heap sort is __________.
+`,
+  answers: [
+    "O(1)",
+    "O(logn)",
+    "O(n)",
+    "O(nlogn)",
+    "O(n*n)"
+  ],
+  correct: "O(nlogn)",
+  explanation: `
+Heap sort repeatedly removes the root element and restores the heap property.
+
+There are approximately <strong>n</strong> removals, and restoring the heap can take up to <strong>O(log n)</strong> time for each removal.
+
+Therefore, the average-time complexity is:
+
+<pre><code>O(n log n)</code></pre>
+
+In the answer choices, this is written as <strong>O(nlogn)</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+To add a new node, you need to start a process by first placing it as __________ and move it up to maintain the heap property.
+`,
+  answers: [
+    "the new root",
+    "the last node in the heap",
+    "the left child of the root",
+    "the right child of the root"
+  ],
+  correct: "the last node in the heap",
+  explanation: `
+When a new element is inserted into a heap, it is first placed at the next available position.
+
+Because a heap must remain a <strong>complete binary tree</strong>, this position is at the end of the heap.
+
+The new node is therefore initially placed as:
+
+<strong>the last node in the heap</strong>
+
+Then it is moved upward, if necessary, until the heap property is restored.
+
+This process is often called <strong>sift up</strong> or <strong>heapify up</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+The time to merge two sorted lists of size <strong>n</strong> is __________.
+`,
+  answers: [
+    "O(1)",
+    "O(logn)",
+    "O(n)",
+    "O(nlogn)",
+    "O(n*n)"
+  ],
+  correct: "O(n)",
+  explanation: `
+When merging two sorted lists, the algorithm compares the elements at the front of each list and repeatedly moves the smaller element into the resulting list.
+
+If each list contains <strong>n</strong> elements, at most about:
+
+<pre><code>2n</code></pre>
+
+elements need to be processed.
+
+In Big-O notation, constant factors are ignored:
+
+<pre><code>O(2n) = O(n)</code></pre>
+
+Therefore, the correct answer is <strong>O(n)</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+The __________ algorithm does not compare keys.
+`,
+  answers: [
+    "quick sort",
+    "merge sort",
+    "heap sort",
+    "radix sort"
+  ],
+  correct: "radix sort",
+  explanation: `
+<strong>Radix sort</strong> is a non-comparison sorting algorithm.
+
+Instead of comparing keys directly, it sorts values according to individual digits or groups of bits.
+
+Quick sort, merge sort, and heap sort are all <strong>comparison-based</strong> sorting algorithms.
+
+Therefore, the correct answer is <strong>radix sort</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+Suppose a heap is stored in a list as follows:
+
+<pre><code>[100, 55, 92, 23, 33, 81]</code></pre>
+
+After inserting <strong>103</strong>, what is the content of the list?
+`,
+  answers: [
+    "[100, 55, 92, 23, 33, 81, 103]",
+    "[100, 55, 103, 23, 33, 92, 81]",
+    "[103, 55, 92, 23, 33, 81, 92]",
+    "[103, 55, 100, 23, 33, 81, 92]",
+    "[103, 55, 92, 23, 33, 81, 100]"
+  ],
+  correct: "[103, 55, 100, 23, 33, 81, 92]",
+  explanation: `
+The original max-heap is:
+
+<pre><code>[100, 55, 92, 23, 33, 81]</code></pre>
+
+First, insert <strong>103</strong> at the end:
+
+<pre><code>[100, 55, 92, 23, 33, 81, 103]</code></pre>
+
+The parent of 103 is <strong>92</strong>.
+
+Since:
+
+<pre><code>103 > 92</code></pre>
+
+swap them:
+
+<pre><code>[100, 55, 103, 23, 33, 81, 92]</code></pre>
+
+Now compare 103 with its new parent, <strong>100</strong>.
+
+Since:
+
+<pre><code>103 > 100</code></pre>
+
+swap them again:
+
+<pre><code>[103, 55, 100, 23, 33, 81, 92]</code></pre>
+
+The heap property is now restored.
+
+Therefore, the correct answer is:
+
+<strong>[103, 55, 100, 23, 33, 81, 92]</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+The worst-time complexity for merge sort is __________.
+`,
+  answers: [
+    "O(1)",
+    "O(logn)",
+    "O(n)",
+    "O(nlogn)",
+    "O(n*n)"
+  ],
+  correct: "O(nlogn)",
+  explanation: `
+Merge sort repeatedly divides the list into smaller halves.
+
+There are approximately:
+
+<pre><code>log n</code></pre>
+
+levels of division.
+
+At each level, merging all elements requires approximately:
+
+<pre><code>O(n)</code></pre>
+
+time.
+
+Therefore, the total worst-case time complexity is:
+
+<pre><code>O(n log n)</code></pre>
+
+In the answer choices, this is written as <strong>O(nlogn)</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+The worst-time complexity for merge sort is __________.
+`,
+  answers: [
+    "O(1)",
+    "O(logn)",
+    "O(n)",
+    "O(nlogn)",
+    "O(n*n)"
+  ],
+  correct: "O(nlogn)",
+  explanation: `
+Merge sort repeatedly divides the list into halves and then merges the sorted sublists.
+
+There are approximately <strong>log n</strong> levels of division.
+
+At each level, all <strong>n</strong> elements are processed during merging.
+
+Therefore, the worst-time complexity is:
+
+<pre><code>O(n log n)</code></pre>
+
+In the answer choices, this is written as <strong>O(nlogn)</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+The average-time complexity for merge sort is __________.
+`,
+  answers: [
+    "O(1)",
+    "O(logn)",
+    "O(n)",
+    "O(nlogn)",
+    "O(n*n)"
+  ],
+  correct: "O(nlogn)",
+  explanation: `
+Merge sort divides the list into halves regardless of the original order of the elements.
+
+There are approximately <strong>log n</strong> levels, and each level requires <strong>O(n)</strong> work to merge the elements.
+
+Therefore, the average-time complexity is:
+
+<pre><code>O(n log n)</code></pre>
+
+In the answer choices, this is written as <strong>O(nlogn)</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+Suppose you choose the first element as a pivot in the list:
+
+<pre><code>[5, 2, 9, 3, 8, 4, 0, 1, 6, 7]</code></pre>
+
+Using the partition algorithm in the book, what is the new list after the partition?
+`,
+  answers: [
+    "5 2 9 3 8 4 0 1 6 7",
+    "4 2 3 0 1 5 6 7 9 8",
+    "4 2 1 3 0 5 8 9 6 7",
+    "2 3 4 0 1 5 9 8 6 7",
+    "2 3 4 0 1 5 6 7 8 9"
+  ],
+  correct: "4 2 1 3 0 5 8 9 6 7",
+  explanation: `
+The first element, <strong>5</strong>, is chosen as the pivot.
+
+Start with:
+
+<pre><code>[5, 2, 9, 3, 8, 4, 0, 1, 6, 7]</code></pre>
+
+The partition algorithm moves values that are no larger than the pivot to the left and values larger than the pivot to the right.
+
+First, <strong>9</strong> and <strong>1</strong> are exchanged:
+
+<pre><code>[5, 2, 1, 3, 8, 4, 0, 9, 6, 7]</code></pre>
+
+Then <strong>8</strong> and <strong>0</strong> are exchanged:
+
+<pre><code>[5, 2, 1, 3, 0, 4, 8, 9, 6, 7]</code></pre>
+
+Finally, the pivot <strong>5</strong> is exchanged with <strong>4</strong>:
+
+<pre><code>[4, 2, 1, 3, 0, 5, 8, 9, 6, 7]</code></pre>
+
+The pivot is now in its correct partition position.
+
+Therefore, the correct answer is:
+
+<strong>4 2 1 3 0 5 8 9 6 7</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+The worst-time complexity for quick sort is __________.
+`,
+  answers: [
+    "O(1)",
+    "O(logn)",
+    "O(n)",
+    "O(nlogn)",
+    "O(n*n)"
+  ],
+  correct: "O(n*n)",
+  explanation: `
+Quick sort has its worst case when the pivot repeatedly creates extremely unbalanced partitions.
+
+For example, the list may be divided into:
+
+<pre><code>n - 1 elements
+1 element</code></pre>
+
+at each step.
+
+This produces approximately:
+
+<pre><code>n + (n - 1) + (n - 2) + ... + 1</code></pre>
+
+operations.
+
+Therefore, the worst-time complexity is:
+
+<pre><code>O(n²)</code></pre>
+
+In the answer choices, this is written as <strong>O(n*n)</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+[4.2.b.23] Consider the following list:
+
+<pre><code>lst = [14, 18, 19, 25, 34, 39, 62, 65, 78, 79, 85, 89, 95]</code></pre>
+
+When performing a binary search, the target is first compared with __________.
+`,
+  answers: [
+    "14",
+    "34",
+    "62",
+    "95"
+  ],
+  correct: "62",
+  explanation: `
+Binary search begins by examining the <strong>middle element</strong> of the sorted list.
+
+This list contains <strong>13 elements</strong>, with indexes from 0 through 12.
+
+The middle index is:
+
+<pre><code>(0 + 12) // 2 = 6</code></pre>
+
+The element at index 6 is:
+
+<pre><code>lst[6] = 62</code></pre>
+
+Therefore, the target is first compared with <strong>62</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+[4.2.b.23] Can binary search be used to search the following list?
+
+<pre><code>[16, 30, 24, 7, -25, 62, 45, 5, -65, 50]</code></pre>
+`,
+  answers: [
+    "No because the list is not sorted",
+    "No because the list is too large",
+    "No because the list has negative values",
+    "Yes the list can be searched using the binary search"
+  ],
+  correct: "No because the list is not sorted",
+  explanation: `
+Binary search requires the list to be <strong>sorted</strong>.
+
+The given list:
+
+<pre><code>[16, 30, 24, 7, -25, 62, 45, 5, -65, 50]</code></pre>
+
+is not arranged in ascending or descending order.
+
+The presence of negative numbers is not a problem, and the size of the list is also not a problem.
+
+Therefore, the correct answer is:
+
+<strong>No because the list is not sorted</strong>.
+`
+},
 ];
