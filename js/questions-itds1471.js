@@ -1330,7 +1330,2620 @@ It can contain different data types, and duplicate values are not allowed.<br><b
 The statement <strong>"The elements are in pairs."</strong> describes a <code>dictionary</code>, where data is stored as <code>key : value</code> pairs, not a set.
 `
 },
+{
+  type: "radio",
+  question: `
+(True or False) The gear icon at top right corner of each tool in the Anaconda Navigator is to allow you to update application, remove application or install a particular version of that application.
+`,
+  answers: [
+    "True",
+    "False"
+  ],
+  correct: "True",
+  explanation: `
+The gear icon in Anaconda Navigator provides application management options.
 
+Depending on the application and available versions, it can be used to:
 
+<ul>
+  <li>update the application,</li>
+  <li>remove the application,</li>
+  <li>install a particular version of the application.</li>
+</ul>
+
+Therefore, the correct answer is <strong>True</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+Which of the following is True about Jupyter and Jupyter Notebook?
+`,
+  answers: [
+    "Jupyter is an open-source project. data science and scientific computing using different programming languages.",
+    "All of these",
+    "Jupyter supports interactive data science and scientific computing using different programming languages.",
+    "The Jupyter Notebook is a web-based application.",
+    "The Jupyter Notebook is for creating and sharing computational documents."
+  ],
+  correct: "All of these",
+  explanation: `
+All of the statements describe Jupyter or Jupyter Notebook correctly.
+
+<ul>
+  <li><strong>Jupyter</strong> is an open-source project.</li>
+  <li>It supports interactive data science and scientific computing with multiple programming languages.</li>
+  <li><strong>Jupyter Notebook</strong> is a web-based application.</li>
+  <li>It is used to create and share computational documents containing code, text, equations, and output.</li>
+</ul>
+
+Therefore, the correct answer is <strong>All of these</strong>.
+`
+},
+{
+  type: "checkbox",
+  question: `
+(Select all that apply) Which of the following specialized tools that Python has for handling numerical arrays?
+`,
+  answers: [
+    "Pandas",
+    "NumPy",
+    "Seaborn",
+    "Matplotlib"
+  ],
+  correct: [
+    "Pandas",
+    "NumPy"
+  ],
+  explanation: `
+For this course question, the correct choices are:
+
+<ul>
+  <li><strong>NumPy</strong></li>
+  <li><strong>Pandas</strong></li>
+</ul>
+
+NumPy provides efficient numerical arrays and array operations.
+
+Pandas builds on NumPy and provides powerful data structures for working with numerical and tabular data.
+
+Matplotlib and Seaborn are primarily visualization libraries.
+
+Therefore, select <strong>Pandas</strong> and <strong>NumPy</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+(True or False) NumPy arrays are like Python's built-in <code>list</code> type.
+`,
+  answers: [
+    "True",
+    "False"
+  ],
+  correct: "True",
+  explanation: `
+NumPy arrays are similar to Python's built-in <code>list</code> type because both can store collections of values and support indexing.
+
+However, NumPy arrays are designed specifically for efficient numerical computation and usually contain elements of the same data type.
+
+Therefore, the correct answer is <strong>True</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+Which of the following is not the correct statement to create a NumPy array?
+<br>
+<em>(Assume NumPy is imported using <code>import numpy as np</code>)</em>
+`,
+  answers: [
+    "np.array([1.1, 2.2, 3.3])",
+    "np.array([3.14, 1, 2])",
+    "np.array([1, 2, 3])",
+    "np.array([True, \"2\", 3.0, 4])"
+  ],
+  correct: "np.array([True, \"2\", 3.0, 4])",
+  explanation: `
+For this course question, the intended incorrect choice is:
+
+<pre><code>np.array([True, "2", 3.0, 4])</code></pre>
+
+This expression mixes several different data types:
+
+<ul>
+  <li><code>True</code> — Boolean</li>
+  <li><code>"2"</code> — string</li>
+  <li><code>3.0</code> — float</li>
+  <li><code>4</code> — integer</li>
+</ul>
+
+NumPy arrays are generally designed to contain elements of a common data type.
+
+<strong>Technical note:</strong> NumPy can actually create this array by converting the elements to a common compatible data type, such as strings. However, for this quiz, the expected answer is the mixed-type example.
+`
+},
+{
+  type: "radio",
+  question: `
+(True or False) Unlike Python lists, NumPy arrays can only contain data of the same type.
+`,
+  answers: [
+    "True",
+    "False"
+  ],
+  correct: "True",
+  explanation: `
+NumPy arrays use a single <strong>data type (dtype)</strong> for their elements.
+
+If different types are provided when creating an array, NumPy usually converts them to a common compatible type.
+
+For example:
+
+<pre><code class="language-python">np.array([1, 2.5, 3])</code></pre>
+
+The integers are converted to floating-point values so the array has one consistent dtype.
+
+Therefore, for this course question, the correct answer is <strong>True</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+(True or False) The following code creates a length-10 integer array filled with 0s.
+
+<pre><code class="language-python">import numpy as np
+np.tens(0)</code></pre>
+`,
+  answers: [
+    "True",
+    "False"
+  ],
+  correct: "False",
+  explanation: `
+The statement is <strong>False</strong>.
+
+NumPy does not have a function called:
+
+<pre><code>np.tens(0)</code></pre>
+
+To create a length-10 integer array filled with zeros, you can use:
+
+<pre><code class="language-python">np.zeros(10, dtype=int)</code></pre>
+
+This produces:
+
+<pre><code>[0 0 0 0 0 0 0 0 0 0]</code></pre>
+
+Therefore, the correct answer is <strong>False</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+What is the output of the following code?
+
+<pre><code class="language-python">import numpy as np
+
+x2 = np.array([[1, 2, 3],
+               [4, 5, 6],
+               [7, 8, 9]])
+
+x2[0, 0] = 3.14
+
+print(x2[0, 0], x2[1, -1], x2[2, 0])</code></pre>
+`,
+  answers: [
+    "1 4 7",
+    "3.14 6 7",
+    "1 6 7",
+    "3 6 7"
+  ],
+  correct: "3 6 7",
+  explanation: `
+The NumPy array is initially created from integers, so its data type is <strong>integer</strong>.
+
+When:
+
+<pre><code class="language-python">x2[0, 0] = 3.14</code></pre>
+
+is executed, NumPy converts <code>3.14</code> to an integer because the array has an integer dtype.
+
+So:
+
+<pre><code>x2[0, 0] = 3
+x2[1, -1] = 6
+x2[2, 0] = 7</code></pre>
+
+Therefore, the output is:
+
+<pre><code>3 6 7</code></pre>
+
+The correct answer is <strong>3 6 7</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+What is the output of the following code?
+
+<pre><code class="language-python">import numpy as np
+
+x2 = np.array([[1, 2, 3],
+               [4, 5, 6],
+               [7, 8, 9]])
+
+print(x2[:3, ::2])</code></pre>
+`,
+  answers: [
+    "[[2 3],\n[5 6],\n[8 9]]",
+    "[[1 3],\n[4 6],\n[7 9]]",
+    "[[3, 2]]",
+    "[[1 2 3],\n[4 5]]"
+  ],
+  correct: "[[1 3],\n[4 6],\n[7 9]]",
+  explanation: `
+The slice:
+
+<pre><code class="language-python">x2[:3, ::2]</code></pre>
+
+means:
+
+<ul>
+  <li><code>:3</code> → take rows from the beginning up to row index 3 (not including 3), so all three rows are selected.</li>
+  <li><code>::2</code> → take every second column, starting from column 0.</li>
+</ul>
+
+The selected column indexes are:
+
+<pre><code>0, 2</code></pre>
+
+So the result is:
+
+<pre><code>[[1 3]
+ [4 6]
+ [7 9]]</code></pre>
+
+Therefore, the correct answer is:
+
+<strong>[[1 3], [4 6], [7 9]]</strong>.
+`
+},
+{
+  type: "matching",
+  question: `
+Match the following <em>(Assume <code>x2</code> is a 3x4 array)</em>:
+`,
+  pairs: [
+    {
+      left: "print(x2[0])",
+      right: "prints first row of x2"
+    },
+    {
+      left: "print(x2[0, :])",
+      right: "prints first row of x2"
+    },
+    {
+      left: "print(x2[:, 0])",
+      right: "prints first column of x2"
+    },
+    {
+      left: "print(x2[:2, :3])",
+      right: "prints first two rows & three columns"
+    },
+    {
+      left: "print(x2[:3, ::2])",
+      right: "prints first three rows, every second column"
+    }
+  ],
+  explanation: `
+NumPy uses the general indexing format:
+
+<pre><code>x2[rows, columns]</code></pre>
+
+The matches are:
+
+<ul>
+  <li><code>x2[0]</code> → first row</li>
+  <li><code>x2[0, :]</code> → first row, all columns</li>
+  <li><code>x2[:, 0]</code> → all rows, first column</li>
+  <li><code>x2[:2, :3]</code> → first two rows and first three columns</li>
+  <li><code>x2[:3, ::2]</code> → first three rows and every second column</li>
+</ul>
+`
+},
+{
+  type: "matching",
+  question: `
+Given <code>x = np.arange(1, 5)</code>. Match the following statements with the output:
+`,
+  pairs: [
+    {
+      left: "np.add.accumulate(x)",
+      right: "[1 3 6 10]"
+    },
+    {
+      left: "np.multiply.reduce(x)",
+      right: "24"
+    },
+    {
+      left: "np.add.reduce(x)",
+      right: "10"
+    },
+    {
+      left: "np.multiply.accumulate(x)",
+      right: "[1 2 6 24]"
+    }
+  ],
+  explanation: `
+First:
+
+<pre><code class="language-python">x = np.arange(1, 5)</code></pre>
+
+creates:
+
+<pre><code>[1 2 3 4]</code></pre>
+
+The operations work as follows:
+
+<ul>
+  <li><code>np.add.accumulate(x)</code> → cumulative sums → <strong>[1 3 6 10]</strong></li>
+  <li><code>np.multiply.reduce(x)</code> → 1 × 2 × 3 × 4 → <strong>24</strong></li>
+  <li><code>np.add.reduce(x)</code> → 1 + 2 + 3 + 4 → <strong>10</strong></li>
+  <li><code>np.multiply.accumulate(x)</code> → cumulative products → <strong>[1 2 6 24]</strong></li>
+</ul>
+`
+},
+{
+  type: "matching",
+  question: `
+Match the following arithmetic operators to equivalent ufunc:
+`,
+  pairs: [
+    {
+      left: "%",
+      right: "np.mod"
+    },
+    {
+      left: "/",
+      right: "np.divide"
+    },
+    {
+      left: "**",
+      right: "np.power"
+    },
+    {
+      left: "//",
+      right: "np.floor_divide"
+    },
+    {
+      left: "*",
+      right: "np.multiply"
+    }
+  ],
+  explanation: `
+NumPy provides universal functions (ufuncs) that correspond to Python arithmetic operators.
+
+<ul>
+  <li><code>%</code> → <strong>np.mod</strong></li>
+  <li><code>/</code> → <strong>np.divide</strong></li>
+  <li><code>**</code> → <strong>np.power</strong></li>
+  <li><code>//</code> → <strong>np.floor_divide</strong></li>
+  <li><code>*</code> → <strong>np.multiply</strong></li>
+</ul>
+
+These NumPy functions perform the equivalent element-wise arithmetic operations on arrays.
+`
+},
+{
+  type: "radio",
+  question: `
+(True or False) Both Code A and Code B below will display <code>[1 0 2 0 4 0]</code>, but the memory savings from the use of the <code>out</code> argument in Code A can be significant with very large arrays.
+
+<strong>Code A:</strong>
+
+<pre><code class="language-python">import numpy as np
+x = np.arange(3)
+y = np.zeros(6, dtype=int)
+np.power(2, x, out=y[::2])
+print(y)</code></pre>
+
+<strong>Code B:</strong>
+
+<pre><code class="language-python">import numpy as np
+x = np.arange(3)
+y = np.zeros(6, dtype=int)
+y[::2] = 2 ** x
+print(y)</code></pre>
+`,
+  answers: [
+    "True",
+    "False"
+  ],
+  correct: "True",
+  explanation: `
+Both code fragments produce:
+
+<pre><code>[1 0 2 0 4 0]</code></pre>
+
+Since:
+
+<pre><code class="language-python">x = [0, 1, 2]
+2 ** x = [1, 2, 4]</code></pre>
+
+these values are placed into every second position of <code>y</code>.
+
+In <strong>Code A</strong>:
+
+<pre><code class="language-python">np.power(2, x, out=y[::2])</code></pre>
+
+the result is written directly into the specified portion of <code>y</code>.
+
+In <strong>Code B</strong>:
+
+<pre><code class="language-python">y[::2] = 2 ** x</code></pre>
+
+NumPy normally creates a temporary array for <code>2 ** x</code> before assigning it to <code>y</code>.
+
+For very large arrays, using <code>out</code> can therefore save significant memory.
+
+The correct answer is <strong>True</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+What is the output of the following code?
+
+<pre><code class="language-python">import numpy as np
+
+x = np.array([6, 3, 4, 7])
+print(np.sum(x)//np.argmax(x))</code></pre>
+`,
+  answers: [
+    "6",
+    "7",
+    "2.86",
+    "6.67"
+  ],
+  correct: "6",
+  explanation: `
+First:
+
+<pre><code class="language-python">np.sum(x)</code></pre>
+
+returns:
+
+<pre><code>6 + 3 + 4 + 7 = 20</code></pre>
+
+Next:
+
+<pre><code class="language-python">np.argmax(x)</code></pre>
+
+returns the <strong>index</strong> of the largest value.
+
+The largest value is <code>7</code>, which is at index:
+
+<pre><code>3</code></pre>
+
+The expression uses <strong>floor division</strong>:
+
+<pre><code>20 // 3 = 6</code></pre>
+
+Therefore, the correct answer is <strong>6</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+(True or False) Aggregations are a set of rules by which NumPy lets you apply binary operations (e.g., addition, subtraction, multiplication, etc.) between arrays of different sizes and shapes.
+`,
+  answers: [
+    "True",
+    "False"
+  ],
+  correct: "False",
+  explanation: `
+The statement describes <strong>broadcasting</strong>, not aggregation.
+
+<strong>Broadcasting</strong> is the set of rules NumPy uses to apply operations between arrays of different shapes and sizes.
+
+Examples include:
+
+<pre><code class="language-python">a + b
+a - b
+a * b</code></pre>
+
+when the shapes are compatible.
+
+<strong>Aggregations</strong> are operations that summarize data, such as:
+
+<pre><code class="language-python">np.sum()
+np.min()
+np.max()
+np.mean()</code></pre>
+
+Therefore, the correct answer is <strong>False</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+(True or False) The code below will raise an error.
+
+<pre><code class="language-python">import numpy as np
+
+M = np.ones((3, 2))
+a = np.arange(1, 4)
+
+print(M + a)</code></pre>
+`,
+  answers: [
+    "True",
+    "False"
+  ],
+  correct: "True",
+  explanation: `
+The shapes are:
+
+<pre><code>M.shape = (3, 2)
+a.shape = (3,)</code></pre>
+
+For NumPy broadcasting, dimensions are compared starting from the right.
+
+Here NumPy tries to match:
+
+<pre><code>2  vs  3</code></pre>
+
+These dimensions are not equal, and neither one is <code>1</code>.
+
+Therefore, the arrays cannot be broadcast together, and NumPy raises a <strong>ValueError</strong>.
+
+The correct answer is <strong>True</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+(True or False) Both Code A and Code B below will display <code>[1, 2, 3]</code>.
+
+<strong>Code A:</strong>
+
+<pre><code class="language-python">import numpy as np
+x = np.arange(3)
+y = np.ones(3, dtype=int)
+print(x + y)</code></pre>
+
+<strong>Code B:</strong>
+
+<pre><code class="language-python">import numpy as np
+x = np.arange(3)
+print(x + 1)</code></pre>
+`,
+  answers: [
+    "True",
+    "False"
+  ],
+  correct: "True",
+  explanation: `
+First:
+
+<pre><code class="language-python">x = np.arange(3)</code></pre>
+
+creates:
+
+<pre><code>[0 1 2]</code></pre>
+
+In <strong>Code A</strong>:
+
+<pre><code class="language-python">y = np.ones(3, dtype=int)</code></pre>
+
+creates:
+
+<pre><code>[1 1 1]</code></pre>
+
+Therefore:
+
+<pre><code>[0 1 2] + [1 1 1] = [1 2 3]</code></pre>
+
+In <strong>Code B</strong>, NumPy uses broadcasting:
+
+<pre><code>[0 1 2] + 1 = [1 2 3]</code></pre>
+
+So both Code A and Code B display:
+
+<pre><code>[1 2 3]</code></pre>
+
+Therefore, the correct answer is <strong>True</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+(True or False) Given:
+
+<pre><code class="language-python">A = np.array([1, 0, 1], dtype=bool)
+B = np.array([1, 1, 1], dtype=bool)</code></pre>
+
+Both Code A and Code B print statements will display the same result.
+
+<strong>Code A:</strong>
+
+<pre><code class="language-python">print(A | B)</code></pre>
+
+<strong>Code B:</strong>
+
+<pre><code class="language-python">print(A or B)</code></pre>
+`,
+  answers: [
+    "True",
+    "False"
+  ],
+  correct: "False",
+  explanation: `
+The statement is <strong>False</strong>.
+
+In <strong>Code A</strong>:
+
+<pre><code class="language-python">A | B</code></pre>
+
+performs an element-wise logical OR:
+
+<pre><code>[ True  True  True ]</code></pre>
+
+But in <strong>Code B</strong>:
+
+<pre><code class="language-python">A or B</code></pre>
+
+Python tries to determine the truth value of the entire NumPy array.
+
+A NumPy array with multiple elements does not have one unambiguous truth value, so this raises a <strong>ValueError</strong>.
+
+Therefore, Code A and Code B do <strong>not</strong> display the same result.
+
+The correct answer is <strong>False</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+(True or False) <code>&</code> and <code>|</code> perform a single boolean evaluation on an entire object, while <code>or</code> and <code>and</code> perform multiple boolean evaluations on the content (the individual bits or bytes) of an object.
+`,
+  answers: [
+    "True",
+    "False"
+  ],
+  correct: "False",
+  explanation: `
+The statement is <strong>False</strong> because it reverses the behavior of these operators.
+
+For NumPy arrays:
+
+<pre><code>&
+|</code></pre>
+
+perform element-wise operations on the contents of the arrays.
+
+For example:
+
+<pre><code class="language-python">A & B
+A | B</code></pre>
+
+operate on corresponding elements.
+
+In contrast:
+
+<pre><code>and
+or</code></pre>
+
+perform a single truth-value evaluation on the entire object.
+
+For NumPy arrays with more than one element, this usually raises a <strong>ValueError</strong> because the truth value of the whole array is ambiguous.
+
+Therefore, the correct answer is <strong>False</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+(True or False) <code>&</code> and <code>|</code> perform a single boolean evaluation on an entire object, while <code>or</code> and <code>and</code> perform multiple boolean evaluations on the content (the individual bits or bytes) of an object.
+`,
+  answers: [
+    "True",
+    "False"
+  ],
+  correct: "False",
+  explanation: `
+The statement is <strong>False</strong> because it reverses the behavior of these operators.
+
+For NumPy arrays:
+
+<pre><code>&
+|</code></pre>
+
+perform element-wise operations on the contents of the arrays.
+
+For example:
+
+<pre><code class="language-python">A & B
+A | B</code></pre>
+
+operate on corresponding elements.
+
+In contrast:
+
+<pre><code>and
+or</code></pre>
+
+perform a single truth-value evaluation on the entire object.
+
+For NumPy arrays with more than one element, this usually raises a <strong>ValueError</strong> because the truth value of the whole array is ambiguous.
+
+Therefore, the correct answer is <strong>False</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+What is the output of the following code?
+
+<pre><code class="language-python">import numpy as np
+
+x = np.arange(12).reshape((3, 4))
+r = np.array([0, 1, 2])
+c = np.array([1, 2, 3])
+
+print(x[r, c])</code></pre>
+`,
+  answers: [
+    "[1 6 11]",
+    "[[0 1 2]\n [1 2 3]]",
+    "None of these",
+    "[[0 4 8]\n [1 6 11]]",
+    "[4 5 10]"
+  ],
+  correct: "[1 6 11]",
+  explanation: `
+First:
+
+<pre><code class="language-python">x = np.arange(12).reshape((3, 4))</code></pre>
+
+creates:
+
+<pre><code>[[ 0  1  2  3]
+ [ 4  5  6  7]
+ [ 8  9 10 11]]</code></pre>
+
+The arrays:
+
+<pre><code>r = [0, 1, 2]
+c = [1, 2, 3]</code></pre>
+
+are used as pairs of row and column indexes.
+
+So NumPy selects:
+
+<pre><code>x[0, 1] = 1
+x[1, 2] = 6
+x[2, 3] = 11</code></pre>
+
+Therefore:
+
+<pre><code class="language-python">x[r, c]</code></pre>
+
+produces:
+
+<pre><code>[1 6 11]</code></pre>
+
+The correct answer is <strong>[1 6 11]</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+What is the output of the following code?
+
+<pre><code class="language-python">import numpy as np
+
+x = np.arange(10)
+i = np.array([2, 4, 6])
+
+x[i] = 9
+x[i] += 1
+
+print(x)</code></pre>
+`,
+  answers: [
+    "[10 10 10 10 10 10 10 10 10 10]",
+    "[1 1 1 1 1 1 1 1 1 1]",
+    "[0 10 2 10 4 10 6 7 8 9]",
+    "[0 1 10 3 10 5 10 7 8 9]"
+  ],
+  correct: "[0 1 10 3 10 5 10 7 8 9]",
+  explanation: `
+First:
+
+<pre><code class="language-python">x = np.arange(10)</code></pre>
+
+creates:
+
+<pre><code>[0 1 2 3 4 5 6 7 8 9]</code></pre>
+
+The index array is:
+
+<pre><code class="language-python">i = np.array([2, 4, 6])</code></pre>
+
+Then:
+
+<pre><code class="language-python">x[i] = 9</code></pre>
+
+sets elements at indexes <strong>2, 4, and 6</strong> to 9:
+
+<pre><code>[0 1 9 3 9 5 9 7 8 9]</code></pre>
+
+Next:
+
+<pre><code class="language-python">x[i] += 1</code></pre>
+
+adds 1 to those same elements:
+
+<pre><code>[0 1 10 3 10 5 10 7 8 9]</code></pre>
+
+Therefore, the correct answer is:
+
+<strong>[0 1 10 3 10 5 10 7 8 9]</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+(True or False) Both Code A and Code B below will sort each row of <code>X</code> in ascending order.
+
+<strong>Code A:</strong>
+
+<pre><code class="language-python">import numpy as np
+
+rng = np.random.default_rng(seed=42)
+X = rng.integers(0, 10, (4, 6))
+np.sort(X, axis=0)</code></pre>
+
+<strong>Code B:</strong>
+
+<pre><code class="language-python">import numpy as np
+
+rng = np.random.default_rng(seed=42)
+X = rng.integers(0, 10, (4, 6))
+np.sort(X, axis=1)</code></pre>
+`,
+  answers: [
+    "True",
+    "False"
+  ],
+  correct: "False",
+  explanation: `
+The statement is <strong>False</strong>.
+
+In NumPy:
+
+<pre><code class="language-python">np.sort(X, axis=0)</code></pre>
+
+sorts values <strong>down each column</strong>.
+
+But:
+
+<pre><code class="language-python">np.sort(X, axis=1)</code></pre>
+
+sorts values <strong>across each row</strong>.
+
+Therefore:
+
+<ul>
+  <li><strong>Code A</strong> sorts each column.</li>
+  <li><strong>Code B</strong> sorts each row.</li>
+</ul>
+
+So both codes do not sort each row.
+
+The correct answer is <strong>False</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+The result of the code below is __________.
+
+<pre><code class="language-python">import numpy as np
+
+x = np.array([8, 2, 3, 1, 6, 5, 9])
+np.partition(x, 3)</code></pre>
+`,
+  answers: [
+    "an array where the first three values are the three smallest in the array, and the remaining array positions contain the remaining values. Within the two partitions, the elements have arbitrary order",
+    "an array where the last three values are the three smallest in the array, and the remaining array positions contain the remaining values. Within the two partitions, the elements have arbitrary order.",
+    "an array where the last three values are the three largest in the array, and the remaining array positions contain the remaining values. Within the two partitions, the elements have arbitrary order.",
+    "an array where the first three values are the three largest in the array, and the remaining array positions contain the remaining values. Within the two partitions, the elements have arbitrary order."
+  ],
+  correct: "an array where the first three values are the three smallest in the array, and the remaining array positions contain the remaining values. Within the two partitions, the elements have arbitrary order",
+  explanation: `
+<code>np.partition(x, 3)</code> partially sorts the array around index <code>3</code>.
+
+The element that would appear at index <code>3</code> in a fully sorted array is placed in that position.
+
+All elements before it are smaller, and all elements after it are larger.
+
+For:
+
+<pre><code>[8, 2, 3, 1, 6, 5, 9]</code></pre>
+
+the three smallest values are:
+
+<pre><code>1, 2, 3</code></pre>
+
+These values will appear in the first three positions, but they are not guaranteed to be internally sorted.
+
+Likewise, the remaining values may appear in arbitrary order within the second partition.
+
+Therefore, the correct answer is:
+
+<strong>an array where the first three values are the three smallest in the array, and the remaining array positions contain the remaining values. Within the two partitions, the elements have arbitrary order.</strong>
+`
+},
+{
+  type: "radio",
+  question: `
+Given the code below:
+
+<pre><code class="language-python">import numpy as np
+
+name = ['Amy', 'Bob', 'Tuan']
+gpa = [3.5, 4.0, 3.3]</code></pre>
+
+Which of the following will create an empty structured array using compound data type specification?
+`,
+  answers: [
+    {
+      text: `<pre><code class="language-python">data = np.zeros(3, dtype={
+    'names': ('students', 'gpa'),
+    'formats': ('U10', 'f8')
+})</code></pre>`,
+      value: "option1"
+    },
+    {
+      text: `<pre><code class="language-python">data = np.zeros(3, np.dtype({
+    'names': ('students', 'gpa'),
+    'formats': ((np.str_, 10), np.float64)
+}))</code></pre>`,
+      value: "option2"
+    },
+    {
+      text: `<pre><code class="language-python">data = np.zeros(3, np.dtype({
+    'names': ('students', 'gpa'),
+    'formats': ('U10', 'f8')
+}))</code></pre>`,
+      value: "option3"
+    },
+    {
+      text: "All of these",
+      value: "option4"
+    }
+  ],
+  correct: "option4",
+  explanation: `
+All three code forms use NumPy compound/structured data type specifications and can be used to create a structured array.
+
+A structured array can contain fields with different data types, such as:
+
+<ul>
+  <li><code>students</code> — string data</li>
+  <li><code>gpa</code> — floating-point data</li>
+</ul>
+
+For example:
+
+<pre><code class="language-python">dtype={
+    'names': ('students', 'gpa'),
+    'formats': ('U10', 'f8')
+}</code></pre>
+
+defines two named fields with different data types.
+
+Therefore, the correct answer is <strong>All of these</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+NumPy's __________ and __________ arrays provide efficient storage for compound, heterogeneous data.
+`,
+  answers: [
+    "multiple, single",
+    "structured, record",
+    "complex, simple",
+    "unstructured, unrecord"
+  ],
+  correct: "structured, record",
+  explanation: `
+NumPy provides <strong>structured arrays</strong> and <strong>record arrays</strong> for working efficiently with compound, heterogeneous data.
+
+These arrays can contain multiple named fields with different data types, such as:
+
+<pre><code class="language-python">name → string
+age  → integer
+gpa  → float</code></pre>
+
+Therefore, the correct answer is:
+
+<strong>structured, record</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+Which of the following is NOT True about Anaconda?
+`,
+  answers: [
+    "Anaconda is a smaller version of Miniconda.",
+    "Anaconda installations are available for Windows, macOS, and Linux.",
+    "Anaconda is an open-source distribution of Python/R for data science.",
+    "Anaconda has a simple and powerful package manager that makes getting started with Python and Jupyter Notebooks easy."
+  ],
+  correct: "Anaconda is a smaller version of Miniconda.",
+  explanation: `
+The incorrect statement is:
+
+<strong>Anaconda is a smaller version of Miniconda.</strong>
+
+Actually, the relationship is the opposite.
+
+<strong>Miniconda</strong> is the smaller, minimal version that includes Conda and Python, while <strong>Anaconda</strong> includes many additional packages and tools commonly used for data science.
+
+The other statements are true:
+
+<ul>
+  <li>Anaconda is available for Windows, macOS, and Linux.</li>
+  <li>It is a Python/R distribution commonly used for data science.</li>
+  <li>It includes Conda for package and environment management.</li>
+</ul>
+
+Therefore, the correct answer is:
+
+<strong>Anaconda is a smaller version of Miniconda.</strong>
+`
+},
+{
+  type: "radio",
+  question: `
+Which of the following is not True about NumPy?
+`,
+  answers: [
+    "NumPy arrays are like Python's repetition structure (loops).",
+    "NumPy arrays form the core of nearly the entire ecosystem of data science tools in Python",
+    "NumPy provides an efficient interface to store and operate on dense data buffers.",
+    "NumPy is short for Numerical Python"
+  ],
+  correct: "NumPy arrays are like Python's repetition structure (loops).",
+  explanation: `
+The statement that is <strong>not true</strong> is:
+
+<strong>NumPy arrays are like Python's repetition structure (loops).</strong>
+
+NumPy arrays are data structures used to store and process numerical data efficiently. They are not equivalent to Python repetition structures such as <code>for</code> or <code>while</code> loops.
+
+The other statements are true:
+
+<ul>
+  <li>NumPy is fundamental to much of the Python data science ecosystem.</li>
+  <li>NumPy provides efficient storage and operations on dense numerical data.</li>
+  <li>NumPy stands for <strong>Numerical Python</strong>.</li>
+</ul>
+
+Therefore, the correct answer is:
+
+<strong>NumPy arrays are like Python's repetition structure (loops).</strong>
+`
+},
+{
+  type: "radio",
+  question: `
+Which of the following code will create a 3x5 integer array filled with 1s?
+<br>
+<em>(Assume NumPy is imported using <code>import numpy as np</code>)</em>
+`,
+  answers: [
+    "np.ones((3, 5), dtype=float)",
+    "np((3, 5), ones)",
+    "np.1((3, 5), dtype=int)",
+    "np.ones((3, 5), dtype=int)"
+  ],
+  correct: "np.ones((3, 5), dtype=int)",
+  explanation: `
+To create an array filled with ones, NumPy provides:
+
+<pre><code class="language-python">np.ones()</code></pre>
+
+The shape:
+
+<pre><code>(3, 5)</code></pre>
+
+creates <strong>3 rows and 5 columns</strong>.
+
+To make the elements integers, specify:
+
+<pre><code class="language-python">dtype=int</code></pre>
+
+Therefore, the correct statement is:
+
+<pre><code class="language-python">np.ones((3, 5), dtype=int)</code></pre>
+
+The correct answer is <strong>np.ones((3, 5), dtype=int)</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+(True or False) Python is a statically typed language unlike C or Java which are dynamically typed languages.
+`,
+  answers: [
+    "True",
+    "False"
+  ],
+  correct: "False",
+  explanation: `
+The statement is <strong>False</strong>.
+
+Python is a <strong>dynamically typed</strong> language.
+
+This means a variable does not need to have its type declared explicitly:
+
+<pre><code class="language-python">x = 10
+x = "hello"</code></pre>
+
+The variable <code>x</code> can refer to values of different types at runtime.
+
+C and Java are generally considered <strong>statically typed</strong> languages, where variable types are determined and checked more strictly before or during compilation.
+
+Therefore, the correct answer is <strong>False</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+Which of the following statement will create a 3x4 array filled with 10s?
+<br>
+<em>(Assume NumPy is imported using <code>import numpy as np</code>)</em>
+`,
+  answers: [
+    "np.tens((3, 4))",
+    "np.full((4, 3), 10)",
+    "np.full((3, 4), 10)",
+    "np.full(10, (3, 4))"
+  ],
+  correct: "np.full((3, 4), 10)",
+  explanation: `
+NumPy uses <code>np.full(shape, fill_value)</code> to create an array filled with a specified value.
+
+For a 3x4 array filled with 10s:
+
+<pre><code class="language-python">np.full((3, 4), 10)</code></pre>
+
+Here:
+
+<ul>
+  <li><code>(3, 4)</code> means 3 rows and 4 columns.</li>
+  <li><code>10</code> is the value placed in every element.</li>
+</ul>
+
+Therefore, the correct answer is <strong>np.full((3, 4), 10)</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+(True or False) Both Code A and Code B output is the same.
+
+<strong>Code A:</strong>
+
+<pre><code class="language-python">x = np.array([1, 2, 3])
+y = np.array([3, 2, 1])
+np.vstack([x, y])</code></pre>
+
+<strong>Code B:</strong>
+
+<pre><code class="language-python">x = np.array([1, 2, 3])
+y = np.array([3, 2, 1])
+np.hstack([y, x])</code></pre>
+`,
+  answers: [
+    "True",
+    "False"
+  ],
+  correct: "False",
+  explanation: `
+The outputs are different.
+
+<strong>Code A</strong> uses <code>np.vstack()</code>, which stacks the arrays vertically:
+
+<pre><code>[[1 2 3]
+ [3 2 1]]</code></pre>
+
+<strong>Code B</strong> uses <code>np.hstack()</code>, which joins the one-dimensional arrays horizontally:
+
+<pre><code>[3 2 1 1 2 3]</code></pre>
+
+Therefore, the two outputs are not the same.
+
+The correct answer is <strong>False</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+(True or False) Both Code A and Code B below will put the numbers 1 through 9 in a 3 x 3 grid.
+
+<strong>Code A:</strong>
+
+<pre><code class="language-python">np.array([i for i in range(1, 10)]).reshape((3, 3))</code></pre>
+
+<strong>Code B:</strong>
+
+<pre><code class="language-python">np.arange(1, 10).reshape(3, 3)</code></pre>
+`,
+  answers: [
+    "True",
+    "False"
+  ],
+  correct: "True",
+  explanation: `
+Both expressions first create the numbers:
+
+<pre><code>[1 2 3 4 5 6 7 8 9]</code></pre>
+
+Then <code>reshape(3, 3)</code> converts those 9 values into a 3 x 3 array:
+
+<pre><code>[[1 2 3]
+ [4 5 6]
+ [7 8 9]]</code></pre>
+
+Code A creates the values using a Python list comprehension:
+
+<pre><code class="language-python">[i for i in range(1, 10)]</code></pre>
+
+Code B creates the same values directly with NumPy:
+
+<pre><code class="language-python">np.arange(1, 10)</code></pre>
+
+Therefore, both produce the same 3 x 3 grid.
+
+The correct answer is <strong>True</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+Which of the following code will create the below multiplication table?
+
+<pre><code>[[ 1  2  3  4]
+ [ 2  4  6  8]
+ [ 3  6  9 12]
+ [ 4  8 12 16]]</code></pre>
+`,
+  answers: [
+    {
+      text: `<pre><code class="language-python">x = np.arange(1, 5)
+print(np.multiply.outer(x, x))</code></pre>`,
+      value: "option1"
+    },
+    {
+      text: `<pre><code class="language-python">x = np.arange(1, 5)
+print(np.multiply(x, x))</code></pre>`,
+      value: "option2"
+    },
+    {
+      text: `<pre><code class="language-python">x = np.arange(1, 4)
+print(np.multiply.outer(x, x))</code></pre>`,
+      value: "option3"
+    },
+    {
+      text: `<pre><code class="language-python">x = np.arange(4)
+print(np.multiply.outer(x, x))</code></pre>`,
+      value: "option4"
+    }
+  ],
+  correct: "option1",
+  explanation: `
+First:
+
+<pre><code class="language-python">x = np.arange(1, 5)</code></pre>
+
+creates:
+
+<pre><code>[1 2 3 4]</code></pre>
+
+Then:
+
+<pre><code class="language-python">np.multiply.outer(x, x)</code></pre>
+
+computes every element of <code>x</code> multiplied by every other element:
+
+<pre><code>[[ 1  2  3  4]
+ [ 2  4  6  8]
+ [ 3  6  9 12]
+ [ 4  8 12 16]]</code></pre>
+
+Therefore, the correct answer is <strong>option 1</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+What is the output of the following code?
+
+<pre><code class="language-python">import numpy as np
+
+x = np.arange(5)
+y = np.zeros(5, dtype=int)
+
+np.floor_divide(x, 2, out=y)
+
+print(y)</code></pre>
+`,
+  answers: [
+    "[0.  0.5 1.  1.5 2.]",
+    "[0. 0. 1. 1. 2.]",
+    "[0 0 1 1 2]",
+    "[0 1 2 3 4]",
+    "[0 0 0 0 0]"
+  ],
+  correct: "[0 0 1 1 2]",
+  explanation: `
+First:
+
+<pre><code class="language-python">x = np.arange(5)</code></pre>
+
+creates:
+
+<pre><code>[0 1 2 3 4]</code></pre>
+
+Then:
+
+<pre><code class="language-python">np.floor_divide(x, 2, out=y)</code></pre>
+
+performs floor division by 2:
+
+<pre><code>0 // 2 = 0
+1 // 2 = 0
+2 // 2 = 1
+3 // 2 = 1
+4 // 2 = 2</code></pre>
+
+The results are written directly into <code>y</code>.
+
+Therefore:
+
+<pre><code>[0 0 1 1 2]</code></pre>
+
+The correct answer is <strong>[0 0 1 1 2]</strong>.
+`
+},
+{
+  type: "matching",
+  question: `
+Match the following description with appropriate aggregate function:
+`,
+  pairs: [
+    {
+      left: "Compute sum of array elements",
+      right: "np.sum or np.nansum"
+    },
+    {
+      left: "Find lowest value of array elements",
+      right: "np.min or np.nanmin"
+    },
+    {
+      left: "Compute product of array elements",
+      right: "np.prod or np.nanprod"
+    },
+    {
+      left: "Find index of the lowest value of array elements",
+      right: "np.argmin or np.nanargmin"
+    },
+    {
+      left: "Compute rank-based stats of array elements",
+      right: "np.percentile or np.nanpercentile"
+    }
+  ],
+  explanation: `
+The correct NumPy aggregate functions are:
+
+<ul>
+  <li><strong>Compute sum</strong> → <code>np.sum</code> or <code>np.nansum</code></li>
+  <li><strong>Find lowest value</strong> → <code>np.min</code> or <code>np.nanmin</code></li>
+  <li><strong>Compute product</strong> → <code>np.prod</code> or <code>np.nanprod</code></li>
+  <li><strong>Find index of lowest value</strong> → <code>np.argmin</code> or <code>np.nanargmin</code></li>
+  <li><strong>Compute rank-based statistics</strong> → <code>np.percentile</code> or <code>np.nanpercentile</code></li>
+</ul>
+
+Functions beginning with <code>nan</code> ignore <code>NaN</code> values when performing the calculation.
+`
+},
+{
+  type: "radio",
+  question: `
+What is the output of the following code?
+
+<pre><code class="language-python">import numpy as np
+
+x = np.array([7, 3, 4, 6])
+print(np.sum(x)//np.min(x))</code></pre>
+`,
+  answers: [
+    "20.0",
+    "6.67",
+    "6",
+    "3"
+  ],
+  correct: "6",
+  explanation: `
+First:
+
+<pre><code class="language-python">np.sum(x)</code></pre>
+
+returns:
+
+<pre><code>7 + 3 + 4 + 6 = 20</code></pre>
+
+Next:
+
+<pre><code class="language-python">np.min(x)</code></pre>
+
+returns the smallest value:
+
+<pre><code>3</code></pre>
+
+The expression uses floor division:
+
+<pre><code>20 // 3 = 6</code></pre>
+
+Therefore, the correct answer is <strong>6</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+(True or False) Broadcasting is useful when you want to extract, modify, count, or otherwise manipulate values in an array based on some criterion.
+`,
+  answers: [
+    "True",
+    "False"
+  ],
+  correct: "False",
+  explanation: `
+The statement is <strong>False</strong>.
+
+The description refers to <strong>Boolean masking</strong>, not broadcasting.
+
+Boolean masking is useful when you want to:
+
+<ul>
+  <li>extract values based on a condition,</li>
+  <li>modify selected values,</li>
+  <li>count values that satisfy a condition,</li>
+  <li>otherwise manipulate array elements using a criterion.</li>
+</ul>
+
+For example:
+
+<pre><code class="language-python">x[x > 5]</code></pre>
+
+selects all elements greater than 5.
+
+<strong>Broadcasting</strong>, on the other hand, is the set of rules NumPy uses to perform operations on arrays with different but compatible shapes.
+
+Therefore, the correct answer is <strong>False</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+What is the output of the following code?
+
+<pre><code class="language-python">import numpy as np
+
+x = np.arange(1, 5)
+print(np.equal(np.multiply(2, x), np.power(x, 2)))</code></pre>
+`,
+  answers: [
+    "[False True True True]",
+    "[False False False False]",
+    "[False True False False]",
+    "[True False False False]"
+  ],
+  correct: "[False True False False]",
+  explanation: `
+First:
+
+<pre><code class="language-python">x = np.arange(1, 5)</code></pre>
+
+creates:
+
+<pre><code>[1 2 3 4]</code></pre>
+
+Then:
+
+<pre><code class="language-python">np.multiply(2, x)</code></pre>
+
+produces:
+
+<pre><code>[2 4 6 8]</code></pre>
+
+And:
+
+<pre><code class="language-python">np.power(x, 2)</code></pre>
+
+produces:
+
+<pre><code>[1 4 9 16]</code></pre>
+
+Now NumPy compares the arrays element by element:
+
+<pre><code>2 == 1   → False
+4 == 4   → True
+6 == 9   → False
+8 == 16  → False</code></pre>
+
+Therefore, the output is:
+
+<pre><code>[False  True False False]</code></pre>
+
+The correct answer is <strong>[False True False False]</strong>.
+`
+},
+{
+  type: "matching",
+  question: `
+Given:
+
+<pre><code class="language-python">rainfall_mm = [[0, 0, 10, 20],
+               [9, 1, 4, 22],
+               [33, 0, 5, 8]]</code></pre>
+
+Match the following description with the NumPy statement:
+`,
+  pairs: [
+    {
+      left: "Days with more than 5 mm rain",
+      right: "np.sum(np.greater(rainfall_mm, 5))"
+    },
+    {
+      left: "Number days with rain",
+      right: "np.sum(np.not_equal(rainfall_mm, 0))"
+    },
+    {
+      left: "Rainy days between 5 and 10 mm rain",
+      right: "np.sum(np.greater(rainfall_mm, 5) & (np.less(rainfall_mm, 10)))"
+    },
+    {
+      left: "Rainy days with < 5 mm rain",
+      right: "np.sum(np.greater_equal(rainfall_mm, 1) & (np.less(rainfall_mm, 5)))"
+    },
+    {
+      left: "Number of days without rain",
+      right: "np.sum(np.equal(rainfall_mm, 0))"
+    }
+  ],
+  explanation: `
+NumPy comparison functions produce Boolean arrays, and <code>np.sum()</code> counts the number of <code>True</code> values.
+
+<ul>
+  <li><strong>More than 5 mm</strong> → <code>np.greater(rainfall_mm, 5)</code></li>
+  <li><strong>Days with rain</strong> → rainfall is not equal to 0</li>
+  <li><strong>Between 5 and 10 mm</strong> → greater than 5 AND less than 10</li>
+  <li><strong>Rainy days below 5 mm</strong> → at least 1 mm AND less than 5 mm</li>
+  <li><strong>Days without rain</strong> → rainfall equals 0</li>
+</ul>
+`
+},
+{
+  type: "radio",
+  question: `
+(True or False) The following code will display <code>[0 0 1 2 3]</code>.
+
+<pre><code class="language-python">import numpy as np
+
+x = np.zeros(5, dtype=int)
+i = [2, 3, 3, 4, 4, 4]
+
+x[i] += 1
+print(x)</code></pre>
+`,
+  answers: [
+    "True",
+    "False"
+  ],
+  correct: "False",
+  explanation: `
+The statement is <strong>False</strong>.
+
+Initially:
+
+<pre><code>x = [0 0 0 0 0]</code></pre>
+
+The index list contains repeated indexes:
+
+<pre><code>i = [2, 3, 3, 4, 4, 4]</code></pre>
+
+However, with NumPy fancy indexing:
+
+<pre><code class="language-python">x[i] += 1</code></pre>
+
+the repeated indexes do <strong>not</strong> accumulate multiple increments as you might expect.
+
+The resulting array is:
+
+<pre><code>[0 0 1 1 1]</code></pre>
+
+If repeated indexes need to accumulate, NumPy provides:
+
+<pre><code class="language-python">np.add.at(x, i, 1)</code></pre>
+
+which would produce:
+
+<pre><code>[0 0 1 2 3]</code></pre>
+
+Therefore, the correct answer is <strong>False</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+What is the output of the following code?
+
+<pre><code class="language-python">import numpy as np
+
+x = np.arange(12).reshape((3, 4))
+print(x[2, [2, 0, 1]])</code></pre>
+`,
+  answers: [
+    "[2 2 0 1]",
+    "[6 4 5]",
+    "[10 8 9]",
+    "[2 0 1]"
+  ],
+  correct: "[10 8 9]",
+  explanation: `
+First:
+
+<pre><code class="language-python">x = np.arange(12).reshape((3, 4))</code></pre>
+
+creates:
+
+<pre><code>[[ 0  1  2  3]
+ [ 4  5  6  7]
+ [ 8  9 10 11]]</code></pre>
+
+The expression:
+
+<pre><code class="language-python">x[2, [2, 0, 1]]</code></pre>
+
+selects row index <code>2</code>:
+
+<pre><code>[8 9 10 11]</code></pre>
+
+and then selects columns in the order:
+
+<pre><code>2, 0, 1</code></pre>
+
+So:
+
+<pre><code>x[2, 2] = 10
+x[2, 0] = 8
+x[2, 1] = 9</code></pre>
+
+Therefore, the output is:
+
+<pre><code>[10 8 9]</code></pre>
+
+The correct answer is <strong>[10 8 9]</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+(True or False) Analyze the code below:
+
+<pre><code class="language-python">import numpy as np
+
+rng = np.random.default_rng(seed=42)
+X = rng.integers(0, 10, (4, 6))
+np.partition(X, 3, axis=1)</code></pre>
+
+The result is an array where the first three slots in each row contain the smallest values from that row, with the remaining values filling the remaining slots.
+`,
+  answers: [
+    "True",
+    "False"
+  ],
+  correct: "True",
+  explanation: `
+The statement is <strong>True</strong>.
+
+The expression:
+
+<pre><code class="language-python">np.partition(X, 3, axis=1)</code></pre>
+
+partitions each row independently because <code>axis=1</code> works across the columns of each row.
+
+For each row, the element that would appear at index <code>3</code> in a fully sorted row is placed into that position.
+
+All values before index <code>3</code> are smaller than or equal to that partition value, so the first three positions contain the three smallest values from that row, although their internal order is not guaranteed to be sorted.
+
+The remaining values occupy the remaining positions.
+
+Therefore, the correct answer is <strong>True</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+(True or False) Both Code A and Code B below will display the same result.
+
+<strong>Code A:</strong>
+
+<pre><code class="language-python">import numpy as np
+
+data = np.zeros(2, np.dtype({
+    'names': ('players', 'age'),
+    'formats': ('U10', 'i4')
+}))
+
+data['players'] = ['Mat', 'Mary']
+data['age'] = [18, 22]
+
+print(data['age'])</code></pre>
+
+<strong>Code B:</strong>
+
+<pre><code class="language-python">import numpy as np
+
+data = np.zeros(2, np.dtype({
+    'names': ('players', 'age'),
+    'formats': ('U10', 'i4')
+}))
+
+data['players'] = ['Mat', 'Mary']
+data['age'] = [18, 22]
+
+data_rec = data.view(np.recarray)
+print(data_rec.age)</code></pre>
+`,
+  answers: [
+    "True",
+    "False"
+  ],
+  correct: "True",
+  explanation: `
+Both code fragments access the same <code>age</code> field.
+
+In Code A:
+
+<pre><code class="language-python">data['age']</code></pre>
+
+accesses the field using structured-array dictionary-style indexing.
+
+In Code B:
+
+<pre><code class="language-python">data_rec.age</code></pre>
+
+accesses the same field using attribute notation after viewing the array as a <code>recarray</code>.
+
+Both display:
+
+<pre><code>[18 22]</code></pre>
+
+Therefore, the correct answer is <strong>True</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+What is the output of the following code?
+
+<pre><code class="language-python">import numpy as np
+
+data = np.zeros(3, np.dtype({
+    'names': ('employees', 'hours'),
+    'formats': ('U10', 'f8')
+}))
+
+data['employees'] = ['Joe', 'Mike', 'Nancy']
+data['hours'] = [40, 44, 35]
+
+print(data[data['hours'] > 40]['employees'])</code></pre>
+`,
+  answers: [
+    "['Joe', 'Nancy']",
+    "['Mike']",
+    "['Mike', 'Nancy']",
+    "['Joe', 'Mike']"
+  ],
+  correct: "['Mike']",
+  explanation: `
+The condition:
+
+<pre><code class="language-python">data['hours'] > 40</code></pre>
+
+checks which employees worked more than 40 hours.
+
+The hours are:
+
+<pre><code>Joe   → 40
+Mike  → 44
+Nancy → 35</code></pre>
+
+Only <strong>Mike</strong> has more than 40 hours.
+
+Therefore:
+
+<pre><code class="language-python">data[data['hours'] > 40]['employees']</code></pre>
+
+returns:
+
+<pre><code>['Mike']</code></pre>
+
+The correct answer is <strong>['Mike']</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+(True or False) Miniconda is a next-generation user interface of Jupyter Notebook. It enhances your notebooks by providing a browser-based interface that allows you to use multiple notebooks together effectively. In addition, it offers you a comprehensive Markdown editor, file manager, file viewer, and an infrastructure that enables you to run code from a wide range of files.
+`,
+  answers: [
+    "True",
+    "False"
+  ],
+  correct: "False",
+  explanation: `
+The statement is <strong>False</strong>.
+
+The description refers to <strong>JupyterLab</strong>, not Miniconda.
+
+<strong>JupyterLab</strong> is a browser-based interface that provides:
+
+<ul>
+  <li>multiple notebooks in one workspace,</li>
+  <li>a file manager,</li>
+  <li>Markdown and text editors,</li>
+  <li>file viewers,</li>
+  <li>terminals and other interactive tools.</li>
+</ul>
+
+<strong>Miniconda</strong> is a lightweight Python distribution that includes Python, Conda, and basic package/environment management tools.
+
+Therefore, the correct answer is <strong>False</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+Analyze the following code with NumPy array attributes. What will be the output?
+
+<pre><code class="language-python">import numpy as np
+
+rng = np.random.default_rng(seed=1701)
+
+x1 = rng.integers(10, size=6)
+x2 = rng.integers(10, size=(3, 4))
+x3 = rng.integers(10, size=(3, 4, 5))
+
+print(x1.dtype)
+print(x2.ndim)
+print(x3.shape)</code></pre>
+`,
+  answers: [
+    {
+      text: `<pre><code>int64
+2
+(3, 4)</code></pre>`,
+      value: "option1"
+    },
+    {
+      text: `<pre><code>int64
+3
+(3, 4, 5)</code></pre>`,
+      value: "option2"
+    },
+    {
+      text: `<pre><code>float
+3
+(3, 4)</code></pre>`,
+      value: "option3"
+    },
+    {
+      text: `<pre><code>int64
+2
+(3, 4, 5)</code></pre>`,
+      value: "option4"
+    }
+  ],
+  correct: "option4",
+  explanation: `
+Let's examine each attribute.
+
+<strong>1. <code>x1.dtype</code></strong>
+
+<pre><code class="language-python">x1 = rng.integers(10, size=6)</code></pre>
+
+The array contains integers, so its data type is:
+
+<pre><code>int64</code></pre>
+
+<strong>2. <code>x2.ndim</code></strong>
+
+<pre><code class="language-python">x2 = rng.integers(10, size=(3, 4))</code></pre>
+
+This is a two-dimensional array with 3 rows and 4 columns.
+
+Therefore:
+
+<pre><code>x2.ndim = 2</code></pre>
+
+<strong>3. <code>x3.shape</code></strong>
+
+<pre><code class="language-python">x3 = rng.integers(10, size=(3, 4, 5))</code></pre>
+
+Its shape is:
+
+<pre><code>(3, 4, 5)</code></pre>
+
+Therefore, the output is:
+
+<pre><code>int64
+2
+(3, 4, 5)</code></pre>
+
+The correct answer is <strong>option 4</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+What is the output of the following code?
+
+<pre><code class="language-python">import numpy as np
+
+x1 = np.array([3, 4, 0, 3, 8, 6])
+
+print(x1[1::2])
+print(x1[4::-2])</code></pre>
+`,
+  answers: [
+    {
+      text: `<pre><code>[3 4]
+[3 8]</code></pre>`,
+      value: "option1"
+    },
+    {
+      text: `<pre><code>[3 0 8]
+[6 3 4]</code></pre>`,
+      value: "option2"
+    },
+    {
+      text: `<pre><code>[4 3 6]
+[8 0 3]</code></pre>`,
+      value: "option3"
+    },
+    {
+      text: `<pre><code>[4 0]
+[8 0]</code></pre>`,
+      value: "option4"
+    }
+  ],
+  correct: "option3",
+  explanation: `
+For the first slice:
+
+<pre><code class="language-python">x1[1::2]</code></pre>
+
+Start at index <code>1</code> and move forward by <code>2</code>:
+
+<pre><code>indexes: 1, 3, 5
+values:  4, 3, 6</code></pre>
+
+So the first output is:
+
+<pre><code>[4 3 6]</code></pre>
+
+For the second slice:
+
+<pre><code class="language-python">x1[4::-2]</code></pre>
+
+Start at index <code>4</code> and move backward by <code>2</code>:
+
+<pre><code>indexes: 4, 2, 0
+values:  8, 0, 3</code></pre>
+
+So the second output is:
+
+<pre><code>[8 0 3]</code></pre>
+
+Therefore, the correct answer is <strong>option 3</strong>.
+`
+},
+{
+  type: "matching",
+  question: `
+Given <code>x = [-1, -2, 0, 1, 2]</code>. Match the following statements with the output:
+`,
+  pairs: [
+    {
+      left: "print(np.add(x, 2))",
+      right: "[1 0 2 3 4]"
+    },
+    {
+      left: "print(np.power(x, 2))",
+      right: "[1 4 0 1 4]"
+    },
+    {
+      left: "print(np.absolute(x))",
+      right: "[1 2 0 1 2]"
+    },
+    {
+      left: "print(np.multiply(x, 2))",
+      right: "[-2 -4 0 2 4]"
+    },
+    {
+      left: "print(np.negative(x))",
+      right: "[1 2 0 -1 -2]"
+    }
+  ],
+  explanation: `
+Given:
+
+<pre><code class="language-python">x = [-1, -2, 0, 1, 2]</code></pre>
+
+The NumPy operations produce:
+
+<ul>
+  <li><code>np.add(x, 2)</code> → adds 2 to every element → <strong>[1 0 2 3 4]</strong></li>
+  <li><code>np.power(x, 2)</code> → squares every element → <strong>[1 4 0 1 4]</strong></li>
+  <li><code>np.absolute(x)</code> → returns absolute values → <strong>[1 2 0 1 2]</strong></li>
+  <li><code>np.multiply(x, 2)</code> → multiplies every element by 2 → <strong>[-2 -4 0 2 4]</strong></li>
+  <li><code>np.negative(x)</code> → changes the sign of every element → <strong>[1 2 0 -1 -2]</strong></li>
+</ul>
+`
+},
+{
+  type: "radio",
+  question: `
+Which of the following is a broadcasting rule?
+`,
+  answers: [
+    "All of these",
+    "If the two arrays differ in their number of dimensions, the shape of the one with fewer dimensions is padded with ones on its leading (left) side.",
+    "If the shape of the two arrays does not match in any dimension, the array with shape equal to 1 in that dimension is stretched to match the other shape.",
+    "If in any dimension the sizes disagree and neither is equal to 1, an error is raised."
+  ],
+  correct: "All of these",
+  explanation: `
+All three statements describe NumPy broadcasting rules.
+
+<ul>
+  <li>If arrays have different numbers of dimensions, the smaller-dimensional shape is padded with leading <code>1</code>s.</li>
+  <li>If one dimension has size <code>1</code>, NumPy can stretch that dimension to match the other array.</li>
+  <li>If corresponding dimensions differ and neither dimension is <code>1</code>, broadcasting is not possible and NumPy raises an error.</li>
+</ul>
+
+Therefore, the correct answer is <strong>All of these</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+What is the output of the following code?
+
+<pre><code class="language-python">import numpy as np
+
+a = np.arange(3)
+print(np.equal(a, 0))</code></pre>
+`,
+  answers: [
+    "[False True True]",
+    "[True False False]",
+    "[True True True]",
+    "[True False False False]"
+  ],
+  correct: "[True False False]",
+  explanation: `
+First:
+
+<pre><code class="language-python">a = np.arange(3)</code></pre>
+
+creates:
+
+<pre><code>[0 1 2]</code></pre>
+
+Then:
+
+<pre><code class="language-python">np.equal(a, 0)</code></pre>
+
+compares each element with <code>0</code>:
+
+<pre><code>0 == 0 → True
+1 == 0 → False
+2 == 0 → False</code></pre>
+
+Therefore, the output is:
+
+<pre><code>[ True False False]</code></pre>
+
+The correct answer is <strong>[True False False]</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+What is the output of the following code?
+
+<pre><code class="language-python">import numpy as np
+
+x = np.arange(0, 50, 5, dtype=int)
+ind = np.array([[3, 7],
+                [4, 5]])
+
+print(x[ind])</code></pre>
+`,
+  answers: [
+    {
+      text: "None of these",
+      value: "option1"
+    },
+    {
+      text: `<pre><code>[[10 30]
+ [15 20]]</code></pre>`,
+      value: "option2"
+    },
+    {
+      text: `<pre><code>[[15 35]
+ [20 25]]</code></pre>`,
+      value: "option3"
+    },
+    {
+      text: `<pre><code>[10 30 15 20]</code></pre>`,
+      value: "option4"
+    },
+    {
+      text: `<pre><code>[15 35 20 25]</code></pre>`,
+      value: "option5"
+    }
+  ],
+  correct: "option3",
+  explanation: `
+First:
+
+<pre><code class="language-python">x = np.arange(0, 50, 5)</code></pre>
+
+creates:
+
+<pre><code>[0 5 10 15 20 25 30 35 40 45]</code></pre>
+
+The index array is:
+
+<pre><code>[[3 7]
+ [4 5]]</code></pre>
+
+NumPy uses each value as an index into <code>x</code>:
+
+<pre><code>x[3] = 15
+x[7] = 35
+x[4] = 20
+x[5] = 25</code></pre>
+
+The shape of the index array is preserved, so the result is:
+
+<pre><code>[[15 35]
+ [20 25]]</code></pre>
+
+Therefore, the correct answer is <strong>option 3</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+(True or False) Both Code A and Code B below will display the array <code>s</code> in ascending order.
+
+<strong>Code A:</strong>
+
+<pre><code class="language-python">import numpy as np
+
+s = [5, 3, 2, 4, 1]
+sorted(s)</code></pre>
+
+<strong>Code B:</strong>
+
+<pre><code class="language-python">import numpy as np
+
+s = np.array([5, 3, 2, 4, 1])
+print(np.argsort(s))</code></pre>
+`,
+  answers: [
+    "True",
+    "False"
+  ],
+  correct: "False",
+  explanation: `
+The statement is <strong>False</strong>.
+
+In Code A:
+
+<pre><code class="language-python">sorted(s)</code></pre>
+
+returns the values in ascending order:
+
+<pre><code>[1, 2, 3, 4, 5]</code></pre>
+
+However, <code>np.argsort()</code> does <strong>not</strong> return the sorted values.
+
+It returns the <strong>indexes</strong> that would sort the array.
+
+For:
+
+<pre><code>[5, 3, 2, 4, 1]</code></pre>
+
+the indexes in ascending-value order are:
+
+<pre><code>[4 2 1 3 0]</code></pre>
+
+Therefore, Code B does not display the array values in ascending order.
+
+The correct answer is <strong>False</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+By convention, you'll find that most people in the SciPy/PyData world will import NumPy using __________ as an alias.
+`,
+  answers: [
+    "np",
+    "py",
+    "pd",
+    "sp"
+  ],
+  correct: "np",
+  explanation: `
+By convention, NumPy is almost always imported using the alias:
+
+<pre><code class="language-python">import numpy as np</code></pre>
+
+Other common aliases include:
+
+<ul>
+  <li><code>pd</code> → pandas</li>
+  <li><code>sp</code> → sometimes SciPy</li>
+</ul>
+
+Therefore, the correct answer is <strong>np</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+(True or False) The following statement will create an uninitialized array of 3 integers.
+
+<pre><code class="language-python">import numpy as np
+np.eye(3)</code></pre>
+`,
+  answers: [
+    "True",
+    "False"
+  ],
+  correct: "False",
+  explanation: `
+The statement is <strong>False</strong>.
+
+<pre><code class="language-python">np.eye(3)</code></pre>
+
+creates a <strong>3 x 3 identity matrix</strong>:
+
+<pre><code>[[1. 0. 0.]
+ [0. 1. 0.]
+ [0. 0. 1.]]</code></pre>
+
+It does not create an uninitialized array of 3 integers.
+
+To create an uninitialized array, NumPy provides:
+
+<pre><code class="language-python">np.empty(...)</code></pre>
+
+Therefore, the correct answer is <strong>False</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+What is the output of the following code?
+
+<pre><code class="language-python">import numpy as np
+
+x2 = np.array([[1, 2, 3],
+               [4, 5, 6],
+               [7, 8, 9]])
+
+x2_copy = x2[:1, :2].copy()
+x2_copy[0, 0] = 55
+
+print(x2[:1, :1])
+print(x2_copy[:1, :1])</code></pre>
+`,
+  answers: [
+    {
+      text: "None of these",
+      value: "option1"
+    },
+    {
+      text: `<pre><code>[[1]]
+[[55]]</code></pre>`,
+      value: "option2"
+    },
+    {
+      text: `<pre><code>[[1]]
+[[1]]</code></pre>`,
+      value: "option3"
+    },
+    {
+      text: `<pre><code>[[55]]
+[[55]]</code></pre>`,
+      value: "option4"
+    }
+  ],
+  correct: "option2",
+  explanation: `
+First:
+
+<pre><code class="language-python">x2_copy = x2[:1, :2].copy()</code></pre>
+
+takes:
+
+<pre><code>[[1 2]]</code></pre>
+
+and creates an <strong>independent copy</strong>.
+
+Then:
+
+<pre><code class="language-python">x2_copy[0, 0] = 55</code></pre>
+
+changes only the copied array.
+
+The original <code>x2</code> remains unchanged:
+
+<pre><code>x2[:1, :1] → [[1]]</code></pre>
+
+while:
+
+<pre><code>x2_copy[:1, :1] → [[55]]</code></pre>
+
+Therefore, the output is:
+
+<pre><code>[[1]]
+[[55]]</code></pre>
+
+The correct answer is <strong>option 2</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+What is the output of the following code?
+
+<pre><code class="language-python">import numpy as np
+
+x2 = np.array([[1, 2, 3],
+               [4, 5, 6],
+               [7, 8, 9]])
+
+x2_no_copy = x2[:1, :2]
+x2_no_copy[0, 0] = 55
+
+print(x2[:1, :1])
+print(x2_no_copy[:1, :1])</code></pre>
+`,
+  answers: [
+    {
+      text: "None of these",
+      value: "option1"
+    },
+    {
+      text: `<pre><code>[[1]]
+[[1]]</code></pre>`,
+      value: "option2"
+    },
+    {
+      text: `<pre><code>[[1]]
+[[55]]</code></pre>`,
+      value: "option3"
+    },
+    {
+      text: `<pre><code>[[55]]
+[[55]]</code></pre>`,
+      value: "option4"
+    }
+  ],
+  correct: "option4",
+  explanation: `
+The slice:
+
+<pre><code class="language-python">x2_no_copy = x2[:1, :2]</code></pre>
+
+does <strong>not</strong> create an independent copy.
+
+NumPy slicing normally creates a <strong>view</strong> of the original array.
+
+Therefore:
+
+<pre><code class="language-python">x2_no_copy[0, 0] = 55</code></pre>
+
+also changes the corresponding value in the original array <code>x2</code>.
+
+So both:
+
+<pre><code class="language-python">x2[:1, :1]</code></pre>
+
+and:
+
+<pre><code class="language-python">x2_no_copy[:1, :1]</code></pre>
+
+contain <code>55</code>.
+
+The output is:
+
+<pre><code>[[55]]
+[[55]]</code></pre>
+
+Therefore, the correct answer is <strong>option 4</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+(True or False) Computation on NumPy's arrays using vectorized operations through ufuncs are more efficient than using Python loops.
+`,
+  answers: [
+    "True",
+    "False"
+  ],
+  correct: "True",
+  explanation: `
+The statement is <strong>True</strong>.
+
+NumPy's vectorized operations and universal functions (<code>ufuncs</code>) are generally much more efficient than writing equivalent element-by-element loops in Python.
+
+For example:
+
+<pre><code class="language-python">x * 2</code></pre>
+
+is typically faster than:
+
+<pre><code class="language-python">for i in range(len(x)):
+    x[i] = x[i] * 2</code></pre>
+
+This is because NumPy performs many operations in optimized compiled code instead of repeatedly executing Python-level loop instructions.
+
+Therefore, the correct answer is <strong>True</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+What is the output of the following code?
+
+<pre><code class="language-python">import numpy as np
+
+x = np.arange(1, 4)
+m = np.ones((3, 3), dtype=int)
+
+print(x + m)</code></pre>
+`,
+  answers: [
+    {
+      text: `<pre><code>[[2 3 4]
+ [2 3 4]
+ [2 3 4]]</code></pre>`,
+      value: "option1"
+    },
+    {
+      text: `<pre><code>[[1 4]
+ [3 4]]</code></pre>`,
+      value: "option2"
+    },
+    {
+      text: `<pre><code>[[1 2 3 4]
+ [1 2 3 4]
+ [1 2 3 4]]</code></pre>`,
+      value: "option3"
+    },
+    {
+      text: `<pre><code>[[4 7]
+ [4 7]
+ [4 7]]</code></pre>`,
+      value: "option4"
+    }
+  ],
+  correct: "option1",
+  explanation: `
+First:
+
+<pre><code class="language-python">x = np.arange(1, 4)</code></pre>
+
+creates:
+
+<pre><code>[1 2 3]</code></pre>
+
+Then:
+
+<pre><code class="language-python">m = np.ones((3, 3), dtype=int)</code></pre>
+
+creates:
+
+<pre><code>[[1 1 1]
+ [1 1 1]
+ [1 1 1]]</code></pre>
+
+NumPy uses <strong>broadcasting</strong> to add <code>x</code> to every row of <code>m</code>:
+
+<pre><code>[1 2 3] + [1 1 1] = [2 3 4]</code></pre>
+
+Therefore, the output is:
+
+<pre><code>[[2 3 4]
+ [2 3 4]
+ [2 3 4]]</code></pre>
+
+The correct answer is <strong>option 1</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+(True or False) The following code will display <code>[0 0 1 2 3]</code>.
+
+<pre><code class="language-python">import numpy as np
+
+x = np.zeros(5, dtype=int)
+i = [2, 3, 3, 4, 4, 4]
+
+np.add.at(x, i, 1)
+print(x)</code></pre>
+`,
+  answers: [
+    "True",
+    "False"
+  ],
+  correct: "True",
+  explanation: `
+The statement is <strong>True</strong>.
+
+Initially:
+
+<pre><code>[0 0 0 0 0]</code></pre>
+
+The indexes are:
+
+<pre><code>[2, 3, 3, 4, 4, 4]</code></pre>
+
+<code>np.add.at()</code> accumulates repeated indexes:
+
+<pre><code>index 2 → +1 once  → 1
+index 3 → +1 twice → 2
+index 4 → +1 three times → 3</code></pre>
+
+So the final array is:
+
+<pre><code>[0 0 1 2 3]</code></pre>
+
+Therefore, the correct answer is <strong>True</strong>.
+`
+},
 
 ];

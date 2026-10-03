@@ -2482,4 +2482,1087 @@ Therefore, the correct answer is:
 <strong>No because the list is not sorted</strong>.
 `
 },
+{
+  type: "checkbox",
+  question: `
+In the implementation of Stack and Queue, which of the following are true? Please select all that apply.
+`,
+  answers: [
+    "Stack contains all the methods defined in list.",
+    "Queue contains all the methods defined in LinkedList.",
+    "Stack contains a list for storing elements.",
+    "Queue contains a linked list for storing elements."
+  ],
+  correct: [
+    "Stack contains a list for storing elements.",
+    "Queue contains a linked list for storing elements."
+  ],
+  explanation: `
+In this implementation, <strong>Stack</strong> and <strong>Queue</strong> use other data structures internally to store their elements.
+
+<ul>
+  <li>A <strong>Stack</strong> contains a <strong>list</strong> for storing elements.</li>
+  <li>A <strong>Queue</strong> contains a <strong>linked list</strong> for storing elements.</li>
+</ul>
+
+This does not mean that Stack automatically contains every method defined in <code>list</code>, or that Queue exposes every method defined in <code>LinkedList</code>.
+
+Therefore, the correct choices are <strong>3 and 4</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+Which data structure is appropriate to store patients in an emergency room?
+`,
+  answers: [
+    "Stack",
+    "Queue",
+    "Priority Queue",
+    "Linked List",
+    "list"
+  ],
+  correct: "Priority Queue",
+  explanation: `
+An emergency room should not necessarily treat patients in the exact order in which they arrive.
+
+Patients with more urgent medical conditions need to be treated before patients with less urgent conditions.
+
+A <strong>Priority Queue</strong> processes elements according to their priority rather than only their arrival order.
+
+Therefore, the correct answer is <strong>Priority Queue</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+What is the time-complexity for the <code>addLast</code> function?
+`,
+  answers: [
+    "O(1)",
+    "O(logn)",
+    "O(n)",
+    "O(nlogn)"
+  ],
+  correct: "O(1)",
+  explanation: `
+In the linked-list implementation used in this course, the list keeps a reference to the <strong>tail</strong>.
+
+Therefore, <code>addLast</code> does not need to traverse the entire linked list.
+
+It can directly:
+
+<pre><code>tail.next = newNode
+tail = newNode</code></pre>
+
+These operations take constant time.
+
+Therefore, the time complexity is:
+
+<strong>O(1)</strong>.
+`
+},
+{
+  type: "checkbox",
+  question: `
+Which of the following are true? Please select all that apply.
+`,
+  answers: [
+    "An iterator is an object that provides a uniformed way for traversing the elements in a container object.",
+    "To enable the traversal using a for loop in a container object, the container class must implement the __iter__(self) method that returns an iterator.",
+    "An iterator class must contains the __next__(self) method that returns the next element in the container object.",
+    "When there are no items left to iterate, the __next__() method must raise a StopIteration exception."
+  ],
+  correct: [
+    "An iterator is an object that provides a uniformed way for traversing the elements in a container object.",
+    "To enable the traversal using a for loop in a container object, the container class must implement the __iter__(self) method that returns an iterator.",
+    "An iterator class must contains the __next__(self) method that returns the next element in the container object.",
+    "When there are no items left to iterate, the __next__() method must raise a StopIteration exception."
+  ],
+  explanation: `
+All four statements are true.
+
+An <strong>iterator</strong> provides a uniform way to traverse elements in a container.
+
+To support iteration with a <code>for</code> loop, the container defines:
+
+<pre><code>__iter__(self)</code></pre>
+
+which returns an iterator.
+
+The iterator defines:
+
+<pre><code>__next__(self)</code></pre>
+
+which returns the next element.
+
+When there are no more elements, <code>__next__()</code> raises:
+
+<pre><code>StopIteration</code></pre>
+
+Therefore, <strong>all four choices are correct</strong>.
+`
+},
+
+{
+  type: "checkbox",
+  question: `
+LinkedList is more efficient than list for _______________. Please select all that apply.
+`,
+  answers: [
+    "inserting/deleting an element in the middle of the list.",
+    "inserting/deleting an element in the beginning of the list.",
+    "inserting/deleting an element at the end of the list.",
+    "retrieving an element given the index."
+  ],
+  correct: [
+    "inserting/deleting an element in the beginning of the list.",
+    "inserting/deleting an element at the end of the list."
+  ],
+  explanation: `
+According to the answer key used by this course, LinkedList is more efficient than list for:
+
+<ul>
+  <li><strong>inserting/deleting an element in the beginning of the list</strong></li>
+  <li><strong>inserting/deleting an element at the end of the list</strong></li>
+</ul>
+
+Retrieving an element by index is more efficient with a regular list because indexed access is direct.
+
+For this Canvas test, do <strong>not</strong> select the middle option.
+
+Therefore, select <strong>choices 2 and 3</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+Suppose the rule of the party is that the participants who arrive later will leave earlier. Which data structure is appropriate to store the participants?
+`,
+  answers: [
+    "Stack",
+    "Queue",
+    "list",
+    "Linked List"
+  ],
+  correct: "Stack",
+  explanation: `
+Participants who arrive <strong>later</strong> must leave <strong>earlier</strong>.
+
+This follows the:
+
+<pre><code>Last In, First Out (LIFO)</code></pre>
+
+principle.
+
+A <strong>Stack</strong> uses LIFO:
+
+<ul>
+  <li>The last participant to arrive is pushed onto the top.</li>
+  <li>The participant on the top leaves first.</li>
+</ul>
+
+Therefore, the correct answer is <strong>Stack</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+What is the time-complexity for the <code>removeLast</code> function in a singly linked list?
+`,
+  answers: [
+    "O(1)",
+    "O(logn)",
+    "O(n)",
+    "O(nlogn)"
+  ],
+  correct: "O(n)",
+  explanation: `
+In a <strong>singly linked list</strong>, each node only has a reference to the next node.
+
+Even if the list stores a reference to the <code>tail</code>, removing the last node requires finding the node immediately before the tail.
+
+To find that node, the algorithm must traverse the list from the head.
+
+Therefore, the time complexity is:
+
+<pre><code>O(n)</code></pre>
+
+The correct answer is <strong>O(n)</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+What is the time-complexity for the <code>insert(index, e)</code> function?
+`,
+  answers: [
+    "O(1)",
+    "O(logn)",
+    "O(n)",
+    "O(nlogn)"
+  ],
+  correct: "O(n)",
+  explanation: `
+To insert an element at a particular index in a linked list, the algorithm may need to traverse the list until it reaches the node before that position.
+
+In the worst case, it may traverse almost the entire list.
+
+Therefore, the time complexity is:
+
+<pre><code>O(n)</code></pre>
+
+The correct answer is <strong>O(n)</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+When a new node is inserted to the head of a linked list, will the head pointer, the tail pointer, or both be changed?
+`,
+  answers: [
+    "If the list is empty before the insertion, both head and tail will change.",
+    "If the list is not empty before the insertion, head will change.",
+    "head will always change, but tail may change too.",
+    "All of the above."
+  ],
+  correct: "All of the above.",
+  explanation: `
+All three statements are true.
+
+If the linked list is <strong>empty</strong>, inserting the first node causes both:
+
+<pre><code>head = newNode
+tail = newNode</code></pre>
+
+If the list is <strong>not empty</strong>, the new node becomes the new head, while the tail remains unchanged.
+
+Therefore:
+
+<ul>
+  <li><strong>head always changes</strong> when inserting at the beginning.</li>
+  <li><strong>tail also changes</strong> when the list was empty.</li>
+</ul>
+
+Therefore, the correct answer is <strong>All of the above.</strong>
+`
+},
+{
+  type: "radio",
+  question: `
+What is the time-complexity for the <code>removeAt(index)</code> function?
+`,
+  answers: [
+    "O(1)",
+    "O(logn)",
+    "O(n)",
+    "O(nlogn)"
+  ],
+  correct: "O(n)",
+  explanation: `
+In a singly linked list, removing an element at a particular index may require traversing the list to reach the node before that position.
+
+In the worst case, the algorithm may need to traverse almost the entire list.
+
+Therefore, the time complexity is:
+
+<pre><code>O(n)</code></pre>
+
+The correct answer is <strong>O(n)</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+In the LinkedList class, which of the following statement inserts a string <code>s</code> to the head of the list?
+`,
+  answers: [
+    "list.addFirst(s);",
+    "list.add(s);",
+    "list.add(1, s);",
+    "list.insert(s);"
+  ],
+  correct: "list.addFirst(s);",
+  explanation: `
+The <code>addFirst(e)</code> method inserts an element at the <strong>head</strong> of the linked list.
+
+Therefore:
+
+<pre><code>list.addFirst(s);</code></pre>
+
+places the string <code>s</code> at the beginning of the list.
+
+The correct answer is <strong>list.addFirst(s);</strong>
+`
+},
+{
+  type: "radio",
+  question: `
+Suppose <code>list1</code> is a list. Analyze the following code:
+
+<pre><code class="language-python">A:
+while len(list1) > 0:
+    del list1[len(list1) - 1]
+
+B:
+while len(list1) > 0:
+    list1.remove(list1.get(len(list1) - 1))</code></pre>
+`,
+  answers: [
+    "Code fragment A runs faster than code fragment B because the time complexity for code fragment A is O(n) and for B is O(n^2).",
+    "Code fragment B runs faster than code fragment A.",
+    "Code fragment A runs as fast as code fragment B because both code fragment A and B have the same time complexity O(n).",
+    "Both code fragment A and B have the same time complexity O(n^2), but A runs faster because code fragment A has less overhead."
+  ],
+  correct: "Both code fragment A and B have the same time complexity O(n^2), but A runs faster because code fragment A has less overhead.",
+  explanation: `
+For this Canvas question, use the <strong>fourth answer choice</strong>.
+
+The original Pearson version of this question states that both fragments have the same overall time complexity <strong>O(n)</strong>, while fragment A is faster because it has less overhead.
+
+Your Canvas version appears to contain a typo in the fourth choice and displays <strong>O(n²)</strong> instead of <strong>O(n)</strong>.
+
+For the purpose of matching the course test, the expected choice is therefore:
+
+<strong>Both code fragment A and B have the same time complexity O(n^2), but A runs faster because code fragment A has less overhead.</strong>
+`
+},
+
+{
+  type: "radio",
+  question: `
+Suppose <code>list1</code> is a list and <code>list2</code> is a doubly linked list.
+Both contain 1 million double values. Analyze the following code:
+
+<pre><code class="language-python">A:
+while len(list1) > 0:
+    del list1[-1]
+
+B:
+while list2.getSize() > 0:
+    list2.removeLast()</code></pre>
+`,
+  answers: [
+    "Code fragment A runs faster than code fragment B.",
+    "Code fragment B runs faster than code fragment A.",
+    "Code fragment A runs as fast as code fragment B."
+  ],
+  correct: "Code fragment A runs as fast as code fragment B.",
+  explanation: `
+In code fragment <strong>A</strong>, deleting the last element of a list takes:
+
+<pre><code>O(1)</code></pre>
+
+Each deletion is performed once for every element, so the total time is:
+
+<pre><code>O(n)</code></pre>
+
+In a <strong>doubly linked list</strong>, <code>removeLast()</code> also takes <strong>O(1)</strong> time because the list maintains a tail reference and each node has a link to the previous node.
+
+Repeating this operation for all <strong>n</strong> elements also gives:
+
+<pre><code>O(n)</code></pre>
+
+Therefore, both code fragments have the same asymptotic running time.
+
+The correct answer is <strong>Code fragment A runs as fast as code fragment B.</strong>
+`
+},
+{
+  type: "radio",
+  question: `
+<code>list</code> is more efficient than <code>LinkedList</code> for the following operations:
+`,
+  answers: [
+    "Insert/delete an element in the middle of the list.",
+    "Insert/delete an element in the beginning of the list.",
+    "Insert/delete an element at the end of the list.",
+    "Retrieve an element given the index."
+  ],
+  correct: "Retrieve an element given the index.",
+  explanation: `
+A Python <code>list</code> provides direct access to an element using its index.
+
+For example:
+
+<pre><code class="language-python">list1[index]</code></pre>
+
+Accessing an element by index takes:
+
+<pre><code>O(1)</code></pre>
+
+In a <code>LinkedList</code>, there is no direct access to an arbitrary node. The program must start from the head and follow links until it reaches the requested position.
+
+This can take:
+
+<pre><code>O(n)</code></pre>
+
+Therefore, the correct answer is:
+
+<strong>Retrieve an element given the index.</strong>
+`
+},
+
+{
+  type: "radio",
+  question: `
+What is the time-complexity for the <code>removeFirst</code> function?
+`,
+  answers: [
+    "O(1)",
+    "O(logn)",
+    "O(n)",
+    "O(nlogn)"
+  ],
+  correct: "O(1)",
+  explanation: `
+The first node of a linked list can be removed directly by changing the <code>head</code> reference.
+
+Conceptually:
+
+<pre><code class="language-python">head = head.next</code></pre>
+
+There is no need to traverse the linked list.
+
+Therefore, the time complexity is:
+
+<pre><code>O(1)</code></pre>
+
+The correct answer is <strong>O(1)</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+Suppose <code>list1</code> is a list and <code>list2</code> is a LinkedList. Both contain 1 million floating-point values. Analyze the following code:
+
+<pre><code class="language-python">A:
+while len(list1) > 0:
+    del list1[0]
+
+B:
+while list2.getSize() > 0:
+    list2.removeFirst()</code></pre>
+`,
+  answers: [
+    "Code fragment A runs faster than code fragment B.",
+    "Code fragment B runs faster than code fragment A.",
+    "Code fragment A runs as fast as code fragment B."
+  ],
+  correct: "Code fragment B runs faster than code fragment A.",
+  explanation: `
+In code fragment <strong>A</strong>:
+
+<pre><code class="language-python">del list1[0]</code></pre>
+
+removes the first element of a Python list.
+
+All remaining elements must be shifted one position to the left, so one deletion takes:
+
+<pre><code>O(n)</code></pre>
+
+Repeating this operation for all elements gives approximately:
+
+<pre><code>O(n²)</code></pre>
+
+In code fragment <strong>B</strong>:
+
+<pre><code class="language-python">list2.removeFirst()</code></pre>
+
+removes the head node of a linked list directly.
+
+Each removal takes:
+
+<pre><code>O(1)</code></pre>
+
+Repeating it <strong>n</strong> times gives:
+
+<pre><code>O(n)</code></pre>
+
+Therefore, <strong>code fragment B runs faster than code fragment A.</strong>
+`
+},
+
+{
+  type: "radio",
+  question: `
+When a new node is inserted to the end of a linked list, will the head pointer, the tail pointer, or both be changed?
+`,
+  answers: [
+    "If the list is empty before the insertion, both head and tail will change.",
+    "If the list is not empty before the insertion, tail will change.",
+    "head may change, but tail will always change.",
+    "All of the above."
+  ],
+  correct: "All of the above.",
+  explanation: `
+When inserting a new node at the <strong>end</strong> of a linked list, the <code>tail</code> must always be updated to point to the new last node.
+
+If the list is empty before insertion:
+
+<pre><code>head = newNode
+tail = newNode</code></pre>
+
+so both <code>head</code> and <code>tail</code> change.
+
+If the list already contains nodes, only the <code>tail</code> changes.
+
+Therefore:
+
+<ul>
+  <li>If the list is empty, both head and tail change.</li>
+  <li>If the list is not empty, tail changes.</li>
+  <li>Head may change, but tail always changes.</li>
+</ul>
+
+Therefore, the correct answer is <strong>All of the above.</strong>
+`
+},
+{
+  type: "radio",
+  question: `
+What is the time-complexity for the <code>addFirst</code> function?
+`,
+  answers: [
+    "O(1)",
+    "O(logn)",
+    "O(n)",
+    "O(nlogn)"
+  ],
+  correct: "O(1)",
+  explanation: `
+The <code>addFirst</code> function inserts a new node directly at the beginning of the linked list.
+
+Conceptually:
+
+<pre><code class="language-python">newNode.next = head
+head = newNode</code></pre>
+
+No traversal of the list is required.
+
+Therefore, the time complexity is:
+
+<pre><code>O(1)</code></pre>
+
+The correct answer is <strong>O(1)</strong>.
+`
+},
+
+{
+  type: "checkbox",
+  question: `
+In the implementation of LinkedList, which of the following is false?
+`,
+  answers: [
+    "LinkedList has a size property.",
+    "LinkedList has the properties named head and tail to point to the nodes in a linked list.",
+    "If a linked list contains one element, head points to the node and tail is None.",
+    "tail.next is always None."
+  ],
+  correct: [
+    "If a linked list contains one element, head points to the node and tail is None."
+  ],
+  explanation: `
+The false statement is:
+
+<strong>If a linked list contains one element, head points to the node and tail is None.</strong>
+
+If a linked list contains exactly one node, both <code>head</code> and <code>tail</code> point to that same node.
+
+Conceptually:
+
+<pre><code>head ──► [node] ◄── tail
+             |
+             ▼
+            None</code></pre>
+
+The last node's <code>next</code> reference is <code>None</code>, so <code>tail.next</code> is <code>None</code>.
+
+Therefore, only the <strong>third statement</strong> is false.
+`
+},
+
+{
+  type: "checkbox",
+  question: `
+The following methods are defined in the Stack class. Please select all that apply.
+`,
+  answers: [
+    "isEmpty()",
+    "peek()",
+    "push(value: object)",
+    "pop()",
+    "getSize()"
+  ],
+  correct: [
+    "isEmpty()",
+    "peek()",
+    "push(value: object)",
+    "pop()",
+    "getSize()"
+  ],
+  explanation: `
+All of these methods are defined in the Stack class.
+
+<ul>
+  <li><code>isEmpty()</code> — checks whether the stack is empty.</li>
+  <li><code>peek()</code> — returns the top element without removing it.</li>
+  <li><code>push(value)</code> — adds an element to the top of the stack.</li>
+  <li><code>pop()</code> — removes and returns the top element.</li>
+  <li><code>getSize()</code> — returns the number of elements in the stack.</li>
+</ul>
+
+Therefore, <strong>all five choices are correct</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+Suppose <code>list1</code> is a list and <code>list2</code> is a LinkedList. Both contain 1 million floating-point values. Analyze the following code:
+
+<pre><code class="language-python">A:
+for i in range(100000):
+    list1.append(i)
+
+B:
+for i in range(100000):
+    list2.add(i)</code></pre>
+`,
+  answers: [
+    "Code fragment A runs faster than code fragment B because the time complexity for code fragment A is O(n) and for B is O(n^2).",
+    "Code fragment B runs faster than code fragment A.",
+    "Code fragment A runs as fast as code fragment B because both code fragment A and B have the same time complexity O(n).",
+    "Both code fragment A and B have the same time complexity O(1), but A runs faster because LinkedList has more overhead on creating object for each node in the linked list."
+  ],
+  correct: "Both code fragment A and B have the same time complexity O(1), but A runs faster because LinkedList has more overhead on creating object for each node in the linked list.",
+  explanation: `
+For this course question, adding an element to the end of either structure is treated as a constant-time operation.
+
+For the Python list:
+
+<pre><code class="language-python">list1.append(i)</code></pre>
+
+append is treated as <strong>O(1)</strong>.
+
+For the LinkedList:
+
+<pre><code class="language-python">list2.add(i)</code></pre>
+
+the list maintains a tail reference, so adding at the end is also <strong>O(1)</strong>.
+
+However, LinkedList must create a separate node object and maintain its links for every new element.
+
+Therefore, the ordinary list has less overhead and normally runs faster.
+
+The correct answer is:
+
+<strong>Both code fragments have the same O(1) operation complexity, but A runs faster because LinkedList has more overhead.</strong>
+`
+},
+
+{
+  type: "radio",
+  question: `
+Suppose <code>list1</code> is a list and <code>list2</code> is a LinkedList. Both contain 1 million floating-point values. Analyze the following code:
+
+<pre><code class="language-python">A:
+for i in range(100000):
+    list1.insert(0, i)
+
+B:
+for i in range(100000):
+    list2.insert(0, i)</code></pre>
+`,
+  answers: [
+    "Code fragment A runs faster than code fragment B.",
+    "Code fragment B runs faster than code fragment A.",
+    "Code fragment A runs as fast as code fragment B."
+  ],
+  correct: "Code fragment B runs faster than code fragment A.",
+  explanation: `
+For code fragment <strong>A</strong>:
+
+<pre><code class="language-python">list1.insert(0, i)</code></pre>
+
+inserts an element at the beginning of a Python list.
+
+Existing elements must be shifted to the right, so insertion at the beginning requires:
+
+<pre><code>O(n)</code></pre>
+
+For code fragment <strong>B</strong>:
+
+<pre><code class="language-python">list2.insert(0, i)</code></pre>
+
+inserting at index 0 changes only the head links of the LinkedList.
+
+This requires:
+
+<pre><code>O(1)</code></pre>
+
+Therefore, <strong>code fragment B runs faster than code fragment A.</strong>
+`
+},
+{
+  type: "radio",
+  question: `
+Suppose <code>list1</code> is a list and <code>list2</code> is a LinkedList. Both contain 1 million floating-point values. Analyze the following code:
+
+<pre><code class="language-python">A:
+while len(list1) > 0:
+    del list1[0]
+
+B:
+while list2.getSize() > 0:
+    list2.removeFirst()</code></pre>
+`,
+  answers: [
+    "Code fragment A runs faster than code fragment B because the time complexity for code fragment A is O(n) and for B is O(n^2).",
+    "Code fragment B runs faster than code fragment A.",
+    "Code fragment A runs as fast as code fragment B because both code fragment A and B have the same time complexity O(n).",
+    "Both code fragment A and B have the same time complexity O(n), but A runs faster because LinkedList has more overhead on creating object for each node in the linked list."
+  ],
+  correct: "Code fragment B runs faster than code fragment A.",
+  explanation: `
+For code fragment <strong>A</strong>:
+
+<pre><code class="language-python">del list1[0]</code></pre>
+
+removes the first element of a Python list.
+
+All remaining elements must be shifted one position to the left, so each deletion can take:
+
+<pre><code>O(n)</code></pre>
+
+Repeating this until the list is empty gives approximately:
+
+<pre><code>O(n²)</code></pre>
+
+For code fragment <strong>B</strong>:
+
+<pre><code class="language-python">list2.removeFirst()</code></pre>
+
+removes the head node directly from the linked list.
+
+Each removal takes:
+
+<pre><code>O(1)</code></pre>
+
+Repeating this for all elements gives:
+
+<pre><code>O(n)</code></pre>
+
+Therefore, <strong>Code fragment B runs faster than code fragment A.</strong>
+`
+},
+
+{
+  type: "radio",
+  question: `
+________ is a data structure to store data in a sequential order.
+`,
+  answers: [
+    "A list",
+    "A set",
+    "A dictionary",
+    "A heap"
+  ],
+  correct: "A list",
+  explanation: `
+A <strong>list</strong> stores elements in a sequential order.
+
+Elements have positions, or indexes, such as:
+
+<pre><code>0, 1, 2, 3, ...</code></pre>
+
+A set does not represent data as an indexed sequence, a dictionary stores key-value pairs, and a heap is organized according to the heap property.
+
+Therefore, the correct answer is <strong>A list</strong>.
+`
+},
+{
+  type: "checkbox",
+  question: `
+Which of the following are true? Please select all that apply.
+`,
+  answers: [
+    "Generators are special Python functions for generating iterators.",
+    "When you define an iterator class, the __next__ and __iter__ methods must be defined explicitly. Using a generator, these two methods are automatically defined when you create an iterator from a generator.",
+    "A generator uses the yield keyword to return data rather than using the return keyword.",
+    "When the generator terminates, it automatically raises a StopIteration exception."
+  ],
+  correct: [
+    "Generators are special Python functions for generating iterators.",
+    "When you define an iterator class, the __next__ and __iter__ methods must be defined explicitly. Using a generator, these two methods are automatically defined when you create an iterator from a generator.",
+    "A generator uses the yield keyword to return data rather than using the return keyword.",
+    "When the generator terminates, it automatically raises a StopIteration exception."
+  ],
+  explanation: `
+All four statements are true.
+
+<ul>
+  <li>A <strong>generator</strong> is a special Python function that produces an iterator.</li>
+  <li>With a manually defined iterator class, <code>__iter__()</code> and <code>__next__()</code> normally need to be implemented explicitly.</li>
+  <li>A generator uses the <code>yield</code> keyword to produce values one at a time.</li>
+  <li>When the generator is exhausted, iteration ends with a <code>StopIteration</code> exception.</li>
+</ul>
+
+Therefore, <strong>all four choices are correct</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+In the LinkedList class, which of the following statement appends a string <code>s</code> to the end of the list?
+`,
+  answers: [
+    "list.addFirst(s);",
+    "list.add(s);",
+    "list.add(0, s);",
+    "list.add(1, s);",
+    "list.insert(s);"
+  ],
+  correct: "list.add(s);",
+  explanation: `
+In this LinkedList implementation, the <code>add(e)</code> method appends an element to the <strong>end</strong> of the list.
+
+Therefore:
+
+<pre><code>list.add(s);</code></pre>
+
+adds the string <code>s</code> as the last element.
+
+By contrast:
+
+<ul>
+  <li><code>addFirst(s)</code> inserts at the beginning.</li>
+  <li><code>add(0, s)</code> inserts at index 0.</li>
+  <li><code>add(1, s)</code> inserts at index 1.</li>
+</ul>
+
+Therefore, the correct answer is <strong>list.add(s);</strong>
+`
+},
+{
+  type: "radio",
+  question: `
+Suppose <code>list1</code> is a list and <code>list2</code> is a LinkedList. Both contain 1 million floating-point values. Analyze the following code:
+
+<pre><code class="language-python">A:
+for i in range(100000):
+    sum += list1[i]
+
+B:
+for i in range(100000):
+    sum += list2.get(i)</code></pre>
+`,
+  answers: [
+    "Code fragment A is more efficient than code fragment B.",
+    "Code fragment B is more efficient than code fragment A.",
+    "Code fragment A is as efficient as code fragment B."
+  ],
+  correct: "Code fragment A is more efficient than code fragment B.",
+  explanation: `
+For a regular Python <code>list</code>, accessing an element by index is direct:
+
+<pre><code class="language-python">list1[i]</code></pre>
+
+and takes approximately:
+
+<pre><code>O(1)</code></pre>
+
+Therefore, performing this operation 100,000 times takes approximately:
+
+<pre><code>O(n)</code></pre>
+
+For a <code>LinkedList</code>, accessing an element at index <code>i</code> requires traversing nodes from the beginning of the list:
+
+<pre><code class="language-python">list2.get(i)</code></pre>
+
+This takes approximately <code>O(i)</code> time.
+
+Repeatedly retrieving indexes:
+
+<pre><code>0, 1, 2, ..., n - 1</code></pre>
+
+requires approximately:
+
+<pre><code>1 + 2 + 3 + ... + n = O(n²)</code></pre>
+
+Therefore, <strong>Code fragment A is more efficient than code fragment B.</strong>
+`
+},
+{
+  type: "checkbox",
+  question: `
+Which of the following are true? Please select all that apply.
+`,
+  answers: [
+    "A stack can be viewed as a special type of list, where the elements are accessed, inserted, and deleted only from the end, called the top, of the stack.",
+    "A queue represents a waiting list. A queue can be viewed as a special type of list, where the elements are inserted into the end (tail) of the queue, and are accessed and deleted from the beginning (head) of the queue.",
+    "Since the insertion and deletion operations on a stack are made only at the end of the stack, using an array list to implement a stack is more efficient than a linked list.",
+    "Since deletions are made at the beginning of the queue, it is more efficient to implement a queue using a LinkedList than a list."
+  ],
+  correct: [
+    "A stack can be viewed as a special type of list, where the elements are accessed, inserted, and deleted only from the end, called the top, of the stack.",
+    "A queue represents a waiting list. A queue can be viewed as a special type of list, where the elements are inserted into the end (tail) of the queue, and are accessed and deleted from the beginning (head) of the queue.",
+    "Since the insertion and deletion operations on a stack are made only at the end of the stack, using an array list to implement a stack is more efficient than a linked list.",
+    "Since deletions are made at the beginning of the queue, it is more efficient to implement a queue using a LinkedList than a list."
+  ],
+  explanation: `
+All four statements are true.
+
+<ul>
+  <li>A <strong>Stack</strong> follows LIFO and performs insertion and deletion at the top.</li>
+  <li>A <strong>Queue</strong> follows FIFO: elements enter at the tail and leave from the head.</li>
+  <li>For a stack, operations occur at the end, where an array-based list can perform append/pop efficiently.</li>
+  <li>For a queue, removing from the beginning of a regular list requires shifting elements, while a LinkedList can remove the head efficiently.</li>
+</ul>
+
+Therefore, <strong>all four choices are correct</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+Suppose <code>list2</code> is a LinkedList. Analyze the following code:
+
+<pre><code class="language-python">A:
+while len(list2) > 0:
+    list2.remove(list2.get(len(list2) - 1))
+
+B:
+while list2.getSize() > 0:
+    list2.removeLast()</code></pre>
+`,
+  answers: [
+    "Code fragment A runs faster than code fragment B.",
+    "Code fragment B runs faster than code fragment A.",
+    "Code fragment A runs as fast as code fragment B."
+  ],
+  correct: "Code fragment B runs faster than code fragment A.",
+  explanation: `
+Both fragments repeatedly remove the last element from a singly linked list.
+
+In fragment A:
+
+<pre><code class="language-python">list2.get(len(list2) - 1)</code></pre>
+
+must first traverse the linked list to retrieve the last element.
+
+Then:
+
+<pre><code class="language-python">list2.remove(...)</code></pre>
+
+requires additional work to locate and remove that element.
+
+Fragment B directly calls:
+
+<pre><code class="language-python">list2.removeLast()</code></pre>
+
+which performs the required traversal without the extra <code>get()</code> operation.
+
+Therefore, even though both approaches involve traversal, <strong>Code fragment B is faster than Code fragment A.</strong>
+`
+},
+{
+  type: "radio",
+  question: `
+Which data structure is appropriate to arrange customers in a clinic for taking flu shots?
+`,
+  answers: [
+    "Stack",
+    "Queue",
+    "Priority Queue",
+    "list",
+    "Linked List"
+  ],
+  correct: "Queue",
+  explanation: `
+Customers waiting for flu shots are normally served in the order they arrive.
+
+This follows the:
+
+<pre><code>First In, First Out (FIFO)</code></pre>
+
+principle.
+
+A <strong>Queue</strong> is designed for FIFO processing:
+
+<ul>
+  <li>The first customer to arrive is served first.</li>
+  <li>New customers join at the end of the queue.</li>
+</ul>
+
+Therefore, the correct answer is <strong>Queue</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+What is the time-complexity for the <code>get(index)</code> function?
+`,
+  answers: [
+    "O(1)",
+    "O(logn)",
+    "O(n)",
+    "O(nlogn)"
+  ],
+  correct: "O(n)",
+  explanation: `
+In a linked list, elements cannot be accessed directly by index.
+
+To execute:
+
+<pre><code class="language-python">get(index)</code></pre>
+
+the algorithm starts at the head and follows the links until it reaches the requested position.
+
+In the worst case, it may need to traverse almost the entire list.
+
+Therefore, the time complexity is:
+
+<pre><code>O(n)</code></pre>
+
+The correct answer is <strong>O(n)</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+Suppose the rule of the party is that the participants who arrive earlier will leave earlier. Which data structure is appropriate to store the participants?
+`,
+  answers: [
+    "vector",
+    "LinkedList",
+    "array",
+    "Stack",
+    "Queue"
+  ],
+  correct: "Queue",
+  explanation: `
+The participants who arrive <strong>earlier</strong> must also leave <strong>earlier</strong>.
+
+This follows the:
+
+<pre><code>First In, First Out (FIFO)</code></pre>
+
+principle.
+
+A <strong>Queue</strong> uses FIFO:
+
+<ul>
+  <li>The first participant to arrive enters the queue first.</li>
+  <li>The first participant in the queue leaves first.</li>
+</ul>
+
+Therefore, the correct answer is <strong>Queue</strong>.
+`
+},
 ];
