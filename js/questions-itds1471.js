@@ -1438,16 +1438,28 @@ Which of the following is not the correct statement to create a NumPy array?
 <em>(Assume NumPy is imported using <code>import numpy as np</code>)</em>
 `,
   answers: [
-    "np.array([1.1, 2.2, 3.3])",
-    "np.array([3.14, 1, 2])",
-    "np.array([1, 2, 3])",
-    "np.array([True, \"2\", 3.0, 4])"
+    {
+      text: `<code>np.array([1.1, 2.2, 3.3])</code>`,
+      value: "option1"
+    },
+    {
+      text: `<code>np.array([3.14, 1, 2])</code>`,
+      value: "option2"
+    },
+    {
+      text: `<code>np.array([1, 2, 3])</code>`,
+      value: "option3"
+    },
+    {
+      text: `<code>np.array([True, "2", 3.0, 4])</code>`,
+      value: "option4"
+    }
   ],
-  correct: "np.array([True, \"2\", 3.0, 4])",
+  correct: "option4",
   explanation: `
 For this course question, the intended incorrect choice is:
 
-<pre><code>np.array([True, "2", 3.0, 4])</code></pre>
+<pre><code class="language-python">np.array([True, "2", 3.0, 4])</code></pre>
 
 This expression mixes several different data types:
 
