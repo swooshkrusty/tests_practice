@@ -3945,5 +3945,208 @@ So the final array is:
 Therefore, the correct answer is <strong>True</strong>.
 `
 },
+{
+  type: "radio",
+  question: `
+(True or False) The following code will create a 3x5 array of pseudorandom integers in the interval (1, 10):
+
+<pre><code class="language-python">import numpy as np
+np.random.randint(1, 10, (3, 5))</code></pre>
+`,
+  answers: [
+    "True",
+    "False"
+  ],
+  correct: "True",
+  explanation: `
+The statement is <strong>True</strong> for the intended meaning of this course question.
+
+The call:
+
+<pre><code class="language-python">np.random.randint(1, 10, (3, 5))</code></pre>
+
+creates an array with:
+
+<ul>
+  <li><strong>3 rows</strong></li>
+  <li><strong>5 columns</strong></li>
+  <li>pseudorandom integer values from <strong>1 through 9</strong></li>
+</ul>
+
+For <code>np.random.randint(low, high, size)</code>, the lower bound is included and the upper bound is excluded:
+
+<pre><code>1 <= value < 10</code></pre>
+
+Therefore, the correct answer is <strong>True</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+What is the output of the following code?
+
+<pre><code class="language-python">import numpy as np
+
+x = np.arange(4)
+y = np.arange(3)[:, np.newaxis]
+
+print(x + y)</code></pre>
+`,
+  answers: [
+    {
+      text: `<pre><code>[[1 2 3 4]
+ [1 2 3 4]
+ [1 2 3 4]]</code></pre>`,
+      value: "option1"
+    },
+    {
+      text: `<pre><code>[[0 1 2 3]]</code></pre>`,
+      value: "option2"
+    },
+    {
+      text: `<pre><code>[[0 1 2 3]
+ [1 2 3 4]
+ [2 3 4 5]]</code></pre>`,
+      value: "option3"
+    },
+    {
+      text: `<pre><code>[[0 1 2]
+ [1 2 3]
+ [2 3 4]
+ [3 4 5]]</code></pre>`,
+      value: "option4"
+    }
+  ],
+  correct: "option3",
+  explanation: `
+First:
+
+<pre><code class="language-python">x = np.arange(4)</code></pre>
+
+creates:
+
+<pre><code>[0 1 2 3]</code></pre>
+
+Then:
+
+<pre><code class="language-python">y = np.arange(3)[:, np.newaxis]</code></pre>
+
+creates a column vector:
+
+<pre><code>[[0]
+ [1]
+ [2]]</code></pre>
+
+NumPy uses <strong>broadcasting</strong> when adding these arrays.
+
+The row vector:
+
+<pre><code>[0 1 2 3]</code></pre>
+
+is added to each value in the column vector:
+
+<pre><code>0 + [0 1 2 3] → [0 1 2 3]
+1 + [0 1 2 3] → [1 2 3 4]
+2 + [0 1 2 3] → [2 3 4 5]</code></pre>
+
+Therefore, the output is:
+
+<pre><code>[[0 1 2 3]
+ [1 2 3 4]
+ [2 3 4 5]]</code></pre>
+
+The correct answer is <strong>option 3</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+(True or False) The following print statement will display how many elements in the two-dimensional array <code>x</code> are less than 5 in each row.
+
+<pre><code class="language-python">print(np.sum(np.less(x, 5), axis=1))</code></pre>
+`,
+  answers: [
+    "True",
+    "False"
+  ],
+  correct: "True",
+  explanation: `
+The statement is <strong>True</strong>.
+
+First:
+
+<pre><code class="language-python">np.less(x, 5)</code></pre>
+
+creates a Boolean array where each element is:
+
+<ul>
+  <li><code>True</code> if the value is less than 5</li>
+  <li><code>False</code> otherwise</li>
+</ul>
+
+Then:
+
+<pre><code class="language-python">np.sum(..., axis=1)</code></pre>
+
+sums across the columns of each row.
+
+Since <code>True</code> counts as 1 and <code>False</code> counts as 0, the result gives the number of elements less than 5 in <strong>each row</strong>.
+
+Therefore, the correct answer is <strong>True</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+(True or False) Both Code A and Code B below will display the same result:
+
+<pre><code>['h', 'n', 'o', 'p', 't', 'y']</code></pre>
+
+<strong>Code A:</strong>
+
+<pre><code class="language-python">import numpy as np
+sorted('python')</code></pre>
+
+<strong>Code B:</strong>
+
+<pre><code class="language-python">import numpy as np
+
+l = ['p', 'y', 't', 'h', 'o', 'n']
+l.sort()
+print(l)</code></pre>
+`,
+  answers: [
+    "True",
+    "False"
+  ],
+  correct: "True",
+  explanation: `
+The statement is <strong>True</strong>.
+
+In Code A:
+
+<pre><code class="language-python">sorted('python')</code></pre>
+
+takes the characters from the string <code>"python"</code> and returns them in ascending alphabetical order:
+
+<pre><code>['h', 'n', 'o', 'p', 't', 'y']</code></pre>
+
+In Code B, the list initially contains:
+
+<pre><code>['p', 'y', 't', 'h', 'o', 'n']</code></pre>
+
+The method:
+
+<pre><code class="language-python">l.sort()</code></pre>
+
+sorts the list in ascending alphabetical order, producing:
+
+<pre><code>['h', 'n', 'o', 'p', 't', 'y']</code></pre>
+
+Therefore, both produce the same sorted list.
+
+The correct answer is <strong>True</strong>.
+`
+},
 
 ];
