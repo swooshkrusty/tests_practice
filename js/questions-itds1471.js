@@ -857,8 +857,12 @@ for count in range(1, 4):
 },
 {
   type: "radio",
-  question: "Look at the program below. Notice the global variable called <span class='keyword'>myVar</span>. What is the output from <strong>Print Line 1</strong> and <strong>Print Line 2</strong>?",
-  code: `# Global variable declared OUTSIDE of all functions
+  question: `
+Look at the program below. Notice the global variable called
+<span class="keyword">myVar</span>.
+What is the output from <strong>Print Line 1</strong> and <strong>Print Line 2</strong>?
+
+<pre><code class="language-python"># Global variable declared OUTSIDE of all functions
 myVar = 10
 
 # Function called showIt()
@@ -868,7 +872,8 @@ def showIt():
 
 # Program calls showIt() function and then calls print
 showIt()
-print(myVar)          # Print Line 2`,
+print(myVar)          # Print Line 2</code></pre>
+`,
   answers: [
     "100<br>10",
     "10<br>10",
