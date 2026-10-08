@@ -892,8 +892,13 @@ Therefore, the correct answer is:<br>
 },
 {
   type: "radio",
-  question: "Given a list variable <span class='keyword'>lst = [1, 2, 3, 4]</span>. After the following statement is executed, the variable <span class='keyword'>lst</span> will be equal to ________.",
-  code: `lst = lst[1 : len(lst)] + lst[:1]`,
+  question: `
+Given a list variable <span class="keyword">lst = [1, 2, 3, 4]</span>.
+After the following statement is executed, the variable
+<span class="keyword">lst</span> will be equal to ________.
+
+<pre><code class="language-python">lst = lst[1 : len(lst)] + lst[:1]</code></pre>
+`,
   answers: [
     "[1, 2, 3, 4]",
     "[4, 3, 2, 1]",
