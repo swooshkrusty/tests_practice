@@ -1477,8 +1477,11 @@ box-shadow: 0px 1px 30px 0px rgba(9, 172, 12, 1);
 .visual-modal__content {
   position: relative;
 
-  width: min(1100px, 96vw);
-  height: min(900px, 92vh);
+  width: 96vw;
+  max-width: 1100px;
+
+  height: 92vh;
+  max-height: 900px;
 
   background: white;
   border-radius: 20px;
@@ -1486,7 +1489,6 @@ box-shadow: 0px 1px 30px 0px rgba(9, 172, 12, 1);
 
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
 }
-
 
 .visual-modal__frame {
   display: block;

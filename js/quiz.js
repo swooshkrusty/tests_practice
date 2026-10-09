@@ -812,17 +812,34 @@ function ensureVisualModal() {
 }
 
 
+// function openVisualExplanation(url) {
+//   const modal = ensureVisualModal();
+//   const frame = modal.querySelector("#visual-frame");
+
+//   frame.src = url;
+
+//   modal.classList.add("visual-modal--open");
+
+//   document.body.style.overflow = "hidden";
+// }
+
 function openVisualExplanation(url) {
   const modal = ensureVisualModal();
   const frame = modal.querySelector("#visual-frame");
 
+  frame.onload = function () {
+    try {
+      frame.contentWindow.scrollTo(0, 0);
+    } catch (e) {
+      console.log("Could not reset iframe scroll");
+    }
+  };
+
   frame.src = url;
 
   modal.classList.add("visual-modal--open");
-
   document.body.style.overflow = "hidden";
 }
-
 
 function closeVisualExplanation() {
   const modal = document.getElementById("visual-modal");
