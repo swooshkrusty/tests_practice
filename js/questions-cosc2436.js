@@ -3564,7 +3564,7 @@ where indexed access is typically <code>O(1)</code>.
   onclick="openVisualExplanation('visuals/cosc2436/linked-list-get-en-ru.html')">
   ▶ Visual Explanation
 </button>
-`
+` 
 },
 {
   type: "radio",
