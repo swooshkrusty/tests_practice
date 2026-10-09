@@ -1740,13 +1740,125 @@ box-shadow: 0px 1px 30px 0px rgba(9, 172, 12, 1);
   }
 
   .visual-modal {
-    padding: 8px;
+    padding: 10px;
   }
 
   .visual-modal__content {
-    width: 98vw;
-    height: 94vh;
-    border-radius: 12px;
+    width: 94vw;
+    height: 86vh;
+    max-height: 760px;
+
+    border-radius: 14px;
   }
 
+  .visual-modal__close {
+    width: 36px;
+    height: 36px;
+
+    top: 8px;
+    right: 8px;
+
+    font-size: 22px;
+  }
+
+}
+@media (max-width: 600px) {
+
+  main {
+    margin: 8px auto 18px;
+    padding: 0 8px;
+  }
+
+  header {
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+  }
+
+  .badge {
+    font-size: 11px;
+    padding: 5px 9px;
+  }
+
+  .intro {
+    padding: 12px;
+    font-size: 13px;
+  }
+
+  .viztop {
+    padding: 12px 12px 0;
+  }
+
+  .section-label {
+    font-size: 10px;
+  }
+
+  .pill {
+    font-size: 11px;
+    padding: 4px 7px;
+  }
+
+  .chart {
+    min-width: 680px;
+  }
+
+  .legend {
+    font-size: 10px;
+    gap: 6px 12px;
+    padding: 0 12px 10px;
+  }
+
+  .event {
+    padding: 12px;
+    min-height: auto;
+  }
+
+  h2 {
+    font-size: 17px;
+  }
+
+  .event-title-ru {
+    font-size: 12px;
+  }
+
+  .event-text {
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .event-text p {
+    font-size: 13px;
+  }
+
+  .controls {
+    padding: 10px;
+    gap: 6px;
+  }
+
+  button,
+  select {
+    font-size: 12px;
+    padding: 8px 10px;
+    min-height: 38px;
+  }
+
+  .primary {
+    min-width: 120px;
+  }
+
+  .timeline {
+    padding: 0 10px 12px;
+  }
+
+  .rules,
+  details,
+  footer {
+    font-size: 12px;
+  }
 }

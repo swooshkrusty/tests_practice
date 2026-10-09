@@ -47,7 +47,8 @@ for(let i=0;i<DATA.values.length;i++){
 function marker(label,color,top){const g=svg('g',{class:'marker'});const y1=top?92:266,y2=top?130:231;svg('line',{x1:27,x2:27,y1,y2,stroke:color,'stroke-width':3,'stroke-linecap':'round'},g);svg('path',{d:top?'M20 123 L27 132 L34 123':'M20 239 L27 230 L34 239',fill:'none',stroke:color,'stroke-width':3,'stroke-linecap':'round','stroke-linejoin':'round'},g);const t=svg('text',{x:27,y:top?79:290,fill:color,'font-size':18,'font-weight':700,'text-anchor':'middle'},g);t.textContent=label;return{g,t};}
 const lowMarker=marker('low', '#b94f10',true), highMarker=marker('high','#6550b2',false), pivotMarker=marker('pivot','#a56905',true);
 function stop(){playing=false;clearTimeout(timer);timer=null;byId('play').textContent='▶ Play / Запуск';}
-function schedule(){clearTimeout(timer);if(playing)timer=setTimeout(()=>{if(index>=STEPS.length-1){stop();return;}go(index+1,true);schedule();},Number(byId('speed').value));}
+function schedule(){clearTimeout(timer);if(playing)timer=setTimeout(()=>{go(index>=STEPS.length-1?0:index+1,true);schedule();},index===STEPS.length-1?4500:Number(byId('speed').value));}
+function start(){playing=true;byId('play').textContent='Ⅱ Pause / Пауза';schedule();}
 function go(next,animate=false){
  next=Math.max(0,Math.min(STEPS.length-1,next));const old=STEPS[index],s=STEPS[next];const sequential=next===index+1;
  animations.forEach(a=>a.cancel());animations=[];
@@ -83,17 +84,18 @@ function go(next,animate=false){
  document.querySelectorAll('[data-line]').forEach(e=>e.classList.toggle('active',e.dataset.line===s.line));
  index=next;document.body.dataset.step=index;
  chart.setAttribute('aria-label',`${s.title_en}. ${s.en} List: ${s.values.join(', ')}`);
- if(done)stop();
+
 }
 byId('timeline').max=STEPS.length-1;
-byId('play').onclick=()=>{if(playing){stop();return;}if(index===STEPS.length-1)go(0);playing=true;byId('play').textContent='Ⅱ Pause / Пауза';schedule();};
+byId('play').onclick=()=>{if(playing){stop();return;}start();};
 byId('prev').onclick=()=>{stop();go(index-1,true);};byId('next').onclick=()=>{stop();go(index+1,true);};
-byId('restart').onclick=()=>{stop();go(0);};
+byId('restart').onclick=()=>{stop();go(0);start();};
 byId('timeline').addEventListener('input',e=>{stop();go(Number(e.target.value));});
 byId('speed').onchange=()=>{if(playing)schedule();};
 document.addEventListener('keydown',e=>{if(['INPUT','SELECT','TEXTAREA','BUTTON'].includes(e.target.tagName))return;if(e.key==='ArrowRight'){e.preventDefault();stop();go(index+1,true);}if(e.key==='ArrowLeft'){e.preventDefault();stop();go(index-1,true);}if(e.code==='Space'){e.preventDefault();byId('play').click();}if(e.key==='Escape')stop();});
 document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
 go(index);
+start();
 let language=0;
 byId('lang').onclick=()=>{language=(language+1)%3;document.body.classList.toggle('lang-en',language===1);document.body.classList.toggle('lang-ru',language===2);document.documentElement.lang=language===2?'ru':'en';byId('lang').textContent=['EN + RU','EN','RU'][language];};
 window.partitionDemo={go,steps:STEPS,getIndex:()=>index};
