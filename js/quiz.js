@@ -765,3 +765,84 @@ function updateQuestionNav() {
     btn.classList.toggle("answered", cards[index].classList.contains("answered"));
   });
 }
+
+function ensureVisualModal() {
+  let modal = document.getElementById("visual-modal");
+
+  if (modal) {
+    return modal;
+  }
+
+  modal = document.createElement("div");
+  modal.id = "visual-modal";
+  modal.className = "visual-modal";
+
+  modal.innerHTML = `
+    <div class="visual-modal__content">
+
+      <button
+        type="button"
+        class="visual-modal__close"
+        aria-label="Close visual explanation">
+        ×
+      </button>
+
+      <iframe
+        id="visual-frame"
+        class="visual-modal__frame"
+        title="Interactive visual explanation">
+      </iframe>
+
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+
+  modal
+    .querySelector(".visual-modal__close")
+    .addEventListener("click", closeVisualExplanation);
+
+  modal.addEventListener("click", function(event) {
+    if (event.target === modal) {
+      closeVisualExplanation();
+    }
+  });
+
+  return modal;
+}
+
+
+function openVisualExplanation(url) {
+  const modal = ensureVisualModal();
+  const frame = modal.querySelector("#visual-frame");
+
+  frame.src = url;
+
+  modal.classList.add("visual-modal--open");
+
+  document.body.style.overflow = "hidden";
+}
+
+
+function closeVisualExplanation() {
+  const modal = document.getElementById("visual-modal");
+
+  if (!modal) return;
+
+  const frame = modal.querySelector("#visual-frame");
+
+  modal.classList.remove("visual-modal--open");
+
+  if (frame) {
+    frame.src = "";
+  }
+
+  document.body.style.overflow = "";
+}
+
+
+document.addEventListener("keydown", function(event) {
+  if (event.key === "Escape") {
+    closeVisualExplanation();
+  }
+});

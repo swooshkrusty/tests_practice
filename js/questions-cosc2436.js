@@ -2548,20 +2548,29 @@ What is the time-complexity for the <code>addLast</code> function?
   ],
   correct: "O(1)",
   explanation: `
-In the linked-list implementation used in this course, the list keeps a reference to the <strong>tail</strong>.
+In the LinkedList implementation used in this course, the list keeps a reference to the
+<strong>tail</strong>.
 
-Therefore, <code>addLast</code> does not need to traverse the entire linked list.
+Therefore, <code>addLast()</code> does not need to traverse the list.
 
-It can directly:
-
-<pre><code>tail.next = newNode
+<pre><code class="language-python">newNode = Node(e)
+tail.next = newNode
 tail = newNode</code></pre>
 
-These operations take constant time.
+The number of operations does not depend on the number of nodes.
 
-Therefore, the time complexity is:
+Therefore:
 
-<strong>O(1)</strong>.
+<strong>addLast() = O(1)</strong>
+
+<br><br>
+
+<button
+  type="button"
+  class="visual-explanation-btn"
+  onclick="openVisualExplanation('visuals/cosc2436/linked-list-addlast-en-ru.html')">
+  ▶ Visual Explanation
+</button>
 `
 },
 {
