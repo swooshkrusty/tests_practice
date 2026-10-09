@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Linked list: get(index) · EN / RU</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f2f5f8;color:#152439;font:16px/1.5 system-ui,-apple-system,sans-serif}main{max-width:540px;margin:16px auto;padding:0 10px}canvas{width:100%;height:auto;display:block;border-radius:20px}nav{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px}button{min-height:48px;border:1px solid #ccd6e1;border-radius:10px;background:white;color:#152439;font:600 13px system-ui;cursor:pointer}button.primary{background:#147d70;color:white;border-color:#147d70}button:disabled{opacity:.4}button:focus-visible,input:focus-visible{outline:3px solid #147d70;outline-offset:3px}.timeline{display:flex;align-items:center;gap:12px;margin:14px 0}input{width:100%;accent-color:#147d70;min-height:32px}.small{font-size:12px;color:#5e6b7a;margin:8px 0}details{margin:14px 0;font-size:14px}summary{cursor:pointer}code{font-family:ui-monospace,monospace}#status{margin:12px 0;font-size:14px} @media(max-width:400px){main{margin:8px auto}}
+</style></head><body><main>
+<canvas id="scene" width="720" height="960" role="img" aria-label="Animation of get(4) traversing five nodes in a singly linked list.">get(4): head → 10 → 20 → 30 → 40 → 50. Four next-pointer moves, five visited nodes. Worst-case time: O(n). Python list indexing: O(1).</canvas>
+<nav aria-label="Playback / Воспроизведение"><button id="prev">← Back / Назад</button><button id="play" class="primary">Ⅱ Pause / Пауза</button><button id="next">Next / Далее →</button></nav>
+<div class="timeline"><label for="timeline">Step<br>Шаг</label><input id="timeline" aria-label="Animation step / Шаг анимации" type="range" min="0" max="5" step="1" value="0"><button id="restart" aria-label="Restart / Сначала">↺</button></div>
+<p id="status" aria-live="polite"></p><p class="small">9-second loop · Цикл 9 секунд · Space: play/pause · ← →: steps</p>
+<details><summary>Why O(n)? / Почему O(n)?</summary><p>For index i, follow i next pointers from head: Θ(i + 1) work. At the last index, i = n − 1, so the worst case is Θ(n), commonly stated as O(n). Getting index 0 takes O(1).</p><p lang="ru">Для индекса i нужно пройти i ссылок next от head: Θ(i + 1) работы. Последний индекс — n − 1, поэтому худший случай — Θ(n), обычно пишут O(n). Доступ к индексу 0 — O(1).</p><p>Python list / array: <code>items[i]</code> uses direct indexed access, O(1). <span lang="ru">Прямой доступ по индексу, без прохода по узлам.</span></p></details>
+</main><script>
+'use strict';
+const canvas=document.getElementById('scene'),c=canvas.getContext('2d');
+const ink='#152439',muted='#5e6b7a',teal='#147d70',paper='#f2f5f8',line='#dce3eb';
+const starts=[0,1400,2400,3400,4400,5600],duration=9000;
+let time=0,playing=!matchMedia('(prefers-reduced-motion: reduce)').matches,last=0,currentStep=-1;
+const $=id=>document.getElementById(id);
+function rect(x,y,w,h,r,fill,stroke){c.beginPath();c.roundRect(x,y,w,h,r);c.fillStyle=fill;c.fill();if(stroke){c.strokeStyle=stroke;c.lineWidth=2;c.stroke();}}
+function txt(s,x,y,size=26,color=ink,weight=400,align='left'){c.font=`${weight>=600?'bold':'normal'} ${size}px Arial`;c.fillStyle=color;c.textAlign=align;c.fillText(s,x,y);}
+function arrow(x,y,x2,y2,color=teal){c.strokeStyle=color;c.lineWidth=3;c.beginPath();c.moveTo(x,y);c.lineTo(x2,y2);c.stroke();const a=Math.atan2(y2-y,x2-x);c.beginPath();c.moveTo(x2-9*Math.cos(a-.55),y2-9*Math.sin(a-.55));c.lineTo(x2,y2);c.lineTo(x2-9*Math.cos(a+.55),y2-9*Math.sin(a+.55));c.stroke();}
+function stage(t){let s=0;for(let i=0;i<starts.length;i++)if(t>=starts[i])s=i;return s;}
+function draw(t){
+const s=stage(t),idx=Math.min(s,4),end=s===5;
+c.clearRect(0,0,720,960);rect(0,0,720,960,24,paper);
+txt('ALGORITHM LAB  /  EN + RU',32,43,20,teal,700);
+txt('How fast is get(index)?',32,97,38,ink,750);
+txt('Какова временная сложность?',32,133,27,muted);
+rect(32,159,656,66,14,ink);txt('SINGLY LINKED LIST',50,185,18,'#a7e0d6',700);txt('Односвязный список',50,212,23,'white');txt('get(4)',664,203,34,'white',650,'right');
+rect(24,249,672,302,22,'#ffffff',line);
+txt('head',74,285,23,muted,600,'center');arrow(74,294,74,337,muted);
+const xs=[74,212,350,488,626];
+for(let i=0;i<5;i++){
+if(i<4)arrow(xs[i]+44,381,xs[i+1]-48,381,i<idx?teal:'#aab5c1');
+const active=i===idx;rect(xs[i]-43,345,86,74,12,active?teal:i<idx?'#e1f4e9':paper,active?teal:line);
+txt(String((i+1)*10),xs[i],394,33,active?'#ffffff':ink,700,'center');txt(String(i),xs[i],450,23,muted,500,'center');}
+// A moving pointer follows each next link; index labels stay fixed.
+let pos=idx;if(s>0&&s<5){let p=Math.min(1,(t-starts[s])/380);p=p*p*(3-2*p);pos=idx-1+p;}
+const px=74+138*pos;arrow(px,493,px,465);txt('current',Math.max(79,Math.min(630,px)),525,23,teal,650,'center');
+txt('indices / индексы',350,315,19,muted,400,'center');
+txt(`${idx} / 4 next moves`,34,589,25,teal,700);txt(`${idx+1} / 5 nodes visited`,686,589,25,ink,600,'right');
+txt('переходы по next',34,619,22,muted);txt('посещённые узлы',686,619,22,muted,400,'right');
+const en=['Start at head, index 0.','Follow next → index 1.','Follow next → index 2.','Follow next → index 3.','Index 4 reached. Return 50.','More nodes → more work.'];
+const ru=['Начинаем с head, индекс 0.','По ссылке next → индекс 1.','По ссылке next → индекс 2.','По ссылке next → индекс 3.','Индекс 4 найден. Вернуть 50.','Больше узлов → больше работы.'];
+txt(en[s],32,670,29,ink,650);txt(ru[s],32,708,26,muted);
+rect(24,737,672,177,18,end?'#dff3ed':'#ffffff',end?'#a7d4c6':line);
+if(end){txt('get(index) = O(n)',44,779,35,teal,750);txt('in a singly linked list · worst case',44,816,25,ink,600);txt('Односвязный список · худший случай',44,850,25,muted);txt('Python list / array: O(1) · прямой доступ',44,891,25,ink,600);}
+else{txt('No direct jump to index 4.',44,778,28,ink,650);txt('Нельзя сразу перейти к индексу 4.',44,817,25,muted);txt('head → next → next → next → next',44,878,26,teal,650);}
+rect(32,937,656,5,2,line);rect(32,937,Math.max(2,656*t/duration),5,2,teal);
+if(currentStep!==s){currentStep=s;$('timeline').value=s;$('prev').disabled=s===0;$('next').disabled=s===5;$('status').textContent=en[s]+' / '+ru[s];canvas.setAttribute('aria-label',en[s]+` ${idx} next moves, ${idx+1} nodes visited. `+(end?'Worst-case O(n). Python list indexing O(1).':''));}
+}
+function sync(){ $('play').textContent=playing?'Ⅱ Pause / Пауза':'▶ Play / Запуск';}
+function seek(s){playing=false;time=starts[Math.max(0,Math.min(5,s))];draw(time);sync();}
+$('play').onclick=()=>{playing=!playing;last=0;sync();};$('prev').onclick=()=>seek(stage(time)-1);$('next').onclick=()=>seek(stage(time)+1);$('restart').onclick=()=>seek(0);$('timeline').oninput=e=>seek(+e.target.value);
+document.addEventListener('keydown',e=>{if(['INPUT','BUTTON','SUMMARY'].includes(e.target.tagName))return;if(e.code==='Space'){e.preventDefault();$('play').click();}if(e.key==='ArrowRight'){e.preventDefault();$('next').click();}if(e.key==='ArrowLeft'){e.preventDefault();$('prev').click();}});
+document.addEventListener('visibilitychange',()=>{last=0;});
+function tick(now){if(last&&playing&&!document.hidden)time=(time+Math.min(now-last,100))%duration;last=now;draw(time);requestAnimationFrame(tick);}sync();draw(0);requestAnimationFrame(tick);
+window.demo={render(t){playing=false;time=Math.max(0,Math.min(duration-1,t));draw(time);sync();},getState:()=>({time,step:stage(time),playing})};
+</script></body></html>

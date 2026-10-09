@@ -3531,15 +3531,39 @@ To execute:
 
 <pre><code class="language-python">get(index)</code></pre>
 
-the algorithm starts at the head and follows the links until it reaches the requested position.
+the algorithm starts at the <strong>head</strong> and follows the
+<code>next</code> references until it reaches the requested position.
 
-In the worst case, it may need to traverse almost the entire list.
+For example, to execute:
 
-Therefore, the time complexity is:
+<pre><code class="language-python">get(4)</code></pre>
 
-<pre><code>O(n)</code></pre>
+the traversal is:
 
-The correct answer is <strong>O(n)</strong>.
+<pre><code>head
+ ↓
+[10] → [20] → [30] → [40] → [50]
+  0      1      2      3      4</code></pre>
+
+The farther the requested index is from the head, the more nodes must be visited.
+
+In the worst case, the algorithm may traverse almost the entire linked list.
+
+Therefore:
+
+<pre><code>get(index) = O(n)</code></pre>
+
+<strong>Important:</strong> this is different from a Python <code>list</code> or array,
+where indexed access is typically <code>O(1)</code>.
+
+<br><br>
+
+<button
+  type="button"
+  class="visual-explanation-btn"
+  onclick="openVisualExplanation('visuals/cosc2436/linked-list-get-en-ru.html')">
+  ▶ Visual Explanation
+</button>
 `
 },
 {
