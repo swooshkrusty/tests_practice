@@ -2396,26 +2396,35 @@ The worst-time complexity for quick sort is __________.
   ],
   correct: "O(n*n)",
   explanation: `
-Quick sort has its worst case when the pivot repeatedly creates extremely unbalanced partitions.
+Quick sort reaches its worst case when the pivot repeatedly creates
+<strong>extremely unbalanced partitions</strong>.
 
-For example, the list may be divided into:
+For example, if the first element is always chosen as the pivot and the list is already sorted, the partitions may look like:
 
-<pre><code>n - 1 elements
-1 element</code></pre>
+<pre><code>0 elements
+pivot
+n - 1 elements</code></pre>
 
-at each step.
+Then the recursive work becomes approximately:
 
-This produces approximately:
+<pre><code>(n - 1) + (n - 2) + ... + 1</code></pre>
 
-<pre><code>n + (n - 1) + (n - 2) + ... + 1</code></pre>
-
-operations.
-
-Therefore, the worst-time complexity is:
+This sum grows quadratically:
 
 <pre><code>O(n²)</code></pre>
 
-In the answer choices, this is written as <strong>O(n*n)</strong>.
+In the answer choices, this is written as:
+
+<strong>O(n*n)</strong>.
+
+<br><br>
+
+<button
+  type="button"
+  class="visual-explanation-btn"
+  onclick="openVisualExplanation('visuals/cosc2436/quicksort-worst-case-en-ru.html')">
+  ▶ Visual Explanation
+</button>
 `
 },
 

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Quicksort: worst case · EN / RU</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f2f5f8;color:#152439;font:16px/1.5 system-ui,-apple-system,sans-serif}main{max-width:540px;margin:16px auto;padding:0 10px}canvas{width:100%;height:auto;display:block;border-radius:20px}nav{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px}button{min-height:48px;border:1px solid #ccd6e1;border-radius:10px;background:white;color:#152439;font:600 13px system-ui;cursor:pointer}button.primary{background:#147d70;color:white;border-color:#147d70}button:disabled{opacity:.4}button:focus-visible,input:focus-visible{outline:3px solid #147d70;outline-offset:3px}.timeline{display:flex;align-items:center;gap:12px;margin:14px 0}input{width:100%;accent-color:#147d70;min-height:32px}.small{font-size:12px;color:#5e6b7a;margin:8px 0}details{margin:14px 0;font-size:14px}summary{cursor:pointer}code{font-family:ui-monospace,monospace}#status{margin:12px 0;font-size:14px} @media(max-width:400px){main{margin:8px auto}}
+</style></head><body><main>
+<canvas id="scene" width="720" height="960" role="img" aria-label="Quicksort worst case: repeated unbalanced partitions.">Choose the first element as pivot in a sorted list: 10, 20, 30, 40, 50. Partition sizes are 0 and n minus 1, excluding the pivot. Work: 4 + 3 + 2 + 1 = 10 comparisons in this simplified partition model. Worst-case O(n²); average O(n log n).</canvas>
+<nav aria-label="Playback / Воспроизведение"><button id="prev">← Back / Назад</button><button id="play" class="primary">Ⅱ Pause / Пауза</button><button id="next">Next / Далее →</button></nav>
+<div class="timeline"><label for="timeline">Step<br>Шаг</label><input id="timeline" aria-label="Animation step / Шаг анимации" type="range" min="0" max="5" step="1" value="0"><button id="restart" aria-label="Restart / Сначала">↺</button></div>
+<p id="status" aria-live="polite"></p><p class="small">9-second loop · Цикл 9 секунд · Space: play/pause · ← →: steps</p>
+<details><summary>Why O(n²)? / Почему O(n²)?</summary><p>This example always chooses the first element as pivot. For sorted, distinct values, that pivot is the smallest. After placing it, the recursive sublists contain 0 and m − 1 elements, where m is the current sublist size.</p><p lang="ru">В этом примере pivot — всегда первый элемент. В отсортированном списке различных значений он самый маленький. После его установки для рекурсии остаются части размера 0 и m − 1, где m — размер текущего подсписка.</p><p>Each partition scans the remaining elements. In the illustrated model, each other value is compared with the pivot once: (n − 1) + (n − 2) + … + 1 = n(n − 1)/2 = Θ(n²). Exact comparison counts vary by partition implementation; the worst-case growth remains quadratic.</p><p lang="ru">При каждом разделении просматриваем оставшиеся элементы. В показанной модели каждый сравнивается с pivot один раз: (n − 1) + (n − 2) + … + 1 = n(n − 1)/2 = Θ(n²). Точное число сравнений зависит от реализации, но худший случай остаётся квадратичным.</p><p><strong>Worst case / Худший случай:</strong> O(n²).<br><strong>Average / В среднем:</strong> O(n log n), under standard random-input or randomized-pivot assumptions / при обычных предположениях о случайных входных данных или случайном pivot.</p><p>A sorted list is not always a worst case: it depends on the pivot strategy. The example uses the first element, as in your earlier partition animation.<br><span lang="ru">Отсортированный список не всегда даёт худший случай: это зависит от выбора pivot. Здесь берём первый элемент, как в предыдущем примере разделения.</span></p></details>
+</main><script>
+'use strict';
+const canvas=document.getElementById('scene'),c=canvas.getContext('2d');
+const ink='#152439',muted='#5e6b7a',teal='#147d70',paper='#f2f5f8',line='#dce3eb';
+const starts=[0,1200,2400,3600,4800,6200],duration=9000;
+let time=0,playing=!matchMedia('(prefers-reduced-motion: reduce)').matches,last=0,currentStep=-1;
+const $=id=>document.getElementById(id);
+function rect(x,y,w,h,r,fill,stroke){c.beginPath();c.roundRect(x,y,w,h,r);c.fillStyle=fill;c.fill();if(stroke){c.strokeStyle=stroke;c.lineWidth=2;c.stroke();}}
+function txt(s,x,y,size=26,color=ink,weight=400,align='left'){c.font=`${weight>=600?'bold':'normal'} ${size}px Arial`;c.fillStyle=color;c.textAlign=align;c.fillText(s,x,y);}
+function arrow(x,y,x2,y2,color=teal){c.strokeStyle=color;c.lineWidth=3;c.beginPath();c.moveTo(x,y);c.lineTo(x2,y2);c.stroke();const a=Math.atan2(y2-y,x2-x);c.beginPath();c.moveTo(x2-9*Math.cos(a-.55),y2-9*Math.sin(a-.55));c.lineTo(x2,y2);c.lineTo(x2-9*Math.cos(a+.55),y2-9*Math.sin(a+.55));c.stroke();}
+function stage(t){let s=0;for(let i=0;i<starts.length;i++)if(t>=starts[i])s=i;return s;}
+function draw(t){
+const s=stage(t),end=s===5;
+c.clearRect(0,0,720,960);rect(0,0,720,960,24,paper);
+txt('ALGORITHM LAB  /  EN + RU',32,43,20,teal,700);
+txt('Quicksort: the worst case',32,97,37,ink,750);
+txt('Быстрая сортировка: худший случай',32,133,27,muted);
+rect(32,159,656,66,14,ink);txt('SORTED INPUT · FIRST-ELEMENT PIVOT',50,185,19,'#a7e0d6',700);txt('Список отсортирован · pivot — первый',50,213,25,'white');
+rect(24,246,672,349,22,'#ffffff',line);
+txt('pivot',53,277,21,'#a56905',650);txt('Remaining / Осталось',315,277,21,muted,400,'center');txt('Work / Работа',665,277,20,muted,400,'right');
+const lastRow=Math.max(0,Math.min(s-1,3));
+for(let row=0;row<=lastRow;row++){
+ const y=294+row*72;
+ for(let i=row;i<5;i++){
+  const x=52+i*105,isPivot=i===row;
+  rect(x,y,68,49,9,isPivot?'#fff0bc':paper,isPivot?'#d6aa50':line);
+  txt(String((i+1)*10),x+34,y+34,28,ink,650,'center');
+ }
+ if(s>0){txt('+'+(4-row),650,y+34,30,teal,650,'center');
+ if(row===lastRow&&s<5){const p=Math.min(.999,(t-starts[s])/1100);const scan=row+1+Math.floor(p*(4-row));rect(52+scan*105,y+54,68,4,2,teal);}}
+}
+if(s===0){txt('Always the smallest pivot.',48,409,29,ink,650);txt('Pivot каждый раз самый маленький.',48,449,25,muted);txt('No balanced split.',48,502,28,teal,650);txt('Равного разделения не получается.',48,541,25,muted);}
+const en=['Start with 5 sorted values.','Fix 10; sort the remaining 4.','Fix 20; sort the remaining 3.','Fix 30; sort the remaining 2.','Fix 40; one value remains.','Nearly the whole list, again and again.'];
+const ru=['Начинаем с 5 отсортированных чисел.','10 на месте; сортируем ещё 4 числа.','20 на месте; сортируем ещё 3 числа.','30 на месте; сортируем ещё 2 числа.','40 на месте; осталось одно число.','Снова и снова — почти весь список.'];
+txt(en[s],32,640,28,ink,650);txt(ru[s],32,679,25,muted);
+rect(24,710,672,204,18,end?'#dff3ed':'#ffffff',end?'#a7d4c6':line);
+if(end){txt('O(n × n) = O(n²)',44,758,39,teal,750);txt('(n − 1) + … + 1 = n(n − 1) / 2',44,800,28,ink,600);txt('Worst / Худший: O(n²)',44,850,26,ink,600);txt('Average / В среднем: O(n log n)',44,888,25,muted);}
+else{
+ const sums=['4 + 3 + 2 + 1 = ?','4','4 + 3 = 7','4 + 3 + 2 = 9','4 + 3 + 2 + 1 = 10'];
+ txt(sums[s],44,760,36,teal,650);
+ txt('Comparisons in this model / Сравнения',44,800,25,muted);
+ txt('Split: 0 + pivot + (m − 1)',44,850,28,ink,600);
+ txt('m = current size / текущий размер',44,888,24,muted);
+}
+rect(32,937,656,5,2,line);rect(32,937,Math.max(2,656*t/duration),5,2,teal);
+if(currentStep!==s){currentStep=s;$('timeline').value=s;$('prev').disabled=s===0;$('next').disabled=s===5;$('status').textContent=en[s]+' / '+ru[s];canvas.setAttribute('aria-label',en[s]+(end?' Worst-case O(n squared). Average O(n log n).':''));}
+}
+function sync(){ $('play').textContent=playing?'Ⅱ Pause / Пауза':'▶ Play / Запуск';}
+function seek(s){playing=false;time=starts[Math.max(0,Math.min(5,s))];draw(time);sync();}
+$('play').onclick=()=>{playing=!playing;last=0;sync();};$('prev').onclick=()=>seek(stage(time)-1);$('next').onclick=()=>seek(stage(time)+1);$('restart').onclick=()=>seek(0);$('timeline').oninput=e=>seek(+e.target.value);
+document.addEventListener('keydown',e=>{if(['INPUT','BUTTON','SUMMARY'].includes(e.target.tagName))return;if(e.code==='Space'){e.preventDefault();$('play').click();}if(e.key==='ArrowRight'){e.preventDefault();$('next').click();}if(e.key==='ArrowLeft'){e.preventDefault();$('prev').click();}});
+document.addEventListener('visibilitychange',()=>{last=0;});
+function tick(now){if(last&&playing&&!document.hidden)time=(time+Math.min(now-last,100))%duration;last=now;draw(time);requestAnimationFrame(tick);}sync();draw(0);requestAnimationFrame(tick);
+window.demo={render(t){playing=false;time=Math.max(0,Math.min(duration-1,t));draw(time);sync();},getState:()=>({time,step:stage(time),playing})};
+</script></body></html>
