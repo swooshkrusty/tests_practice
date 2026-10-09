@@ -2361,25 +2361,36 @@ Start with:
 
 <pre><code>[5, 2, 9, 3, 8, 4, 0, 1, 6, 7]</code></pre>
 
-The partition algorithm moves values that are no larger than the pivot to the left and values larger than the pivot to the right.
-
-First, <strong>9</strong> and <strong>1</strong> are exchanged:
+<strong>Step 1:</strong> <code>low</code> finds <strong>9</strong> and
+<code>high</code> finds <strong>1</strong>. Swap them:
 
 <pre><code>[5, 2, 1, 3, 8, 4, 0, 9, 6, 7]</code></pre>
 
-Then <strong>8</strong> and <strong>0</strong> are exchanged:
+<strong>Step 2:</strong> <code>low</code> finds <strong>8</strong> and
+<code>high</code> finds <strong>0</strong>. Swap them:
 
 <pre><code>[5, 2, 1, 3, 0, 4, 8, 9, 6, 7]</code></pre>
 
-Finally, the pivot <strong>5</strong> is exchanged with <strong>4</strong>:
+The pointers then cross.
+
+Finally, swap the pivot <strong>5</strong> with <strong>4</strong>:
 
 <pre><code>[4, 2, 1, 3, 0, 5, 8, 9, 6, 7]</code></pre>
 
-The pivot is now in its correct partition position.
+The pivot is now in its final partition position.
 
 Therefore, the correct answer is:
 
 <strong>4 2 1 3 0 5 8 9 6 7</strong>.
+
+<br><br>
+
+<button
+  type="button"
+  class="visual-explanation-btn"
+  onclick="openVisualExplanation('visuals/cosc2436/quicksort-partition-pivot5-en-ru.html')">
+  ▶ Visual Explanation
+</button>
 `
 },
 {
