@@ -3618,4 +3618,1564 @@ A <strong>Queue</strong> uses FIFO:
 Therefore, the correct answer is <strong>Queue</strong>.
 `
 },
+{
+  type: "radio",
+  question: `
+In the recursive function below, which of the following statements represents the base case?
+
+<pre><code class="language-python">def foo(n):                   # Line 1
+    if (n != 0):              # Line 2
+        return n + foo(n - 1) # Line 3
+    else:                     # Line 4
+        return 0              # Line 5</code></pre>
+`,
+  answers: [
+    "Statements in Lines 2 and 3.",
+    "Statements in Lines 1-5.",
+    "Statements in Lines 4 and 5.",
+    "Statements in Lines 3, 4, and 5."
+  ],
+  correct: "Statements in Lines 4 and 5.",
+  explanation: `
+The <strong>base case</strong> is the part of a recursive function that stops the recursion.
+
+Here, recursion continues while:
+
+<pre><code class="language-python">n != 0</code></pre>
+
+When <code>n</code> becomes <code>0</code>, the <code>else</code> block executes:
+
+<pre><code class="language-python">else:      # Line 4
+    return 0   # Line 5</code></pre>
+
+No recursive call is made in this branch, so recursion stops.
+
+Therefore, the base case is:
+
+<strong>Statements in Lines 4 and 5.</strong>
+`
+},
+{
+  type: "radio",
+  question: `
+In the recursive function below, which of the following statements represents the general case?
+
+<pre><code class="language-python">def foo(n):                   # Line 1
+    if (n != 0):              # Line 2
+        return n + foo(n - 1) # Line 3
+    else:                     # Line 4
+        return 0              # Line 5</code></pre>
+`,
+  answers: [
+    "Statements in Lines 4 and 5",
+    "Statements in Lines 1-5",
+    "Statements in Lines 3, 4, and 5",
+    "Statements in Lines 2 and 3"
+  ],
+  correct: "Statements in Lines 2 and 3",
+  explanation: `
+The <strong>general case</strong> is the part of a recursive function that continues the recursion.
+
+Here:
+
+<pre><code class="language-python">if (n != 0):              # Line 2
+    return n + foo(n - 1) # Line 3</code></pre>
+
+Line 2 checks whether the recursive case should continue, and Line 3 makes the recursive call:
+
+<pre><code class="language-python">foo(n - 1)</code></pre>
+
+Therefore, the general case is:
+
+<strong>Statements in Lines 2 and 3.</strong>
+`
+},
+{
+  type: "radio",
+  question: `
+Analyze the following recursive function.
+
+<pre><code class="language-python">def factorial(n):
+    if n == 6:
+        return 6
+    return n * factorial(n - 1)</code></pre>
+`,
+  answers: [
+    "Invoking factorial(0) returns 0.",
+    "Invoking factorial(1) returns 1.",
+    "Invoking factorial(2) returns 2.",
+    "Invoking factorial(6) returns 6.",
+    "When factorial(n) is called with n having any values, it runs infinitely and causes a RecursionError exception."
+  ],
+  correct: "Invoking factorial(6) returns 6.",
+  explanation: `
+The base case is:
+
+<pre><code class="language-python">if n == 6:
+    return 6</code></pre>
+
+Therefore, when:
+
+<pre><code class="language-python">factorial(6)</code></pre>
+
+is called, the function immediately returns:
+
+<pre><code>6</code></pre>
+
+For values below 6, such as <code>factorial(2)</code>, the function keeps decreasing <code>n</code> and never reaches the base case <code>n == 6</code>, eventually causing a <code>RecursionError</code>.
+
+However, the statement saying this happens for <strong>any value</strong> is false because values such as 6, 7, 8, etc. can reach the base case.
+
+Therefore, the correct answer is:
+
+<strong>Invoking factorial(6) returns 6.</strong>
+`
+},
+{
+  type: "radio",
+  question: `
+Analyze the following code:
+
+<pre><code class="language-python">def xfunction(x, length):
+    print(x[length - 1], end=" ")
+    xfunction(x, length - 1)
+
+x = [1, 2, 3, 4, 5]
+xfunction(x, 3)</code></pre>
+`,
+  answers: [
+    "The program displays 3 2 1 5 4 3 2 1 and then raises an index out of range exception.",
+    "The program displays 1 2 3 4 5 and then raises an index out of range exception.",
+    "The program displays 5 4 3 2 1.",
+    "The program displays 5 4 3 2 1 5 4 3 2 1 and then raises an index out of range exception."
+  ],
+  correct: "The program displays 3 2 1 5 4 3 2 1 and then raises an index out of range exception.",
+  explanation: `
+The function starts with:
+
+<pre><code class="language-python">length = 3</code></pre>
+
+and prints:
+
+<pre><code>x[length - 1]</code></pre>
+
+The indexes used are:
+
+<pre><code>length =  3 → x[ 2] = 3
+length =  2 → x[ 1] = 2
+length =  1 → x[ 0] = 1
+length =  0 → x[-1] = 5
+length = -1 → x[-2] = 4
+length = -2 → x[-3] = 3
+length = -3 → x[-4] = 2
+length = -4 → x[-5] = 1</code></pre>
+
+Python allows negative indexes, so the recursion continues through the list from the end.
+
+The next call uses:
+
+<pre><code class="language-python">x[-6]</code></pre>
+
+but the list has only 5 elements, so this raises an <strong>IndexError</strong>.
+
+Therefore, the program displays:
+
+<pre><code>3 2 1 5 4 3 2 1</code></pre>
+
+and then raises an index out of range exception.
+`
+},
+{
+  type: "radio",
+  question: `
+Analyze the following functions:
+
+<pre><code class="language-python">def f2(n):
+    if n == 0:
+        return 0
+    else:
+        return n + f2(n - 1)
+
+def f1(n, result):
+    if n == 0:
+        return result
+    else:
+        return f1(n - 1, n + result)
+
+print(f2(3))
+print(f1(3, 0))</code></pre>
+`,
+  answers: [
+    "f1 is tail-recursive, but f2 is not.",
+    "f2 is tail-recursive, but f1 is not.",
+    "f1 and f2 are both tail-recursive.",
+    "Neither f1 nor f2 is tail-recursive."
+  ],
+  correct: "f1 is tail-recursive, but f2 is not.",
+  explanation: `
+A function is <strong>tail-recursive</strong> when the recursive call is the final operation performed by the function.
+
+In <code>f1</code>:
+
+<pre><code class="language-python">return f1(n - 1, n + result)</code></pre>
+
+the recursive call is the last operation. Nothing needs to be calculated after it returns.
+
+Therefore, <code>f1</code> is <strong>tail-recursive</strong>.
+
+In <code>f2</code>:
+
+<pre><code class="language-python">return n + f2(n - 1)</code></pre>
+
+the recursive call must return first, and then <code>n</code> is added to that returned value.
+
+So there is still work to perform after the recursive call.
+
+Therefore, <code>f2</code> is <strong>not tail-recursive</strong>.
+
+The correct answer is:
+
+<strong>f1 is tail-recursive, but f2 is not.</strong>
+`
+},
+{
+  type: "radio",
+  question: `
+Analyze the following two programs:
+
+<strong>Program A:</strong>
+
+<pre><code class="language-python">def xfunction(length):
+    while length > 1:
+        print(length - 1, end=" ")
+        xfunction(length - 1)
+
+xfunction(5)</code></pre>
+
+<strong>Program B:</strong>
+
+<pre><code class="language-python">def xfunction(length):
+    if length > 1:
+        print(length - 1, end=" ")
+        xfunction(length - 1)
+
+xfunction(5)</code></pre>
+`,
+  answers: [
+    "The two programs produce the same output 5 4 3 2 1.",
+    "The two programs produce the same output 4 3 2 1.",
+    "Program B produces the output 4 3 2 1 and Program A runs infinitely.",
+    "Program A produces the output 4 3 2 1 and Program B runs infinitely."
+  ],
+  correct: "Program B produces the output 4 3 2 1 and Program A runs infinitely.",
+  explanation: `
+<strong>Program B</strong> uses an <code>if</code> statement.
+
+The recursive calls are:
+
+<pre><code>length = 5 → print 4
+length = 4 → print 3
+length = 3 → print 2
+length = 2 → print 1
+length = 1 → stop</code></pre>
+
+So Program B produces:
+
+<pre><code>4 3 2 1</code></pre>
+
+<strong>Program A</strong> uses a <code>while</code> loop.
+
+The important point is that the value of <code>length</code> in the current function call is never changed.
+
+For example, when a call has:
+
+<pre><code class="language-python">length = 2</code></pre>
+
+it executes:
+
+<pre><code class="language-python">print(1)
+xfunction(1)</code></pre>
+
+The recursive call <code>xfunction(1)</code> returns, but the original call still has:
+
+<pre><code>length = 2</code></pre>
+
+Therefore, the condition:
+
+<pre><code class="language-python">while length > 1:</code></pre>
+
+is still true, and the loop repeats forever.
+
+Therefore, the correct answer is:
+
+<strong>Program B produces the output 4 3 2 1 and Program A runs infinitely.</strong>
+`
+},
+{
+  type: "radio",
+  question: `
+Which of the following statements is false?
+`,
+  answers: [
+    "Recursive functions always run faster than their equivalent non-recursive functions.",
+    "Recursive functions usually take more memory space than their equivalent non-recursive functions.",
+    "A recursive function can always be replaced by a non-recursive function.",
+    "In some cases, however, using recursion enables you to give a natural, straightforward, simple solution to a program that would otherwise be difficult to solve."
+  ],
+  correct: "Recursive functions always run faster than their equivalent non-recursive functions.",
+  explanation: `
+The false statement is:
+
+<strong>Recursive functions always run faster than their equivalent non-recursive functions.</strong>
+
+Recursive functions are often <strong>slower</strong> because each recursive call adds function-call overhead and usually requires additional stack memory.
+
+The other statements are true:
+
+<ul>
+  <li>Recursive functions usually require more memory because each call creates a new stack frame.</li>
+  <li>A recursive solution can be rewritten as an equivalent non-recursive solution using loops and/or an explicit stack.</li>
+  <li>Recursion can make some problems much easier to express and understand.</li>
+</ul>
+
+Therefore, the correct answer is:
+
+<strong>Recursive functions always run faster than their equivalent non-recursive functions.</strong>
+`
+},
+{
+  type: "radio",
+  question: `
+Show the output of the following code:
+
+<pre><code class="language-python">def f2(n, result):
+    if n == 0:
+        return n + result
+    else:
+        return f2(n - 1, n + result)
+
+print(f2(2, 0))</code></pre>
+`,
+  answers: [
+    "0",
+    "1",
+    "2",
+    "3"
+  ],
+  correct: "3",
+  explanation: `
+Trace the recursive calls:
+
+<pre><code>f2(2, 0)
+→ f2(1, 2)
+→ f2(0, 3)</code></pre>
+
+When <code>n == 0</code>, the function returns:
+
+<pre><code class="language-python">n + result</code></pre>
+
+So:
+
+<pre><code>0 + 3 = 3</code></pre>
+
+Therefore, the output is:
+
+<strong>3</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+What are the base cases in the following recursive function?
+
+<pre><code class="language-python">def xfunction(n):
+    if n:
+        print(abs(n) % 10)
+        xfunction(int(n / 10))</code></pre>
+`,
+  answers: [
+    "n == 0",
+    "n != 0",
+    "no base cases",
+    "n < 0",
+    "n > 0"
+  ],
+  correct: "n == 0",
+  explanation: `
+The recursive call only happens inside:
+
+<pre><code class="language-python">if n:</code></pre>
+
+In Python, the condition <code>if n</code> is false when:
+
+<pre><code>n == 0</code></pre>
+
+When <code>n</code> becomes <code>0</code>, the function does not execute the recursive call again, so the recursion stops.
+
+Therefore, the base case is:
+
+<strong>n == 0</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+What is the return value for <code>xfunction(4)</code>?
+
+<pre><code class="language-python">def xfunction(n):
+    if n == 1:
+        return 2
+    else:
+        return n + xfunction(n - 1)</code></pre>
+`,
+  answers: [
+    "12",
+    "11",
+    "10",
+    "9"
+  ],
+  correct: "11",
+  explanation: `
+Trace the recursive calls:
+
+<pre><code>xfunction(4)
+= 4 + xfunction(3)
+
+xfunction(3)
+= 3 + xfunction(2)
+
+xfunction(2)
+= 2 + xfunction(1)
+
+xfunction(1)
+= 2</code></pre>
+
+Now substitute back:
+
+<pre><code>2 + 2 = 4
+3 + 4 = 7
+4 + 7 = 11</code></pre>
+
+Therefore, the return value is:
+
+<strong>11</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+What's the worst-case time complexity of the following algorithm where <strong>N</strong> is a large number?
+
+Express in Big-O notation.
+
+<pre><code class="language-python">N = int(input())
+data = 1_000_000_000_000
+
+sum = 0.0
+for i in range(N):
+    for j in range(N // N):
+        sum += data</code></pre>
+`,
+  answers: [
+    "O(N²)",
+    "O(N)",
+    "O(log₂N)",
+    "O(N³)"
+  ],
+  correct: "O(N)",
+  explanation: `
+The outer loop runs <strong>N times</strong>:
+
+<pre><code class="language-python">for i in range(N):</code></pre>
+
+Now look at the inner loop:
+
+<pre><code class="language-python">for j in range(N // N):</code></pre>
+
+For a positive large value of <code>N</code>:
+
+<pre><code>N // N = 1</code></pre>
+
+Therefore, the inner loop runs only <strong>once</strong> for every iteration of the outer loop.
+
+The total number of executions is:
+
+<pre><code>N × 1 = N</code></pre>
+
+Therefore, the time complexity is:
+
+<strong>O(N)</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+What's the worst-case time complexity of the following code?
+
+Express in Big-O notation.
+
+<pre><code class="language-python">def foo(n):
+    i = 1
+    while i < n:
+        print(i)
+        i = i * 2</code></pre>
+`,
+  answers: [
+    "O(log n)",
+    "O(n)",
+    "O(1)",
+    "O(n²)",
+    "None of the other answer choices is correct"
+  ],
+  correct: "O(log n)",
+  explanation: `
+The variable <code>i</code> starts at:
+
+<pre><code>1</code></pre>
+
+and doubles each iteration:
+
+<pre><code>1, 2, 4, 8, 16, ...</code></pre>
+
+After <code>k</code> iterations:
+
+<pre><code>i = 2^k</code></pre>
+
+The loop stops when:
+
+<pre><code>2^k >= n</code></pre>
+
+So:
+
+<pre><code>k ≈ log₂(n)</code></pre>
+
+Therefore, the worst-case time complexity is:
+
+<strong>O(log n)</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+Average-case analysis is ideal, but difficult to perform, because it is hard to determine the relative probabilities and distributions of various input instances for many problems.
+`,
+  answers: [
+    "True",
+    "False"
+  ],
+  correct: "True",
+  explanation: `
+The statement is <strong>True</strong>.
+
+Average-case analysis can give a realistic picture of how an algorithm performs on typical inputs.
+
+However, it is often difficult because we need to know:
+
+<ul>
+  <li>what kinds of inputs are possible,</li>
+  <li>how frequently each type of input occurs,</li>
+  <li>the probability distribution of those inputs.</li>
+</ul>
+
+For many real problems, these probabilities are difficult to determine accurately.
+
+Therefore, the correct answer is <strong>True</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+For a sorted list of <strong>512 elements</strong>, a binary search takes at most _______ comparisons.
+
+Note that to check whether an element is greater than, equal to, or less than the other element is considered as one comparison here.
+`,
+  answers: [
+    "11",
+    "10",
+    "512",
+    "6"
+  ],
+  correct: "10",
+  explanation: `
+Binary search repeatedly cuts the search range approximately in half.
+
+Since:
+
+<pre><code>512 = 2^9</code></pre>
+
+there are 9 halvings.
+
+Using the comparison-count convention in this course, we also count the final comparison that determines whether the remaining element is the target.
+
+Therefore:
+
+<pre><code>log₂(512) + 1
+= 9 + 1
+= 10</code></pre>
+
+So the maximum number of comparisons is:
+
+<strong>10</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+O(1) is ________.
+`,
+  answers: [
+    "constant time",
+    "logarithmic time",
+    "linear time",
+    "log-linear time"
+  ],
+  correct: "constant time",
+  explanation: `
+<strong>O(1)</strong> means <strong>constant time</strong>.
+
+The number of operations does not grow as the input size <code>n</code> increases.
+
+For example, accessing an element directly by index in an array is typically:
+
+<pre><code>O(1)</code></pre>
+
+Therefore, the correct answer is <strong>constant time</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+The ________ approach searches for a candidate solution incrementally, abandoning that option as soon as it determines that the candidate cannot possibly be a valid solution, and then looks for a new candidate.
+`,
+  answers: [
+    "Divide-and-conquer",
+    "Dynamic programming",
+    "Brutal-force",
+    "Backtracking"
+  ],
+  correct: "Backtracking",
+  explanation: `
+<strong>Backtracking</strong> builds a candidate solution step by step.
+
+If the algorithm determines that the current candidate cannot lead to a valid solution, it abandons that path and goes back to try another possibility.
+
+Conceptually:
+
+<pre><code>choose
+  ↓
+test
+  ↓
+valid? ── yes → continue
+  │
+  no
+  ↓
+go back and try another choice</code></pre>
+
+This process is called <strong>backtracking</strong>.
+
+Therefore, the correct answer is <strong>Backtracking</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+What is the number of iterations in the following loop?
+
+<pre><code class="language-python">count = 3
+
+while count < n:
+    count = count + 3</code></pre>
+`,
+  answers: [
+    "n - 5",
+    "n - 3",
+    "(n - 3) / 3",
+    "(n - 5) / 3",
+    "the ceiling of (n - 5) / 3",
+    "the ceiling of (n - 3) / 3"
+  ],
+  correct: "the ceiling of (n - 3) / 3",
+  explanation: `
+The variable <code>count</code> starts at:
+
+<pre><code>3</code></pre>
+
+and increases by <strong>3</strong> during each iteration:
+
+<pre><code>3, 6, 9, 12, ...</code></pre>
+
+After <code>k</code> iterations:
+
+<pre><code>count = 3 + 3k</code></pre>
+
+The loop stops when:
+
+<pre><code>3 + 3k >= n</code></pre>
+
+Therefore:
+
+<pre><code>k >= (n - 3) / 3</code></pre>
+
+Since the number of iterations must be a whole number, we take the ceiling:
+
+<pre><code>⌈(n - 3) / 3⌉</code></pre>
+
+Therefore, the correct answer is:
+
+<strong>the ceiling of (n - 3) / 3</strong>.
+`
+},
+{
+  type: "checkbox",
+  question: `
+Which of the following complexity is <strong>O(nlogn)</strong>? Please select all that apply.
+`,
+  answers: [
+    "300n + 400n*n",
+    "23nlogn + 50",
+    "45n + 45nlogn + 503",
+    "n*n*n + nlogn",
+    "nlogn + logn"
+  ],
+  correct: [
+    "23nlogn + 50",
+    "45n + 45nlogn + 503",
+    "nlogn + logn"
+  ],
+  explanation: `
+To determine Big-O complexity, keep only the <strong>dominant term</strong> and ignore constants and lower-order terms.
+
+<pre><code>300n + 400n²
+→ O(n²)
+
+23nlogn + 50
+→ O(nlogn)
+
+45n + 45nlogn + 503
+→ O(nlogn)
+
+n³ + nlogn
+→ O(n³)
+
+nlogn + logn
+→ O(nlogn)</code></pre>
+
+Therefore, the expressions with complexity <strong>O(nlogn)</strong> are:
+
+<ul>
+  <li><strong>23nlogn + 50</strong></li>
+  <li><strong>45n + 45nlogn + 503</strong></li>
+  <li><strong>nlogn + logn</strong></li>
+</ul>
+`
+},
+{
+  type: "radio",
+  question: `
+______________ approach divides the problem into subproblems, solves the subproblems, then combines the solutions of the subproblems to obtain the solution for the entire problem.
+
+Unlike the ________ approach, the subproblems in the divide-and-conquer approach don't overlap.
+
+A subproblem is like the original problem with a smaller size, so you can apply recursion to solve the problem.
+`,
+  answers: [
+    "Divide-and-conquer/dynamic programming",
+    "Dynamic programming/divide-and-conquer",
+    "Brutal-force/divide-and-conquer",
+    "Backtracking/dynamic programming"
+  ],
+  correct: "Divide-and-conquer/dynamic programming",
+  explanation: `
+The <strong>divide-and-conquer</strong> approach divides a problem into smaller subproblems, solves those subproblems, and then combines their solutions.
+
+The important difference is that divide-and-conquer subproblems generally <strong>do not overlap</strong>.
+
+In <strong>dynamic programming</strong>, the same subproblems may appear repeatedly, so their results are often stored and reused.
+
+Therefore:
+
+<pre><code>Divide-and-conquer / dynamic programming</code></pre>
+
+is the correct answer.
+`
+},
+{
+  type: "radio",
+  question: `
+______________ approach is the process of solving subproblems, then combining the solutions of the subproblems to obtain an overall solution.
+
+This naturally leads to a recursive solution. However, it would be inefficient to use recursion, because the subproblems overlap.
+
+The key idea behind dynamic programming is to solve each subproblem only once and store the results for subproblems for later use to avoid redundant computing of the subproblems.
+`,
+  answers: [
+    "Divide-and-conquer",
+    "Dynamic programming",
+    "Brutal-force",
+    "Backtracking"
+  ],
+  correct: "Dynamic programming",
+  explanation: `
+The description refers to <strong>dynamic programming</strong>.
+
+The important clue is that the subproblems <strong>overlap</strong>.
+
+Instead of solving the same subproblem repeatedly, dynamic programming:
+
+<ul>
+  <li>solves each subproblem only once,</li>
+  <li>stores the result,</li>
+  <li>reuses the stored result when the same subproblem appears again.</li>
+</ul>
+
+This avoids redundant computation.
+
+Therefore, the correct answer is:
+
+<strong>Dynamic programming</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+The worst-time complexity for bubble sort, insertion sort, and quicksort is _____________.
+`,
+  answers: [
+    "O(1)",
+    "O(logn)",
+    "O(n)",
+    "O(nlogn)",
+    "O(n*n)"
+  ],
+  correct: "O(n*n)",
+  explanation: `
+All three algorithms have a worst-case time complexity of:
+
+<pre><code>O(n²)</code></pre>
+
+<strong>Bubble sort:</strong> may require approximately <code>n</code> passes with approximately <code>n</code> comparisons.
+
+<strong>Insertion sort:</strong> in the worst case, each element may need to move through almost the entire sorted portion of the list.
+
+<strong>Quicksort:</strong> its worst case occurs when the pivot repeatedly produces extremely unbalanced partitions, such as sizes <code>0</code> and <code>n - 1</code>.
+
+Therefore:
+
+<pre><code>Bubble sort     → O(n²)
+Insertion sort  → O(n²)
+Quicksort worst → O(n²)</code></pre>
+
+In the answer choices, <code>O(n²)</code> is written as <strong>O(n*n)</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+The worst-time complexity for merge sort and heap sort is _________.
+`,
+  answers: [
+    "O(1)",
+    "O(logn)",
+    "O(n)",
+    "O(nlogn)",
+    "O(n*n)"
+  ],
+  correct: "O(nlogn)",
+  explanation: `
+Both <strong>merge sort</strong> and <strong>heap sort</strong> have a worst-case time complexity of:
+
+<pre><code>O(n log n)</code></pre>
+
+<strong>Merge sort:</strong>
+the list is repeatedly divided into halves, giving about <code>log n</code> levels, while each level processes about <code>n</code> elements.
+
+<strong>Heap sort:</strong>
+there are approximately <code>n</code> removals from the heap, and restoring the heap property takes up to <code>O(log n)</code> time per removal.
+
+Therefore:
+
+<pre><code>Merge sort → O(n log n)
+Heap sort  → O(n log n)</code></pre>
+
+In the answer choices, this is written as <strong>O(nlogn)</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+A heap is represented using a list.
+
+Is the list
+
+<pre><code>[1, 2, 3, 5, 9, 4]</code></pre>
+
+a heap?
+`,
+  answers: [
+    "Yes",
+    "No"
+  ],
+  correct: "Yes",
+  explanation: `
+Yes. This list represents a valid <strong>min-heap</strong>.
+
+In a min-heap, every parent node must be less than or equal to its children.
+
+The list is:
+
+<pre><code>[1, 2, 3, 5, 9, 4]</code></pre>
+
+Its parent-child relationships are:
+
+<pre><code>1 → children: 2, 3
+2 → children: 5, 9
+3 → child: 4</code></pre>
+
+Check the min-heap property:
+
+<pre><code>1 <= 2 and 1 <= 3
+2 <= 5 and 2 <= 9
+3 <= 4</code></pre>
+
+All parent nodes are less than or equal to their children.
+
+Therefore, the list satisfies the <strong>min-heap property</strong>.
+
+The correct answer is <strong>Yes</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+A heap is represented using a list.
+
+Is the list
+
+<pre><code>[64, 59, 44, 32, 39, 42]</code></pre>
+
+a heap?
+`,
+  answers: [
+    "Yes",
+    "No"
+  ],
+  correct: "Yes",
+  explanation: `
+Yes. This list represents a valid <strong>max-heap</strong>.
+
+In a max-heap, every parent node must be greater than or equal to its children.
+
+The parent-child relationships are:
+
+<pre><code>64 → children: 59, 44
+59 → children: 32, 39
+44 → child: 42</code></pre>
+
+Check the heap property:
+
+<pre><code>64 >= 59 and 64 >= 44
+59 >= 32 and 59 >= 39
+44 >= 42</code></pre>
+
+All parent nodes are greater than or equal to their children.
+
+Therefore, the list satisfies the <strong>max-heap property</strong>.
+
+The correct answer is <strong>Yes</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+Suppose a heap is stored in a list as follows:
+
+<pre><code>[100, 55, 92, 23, 33, 81]</code></pre>
+
+The parent of <strong>33</strong> is _______.
+`,
+  answers: [
+    "100",
+    "55",
+    "92",
+    "23",
+    "33"
+  ],
+  correct: "55",
+  explanation: `
+The list uses zero-based indexing:
+
+<pre><code>Index:  0    1    2    3    4    5
+Value: 100   55   92   23   33   81</code></pre>
+
+The value <strong>33</strong> is at index <strong>4</strong>.
+
+For a heap stored in an array or list, the parent index is:
+
+<pre><code>(index - 1) // 2</code></pre>
+
+So:
+
+<pre><code>(4 - 1) // 2 = 1</code></pre>
+
+The value at index <strong>1</strong> is:
+
+<pre><code>55</code></pre>
+
+Therefore, the correct answer is <strong>55</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+Suppose a heap is stored in a list as follows:
+
+<pre><code>[100, 55, 92, 23, 33, 81, 92]</code></pre>
+
+After inserting <strong>93</strong>, what is the content of the list?
+`,
+  answers: [
+    "[100, 55, 92, 23, 33, 81, 92, 93]",
+    "[100, 55, 92, 93, 33, 81, 92, 23]",
+    "[100, 93, 92, 55, 33, 81, 92, 23]",
+    "[103, 55, 100, 23, 33, 81, 92]",
+    "[103, 55, 92, 23, 33, 81, 92, 100]"
+  ],
+  correct: "[100, 93, 92, 55, 33, 81, 92, 23]",
+  explanation: `
+This is a <strong>max-heap</strong>.
+
+First, insert <strong>93</strong> at the end:
+
+<pre><code>[100, 55, 92, 23, 33, 81, 92, 93]</code></pre>
+
+The parent of 93 is <strong>23</strong>.
+
+Since:
+
+<pre><code>93 > 23</code></pre>
+
+swap them:
+
+<pre><code>[100, 55, 92, 93, 33, 81, 92, 23]</code></pre>
+
+Now the parent of 93 is <strong>55</strong>.
+
+Since:
+
+<pre><code>93 > 55</code></pre>
+
+swap again:
+
+<pre><code>[100, 93, 92, 55, 33, 81, 92, 23]</code></pre>
+
+Now the parent is <strong>100</strong>, and:
+
+<pre><code>93 < 100</code></pre>
+
+so the heap property is restored.
+
+Therefore, the correct answer is:
+
+<strong>[100, 93, 92, 55, 33, 81, 92, 23]</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+The most efficient algorithm for sorting integer keys is __________.
+`,
+  answers: [
+    "quick sort",
+    "merge sort",
+    "heap sort",
+    "radix sort"
+  ],
+  correct: "radix sort",
+  explanation: `
+<strong>Radix sort</strong> is designed specifically for sorting integer keys (or other keys that can be processed digit by digit).
+
+Unlike comparison-based algorithms such as quick sort, merge sort, and heap sort, radix sort does not compare keys directly.
+
+Its time complexity can be approximately:
+
+<pre><code>O(d(n + k))</code></pre>
+
+where:
+
+<ul>
+  <li><code>n</code> = number of elements</li>
+  <li><code>d</code> = number of digits</li>
+  <li><code>k</code> = range of possible digit values</li>
+</ul>
+
+For fixed-size integer keys, this can be close to <strong>O(n)</strong>, making radix sort especially efficient.
+
+Therefore, the correct answer is <strong>radix sort</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+The time to merge <strong>3 sorted lists</strong> of size <strong>n</strong> is _________.
+`,
+  answers: [
+    "O(3)",
+    "O(logn)",
+    "O(n)",
+    "O(nlogn)",
+    "O(n*n)"
+  ],
+  correct: "O(n)",
+  explanation: `
+Each of the three sorted lists contains <strong>n</strong> elements.
+
+Therefore, the total number of elements processed is:
+
+<pre><code>n + n + n = 3n</code></pre>
+
+The merge operation processes the elements linearly:
+
+<pre><code>O(3n)</code></pre>
+
+In Big-O notation, constant factors are ignored:
+
+<pre><code>O(3n) → O(n)</code></pre>
+
+Therefore, the correct answer is <strong>O(n)</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+To add a new node, you need to start a process by first placing it as _______ and move it up to maintain the heap property.
+`,
+  answers: [
+    "the new root",
+    "the last node in the heap",
+    "the left child of the root",
+    "the right child of the root"
+  ],
+  correct: "the last node in the heap",
+  explanation: `
+When inserting a new element into a heap, the new node is first placed at the <strong>last available position</strong>.
+
+This keeps the heap as a <strong>complete binary tree</strong>.
+
+Then the new node is moved upward, or <strong>percolated up</strong>, until the heap property is restored.
+
+Therefore, the correct answer is:
+
+<strong>the last node in the heap</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+To remove the root, you need to start a process by first placing _______ to the place of the root and move it down to maintain the heap property.
+`,
+  answers: [
+    "one of the root's children",
+    "the larger child of the root",
+    "the smaller child of the root",
+    "the last node in the heap"
+  ],
+  correct: "the last node in the heap",
+  explanation: `
+When removing the root from a heap, the <strong>last node in the heap</strong> is first moved to the root position.
+
+This keeps the heap as a <strong>complete binary tree</strong>.
+
+Then that node is moved downward, or <strong>percolated down</strong>, until the heap property is restored.
+
+Therefore, the correct answer is:
+
+<strong>the last node in the heap</strong>.
+`
+},
+{
+  type: "checkbox",
+  question: `
+In the implementation of Stack and Queue, which of the following are <strong>false</strong>? Please select all that apply.
+`,
+  answers: [
+    "Stack contains all the methods defined in list.",
+    "Queue contains all the methods defined in LinkedList.",
+    "Stack contains a list for storing elements.",
+    "Queue contains a linked list for storing elements."
+  ],
+  correct: [
+    "Stack contains all the methods defined in list.",
+    "Queue contains all the methods defined in LinkedList."
+  ],
+  explanation: `
+The <strong>Stack</strong> implementation uses a list internally to store elements, but it does <strong>not</strong> expose all methods of the list.
+
+The <strong>Queue</strong> implementation uses a linked list internally, but it does <strong>not</strong> expose all methods of LinkedList.
+
+Therefore:
+
+<pre><code>False:
+1. Stack contains all the methods defined in list.
+2. Queue contains all the methods defined in LinkedList.
+
+True:
+3. Stack contains a list for storing elements.
+4. Queue contains a linked list for storing elements.</code></pre>
+`
+},
+{
+  type: "checkbox",
+  question: `
+LinkedList is more efficient than list for _____________. <strong>Please select all that apply.</strong>
+`,
+  answers: [
+    "inserting/deleting an element in the middle of the list.",
+    "inserting/deleting an element in the beginning of the list.",
+    "inserting/deleting an element at the end of the list.",
+    "retrieving an element given the index."
+  ],
+  correct: [
+    "inserting/deleting an element in the beginning of the list.",
+    "inserting/deleting an element at the end of the list."
+  ],
+  explanation: `
+For this course, the correct choices are:
+
+<ul>
+  <li><strong>inserting/deleting an element in the beginning of the list</strong></li>
+  <li><strong>inserting/deleting an element at the end of the list</strong></li>
+</ul>
+
+A LinkedList can update links at the beginning efficiently, and with a tail reference it can also efficiently add elements at the end.
+
+Retrieving an element by index is slower in a LinkedList because nodes must be traversed one by one.
+
+Therefore, select <strong>the beginning</strong> and <strong>the end</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+Suppose <code>list1</code> is a list and <code>list2</code> is a LinkedList. Both contain 1 million floating-point values. Analyze the following code:
+
+<strong>A:</strong>
+<pre><code>while list2.getSize() > 0:
+    list2.removeFirst()</code></pre>
+
+<strong>B:</strong>
+<pre><code>while len(list1) > 0:
+    del list1[0]</code></pre>
+`,
+  answers: [
+    "Code fragment A runs faster than code fragment B.",
+    "Code fragment B runs faster than code fragment A.",
+    "Code fragment A runs as fast as code fragment B."
+  ],
+  correct: "Code fragment A runs faster than code fragment B.",
+  explanation: `
+<strong>Code fragment A is faster.</strong>
+
+For a LinkedList:
+
+<pre><code>removeFirst() → O(1)</code></pre>
+
+Removing the first node only requires changing the head reference.
+
+Doing this for <code>n</code> elements gives approximately:
+
+<pre><code>O(n)</code></pre>
+
+For a Python list:
+
+<pre><code>del list1[0] → O(n)</code></pre>
+
+After deleting the first element, all remaining elements must be shifted one position to the left.
+
+Doing this repeatedly gives approximately:
+
+<pre><code>O(n²)</code></pre>
+
+Therefore:
+
+<pre><code>A: O(n)
+B: O(n²)</code></pre>
+
+So <strong>Code fragment A runs faster than code fragment B.</strong>
+`
+},
+
+{
+  type: "radio",
+  question: `
+What is the time-complexity of the linked list's <code>addFirst</code> function?
+`,
+  answers: [
+    "O(1)",
+    "O(logn)",
+    "O(n)",
+    "O(nlogn)"
+  ],
+  correct: "O(1)",
+  explanation: `
+The <code>addFirst</code> function inserts a new node at the beginning of the linked list.
+
+It only needs to:
+
+<pre><code>1. Create a new node
+2. Set newNode.next to the current head
+3. Set head to newNode</code></pre>
+
+No traversal through the linked list is required.
+
+The number of operations stays constant regardless of how many nodes are in the list.
+
+Therefore:
+
+<pre><code>addFirst → O(1)</code></pre>
+
+The correct answer is <strong>O(1)</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+Suppose the rule of the party is that the participants who arrive later will leave later.
+
+Which data structure is appropriate to store the participants?
+`,
+  answers: [
+    "vector",
+    "LinkedList",
+    "array",
+    "Stack",
+    "Queue"
+  ],
+  correct: "Queue",
+  explanation: `
+The rule says:
+
+<pre><code>arrive earlier → leave earlier
+arrive later   → leave later</code></pre>
+
+This follows the <strong>FIFO</strong> principle:
+
+<pre><code>First In, First Out</code></pre>
+
+A <strong>Queue</strong> uses FIFO ordering.
+
+Therefore, the correct answer is <strong>Queue</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+Suppose the rule of the party is that the participants who arrive earlier will leave later.
+
+Which data structure is appropriate to store the participants?
+`,
+  answers: [
+    "Stack",
+    "Queue",
+    "list",
+    "Linked List"
+  ],
+  correct: "Stack",
+  explanation: `
+The rule says:
+
+<pre><code>arrive earlier → leave later
+arrive later   → leave earlier</code></pre>
+
+This follows the <strong>LIFO</strong> principle:
+
+<pre><code>Last In, First Out</code></pre>
+
+A <strong>Stack</strong> uses LIFO ordering.
+
+Example:
+
+<pre><code>Arrival: A → B → C
+Leaving: C → B → A</code></pre>
+
+Therefore, the correct answer is <strong>Stack</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+What is the time-complexity for the <code>insert(index, e)</code> function in a singly linked list?
+`,
+  answers: [
+    "O(1)",
+    "O(logn)",
+    "O(n)",
+    "O(nlogn)"
+  ],
+  correct: "O(n)",
+  explanation: `
+In a singly linked list, to insert an element at a specific index, you usually need to traverse the list from the head until you reach the node just before that index.
+
+In the worst case, you may need to visit almost all <code>n</code> nodes.
+
+<pre><code>Traversal to index → O(n)
+Insertion itself   → O(1)
+
+Overall            → O(n)</code></pre>
+
+Therefore, the correct answer is <strong>O(n)</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+What is the time-complexity for the <code>removeLast</code> function in a singly linked list?
+`,
+  answers: [
+    "O(1)",
+    "O(logn)",
+    "O(n)",
+    "O(nlogn)"
+  ],
+  correct: "O(n)",
+  explanation: `
+In a <strong>singly linked list</strong>, each node only has a reference to the next node.
+
+To remove the last node, you must find the node immediately before the last node.
+
+Since there is no link going backward, you have to start from the head and traverse the list.
+
+<pre><code>Traverse to second-to-last node → O(n)
+Remove the last node            → O(1)
+
+Overall                         → O(n)</code></pre>
+
+Therefore, the correct answer is <strong>O(n)</strong>.
+`
+},
+{
+  type: "radio",
+  question: `
+Which data structure is appropriate for task scheduling in an operating system?
+`,
+  answers: [
+    "Stack",
+    "Queue",
+    "Priority Queue",
+    "Linked List",
+    "list"
+  ],
+  correct: "Priority Queue",
+  explanation: `
+A <strong>Priority Queue</strong> is appropriate for operating-system task scheduling because tasks can have different priorities.
+
+The scheduler can process higher-priority tasks before lower-priority tasks.
+
+<pre><code>Higher priority → processed first
+Lower priority  → processed later</code></pre>
+
+A regular Queue processes items strictly in FIFO order, while a Priority Queue considers the priority of each task.
+
+Therefore, the correct answer is <strong>Priority Queue</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+List is more efficient than LinkedList for the following operations:
+`,
+  answers: [
+    "Insert/delete an element in the middle of the list.",
+    "Insert/delete an element in the beginning of the list.",
+    "Insert/delete an element at the end of the list.",
+    "Retrieve an element given the index."
+  ],
+  correct: "Retrieve an element given the index.",
+  explanation: `
+A Python <strong>list</strong> supports direct access by index.
+
+For example:
+
+<pre><code>list1[index]</code></pre>
+
+This operation is:
+
+<pre><code>O(1)</code></pre>
+
+A LinkedList does not support direct indexing. To retrieve an element at a given index, it must traverse the nodes from the beginning:
+
+<pre><code>head → node → node → ... → target</code></pre>
+
+That requires:
+
+<pre><code>O(n)</code></pre>
+
+Therefore, the correct answer is:
+
+<strong>Retrieve an element given the index.</strong>
+`
+},
+{
+  type: "matching",
+  question: `
+<strong>EXTRA-CREDIT</strong><br><br>
+Match each of the sort algorithms to its definition.
+`,
+  pairs: [
+    {
+      left: "Bubble sort",
+      right: "It repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order until the entire list is sorted."
+    },
+    {
+      left: "Selection sort",
+      right: "It repeatedly finds the minimum element from the unsorted part and swaps it with the element at the current beginning of the unsorted section."
+    },
+    {
+      left: "Insertion sort",
+      right: "It builds the final sorted list one item at a time by taking elements from the input data and inserting them into their correct position in the already-sorted part of the list."
+    },
+    {
+      left: "Merge sort",
+      right: "It follows a divide-and-conquer approach, recursively dividing the list into halves until each sublist has one element, and then repeatedly merging the sublists to produce one final sorted list."
+    },
+    {
+      left: "Quick sort",
+      right: "It is a divide-and-conquer algorithm that selects a pivot element and partitions the other elements into two sub-arrays according to whether they are less than or greater than the pivot, then recursively sorts the sub-arrays."
+    },
+    {
+      left: "Heap sort",
+      right: "It is a comparison-based algorithm that uses a binary heap data structure, first building a max-heap from the input data and then repeatedly extracting the largest element from the heap and rebuilding the heap until all elements are sorted."
+    },
+    {
+      left: "Radix sort",
+      right: "It is a non-comparative integer sorting algorithm that sorts data by grouping keys by the individual digits or characters that share the same significant position and value."
+    },
+    {
+      left: "Bucket sort",
+      right: "It is a non-comparison sort that divides the unsorted elements into a number of buckets, individually sorts each bucket, and then concatenates the buckets to get the final sorted list."
+    }
+  ],
+  explanation: `
+<strong>Correct matches:</strong>
+
+<pre><code>Bubble sort    → compare and swap adjacent elements
+Selection sort → repeatedly select the minimum element
+Insertion sort → insert each element into the sorted portion
+Merge sort     → divide into halves and merge
+Quick sort     → choose a pivot and partition
+Heap sort      → build/use a heap and repeatedly extract
+Radix sort     → sort by individual digits/positions
+Bucket sort    → distribute elements into buckets</code></pre>
+
+<strong>Important:</strong> The screenshot also contains one extra distractor definition:
+
+<pre><code>Counts the frequency of each distinct element...</code></pre>
+
+That definition describes <strong>Counting sort</strong>, which is not one of the algorithms being matched in this question.
+`
+},
+
 ];
