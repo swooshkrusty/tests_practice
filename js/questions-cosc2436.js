@@ -987,19 +987,36 @@ The time complexity for the Towers of Hanoi algorithm in the text is ________.
   ],
   correct: "O(2^n)",
   explanation: `
-The recursive Towers of Hanoi algorithm satisfies the recurrence:
+The recursive <strong>Towers of Hanoi</strong> algorithm solves the problem by:
+
+<ol>
+  <li>Moving <code>n - 1</code> disks to the auxiliary peg.</li>
+  <li>Moving the largest disk to the destination peg.</li>
+  <li>Moving the <code>n - 1</code> disks onto the largest disk.</li>
+</ol>
+
+Its recurrence is:
 
 <pre><code>T(n) = 2T(n - 1) + 1</code></pre>
 
-Its solution is:
+The number of moves is:
 
-<pre><code>T(n) = 2ⁿ - 1</code></pre>
+<pre><code>2^n - 1</code></pre>
 
-Ignoring constants, the time complexity is:
+Ignoring constants and lower-order terms:
 
-<pre><code>O(2ⁿ)</code></pre>
+<pre><code>O(2^n)</code></pre>
 
 Therefore, the correct answer is <strong>O(2^n)</strong>.
+
+<br><br>
+
+<button
+  type="button"
+  class="visual-explanation-btn"
+  onclick="openVisualExplanation('visuals/cosc2436/towers-of-hanoi-complexity-en-ru.html')">
+  ▶ Visual Explanation
+</button>
 `
 },
 {
@@ -1123,9 +1140,11 @@ The time complexity for the closest pair of points problem using divide-and-conq
   ],
   correct: "O(nlogn)",
   explanation: `
-The divide-and-conquer algorithm for the closest pair of points recursively divides the points into two halves and combines the results efficiently.
+The <strong>divide-and-conquer</strong> algorithm for the closest pair of points recursively divides the set of points into two halves.
 
-Its running time satisfies the recurrence:
+At each level, the algorithm performs approximately <code>O(n)</code> work to combine the results, and there are approximately <code>log n</code> levels of recursion.
+
+The recurrence is:
 
 <pre><code>T(n) = 2T(n/2) + O(n)</code></pre>
 
@@ -1134,6 +1153,15 @@ which solves to:
 <pre><code>O(n log n)</code></pre>
 
 Therefore, the correct answer is <strong>O(nlogn)</strong>.
+
+<br><br>
+
+<button
+  type="button"
+  class="visual-explanation-btn"
+  onclick="openVisualExplanation('visuals/cosc2436/closest-pair-divide-conquer-en-ru.html')">
+  ▶ Visual Explanation
+</button>
 `
 },
 {
@@ -2907,23 +2935,53 @@ while list2.getSize() > 0:
   ],
   correct: "Code fragment A runs as fast as code fragment B.",
   explanation: `
-In code fragment <strong>A</strong>, deleting the last element of a list takes:
+In code fragment <strong>A</strong>:
+
+<pre><code class="language-python">del list1[-1]</code></pre>
+
+removes the last element of a Python list.
+
+No elements need to be shifted, so:
 
 <pre><code>O(1)</code></pre>
 
-Each deletion is performed once for every element, so the total time is:
+per removal.
+
+Repeating this for all <code>n</code> elements gives:
 
 <pre><code>O(n)</code></pre>
 
-In a <strong>doubly linked list</strong>, <code>removeLast()</code> also takes <strong>O(1)</strong> time because the list maintains a tail reference and each node has a link to the previous node.
+In code fragment <strong>B</strong>, a doubly linked list has a tail reference and each node has a link to the previous node.
 
-Repeating this operation for all <strong>n</strong> elements also gives:
+Therefore:
+
+<pre><code class="language-python">list2.removeLast()</code></pre>
+
+takes:
+
+<pre><code>O(1)</code></pre>
+
+per removal.
+
+Repeating this for all <code>n</code> elements also gives:
 
 <pre><code>O(n)</code></pre>
 
-Therefore, both code fragments have the same asymptotic running time.
+Therefore:
 
-The correct answer is <strong>Code fragment A runs as fast as code fragment B.</strong>
+<pre><code>A → O(n)
+B → O(n)</code></pre>
+
+So <strong>Code fragment A runs as fast as code fragment B.</strong>
+
+<br><br>
+
+<button
+  type="button"
+  class="visual-explanation-btn"
+  onclick="openVisualExplanation('visuals/cosc2436/list-vs-doubly-linked-list-remove-last-en-ru.html')">
+  ▶ Visual Explanation
+</button>
 `
 },
 {
@@ -3244,7 +3302,9 @@ For code fragment <strong>A</strong>:
 
 inserts an element at the beginning of a Python list.
 
-Existing elements must be shifted to the right, so insertion at the beginning requires:
+Because a Python list is array-based, all existing elements must be shifted one position to the right.
+
+Therefore, each insertion at index <code>0</code> requires approximately:
 
 <pre><code>O(n)</code></pre>
 
@@ -3252,13 +3312,31 @@ For code fragment <strong>B</strong>:
 
 <pre><code class="language-python">list2.insert(0, i)</code></pre>
 
-inserting at index 0 changes only the head links of the LinkedList.
+inserting at index <code>0</code> in a LinkedList only requires changing the head references.
 
-This requires:
+No traversal of the list is necessary.
 
-<pre><code>O(1)</code></pre>
+Therefore:
 
-Therefore, <strong>code fragment B runs faster than code fragment A.</strong>
+<pre><code>LinkedList insert at beginning → O(1)</code></pre>
+
+So:
+
+<pre><code>A: list.insert(0, i)       → O(n) per insertion
+B: LinkedList.insert(0, i) → O(1) per insertion</code></pre>
+
+Since both operations are repeated <code>100000</code> times, fragment <strong>B</strong> is significantly more efficient.
+
+Therefore, <strong>Code fragment B runs faster than code fragment A.</strong>
+
+<br><br>
+
+<button
+  type="button"
+  class="visual-explanation-btn"
+  onclick="openVisualExplanation('visuals/cosc2436/list-vs-linked-list-insert-first-en-ru.html')">
+  ▶ Visual Explanation
+</button>
 `
 },
 {
@@ -3635,7 +3713,9 @@ where indexed access is typically <code>O(1)</code>.
 {
   type: "radio",
   question: `
-Suppose the rule of the party is that the participants who arrive earlier will leave earlier. Which data structure is appropriate to store the participants?
+Suppose the rule of the party is that the participants who arrive earlier will leave earlier.
+
+Which data structure is appropriate to store the participants?
 `,
   answers: [
     "vector",
@@ -3654,14 +3734,25 @@ This follows the:
 
 principle.
 
-A <strong>Queue</strong> uses FIFO:
+A <strong>Queue</strong> uses FIFO ordering.
 
-<ul>
-  <li>The first participant to arrive enters the queue first.</li>
-  <li>The first participant in the queue leaves first.</li>
-</ul>
+Example:
+
+<pre><code>Arrival: A → B → C
+Leaving: A → B → C</code></pre>
+
+The first participant to arrive is the first participant to leave.
 
 Therefore, the correct answer is <strong>Queue</strong>.
+
+<br><br>
+
+<button
+  type="button"
+  class="visual-explanation-btn"
+  onclick="openVisualExplanation('visuals/cosc2436/queue-party-earlier-first-en-ru.html')">
+  ▶ Visual Explanation
+</button>
 `
 },
 {
@@ -4958,6 +5049,15 @@ Therefore:
 B: O(n²)</code></pre>
 
 So <strong>Code fragment A runs faster than code fragment B.</strong>
+
+<br><br>
+
+<button
+  type="button"
+  class="visual-explanation-btn"
+  onclick="openVisualExplanation('visuals/cosc2436/linked-list-vs-list-remove-first-en-ru.html')">
+  ▶ Visual Explanation
+</button>
 `
 },
 
@@ -5021,7 +5121,21 @@ This follows the <strong>FIFO</strong> principle:
 
 A <strong>Queue</strong> uses FIFO ordering.
 
+Example:
+
+<pre><code>Arrival: A → B → C
+Leaving: A → B → C</code></pre>
+
 Therefore, the correct answer is <strong>Queue</strong>.
+
+<br><br>
+
+<button
+  type="button"
+  class="visual-explanation-btn"
+  onclick="openVisualExplanation('visuals/cosc2436/queue-party-fifo-en-ru.html')">
+  ▶ Visual Explanation
+</button>
 `
 },
 {
