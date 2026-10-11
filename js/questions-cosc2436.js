@@ -1015,13 +1015,36 @@ The gift-wrapping algorithm for finding a convex hull takes ____________ time.
   ],
   correct: "O(n^2)",
   explanation: `
-The <strong>gift-wrapping (Jarvis March)</strong> algorithm repeatedly finds the next point on the convex hull by scanning all points.
+The <strong>gift-wrapping algorithm</strong>, also called <strong>Jarvis March</strong>, finds the convex hull by repeatedly selecting the next outermost point.
 
-In the worst case, it performs approximately <strong>n</strong> scans of <strong>n</strong> points, giving a worst-case time complexity of:
+For each point on the convex hull, the algorithm may scan all <code>n</code> points.
 
-<pre><code>O(n²)</code></pre>
+Its general time complexity is:
+
+<pre><code>O(nh)</code></pre>
+
+where <code>h</code> is the number of points on the convex hull.
+
+In the worst case:
+
+<pre><code>h = n</code></pre>
+
+so:
+
+<pre><code>O(nh)
+= O(n × n)
+= O(n²)</code></pre>
 
 Therefore, the correct answer is <strong>O(n²)</strong>.
+
+<br><br>
+
+<button
+  type="button"
+  class="visual-explanation-btn"
+  onclick="openVisualExplanation('visuals/cosc2436/gift-wrapping-convex-hull-en-ru.html')">
+  ▶ Visual Explanation
+</button>
 `
 },
 {
@@ -3489,15 +3512,38 @@ Then:
 
 <pre><code class="language-python">list2.remove(...)</code></pre>
 
-requires additional work to locate and remove that element.
+requires another traversal to locate and remove that element.
+
+So for each removal, fragment A performs approximately:
+
+<pre><code>get(...)    → O(n)
+remove(...) → O(n)</code></pre>
 
 Fragment B directly calls:
 
 <pre><code class="language-python">list2.removeLast()</code></pre>
 
-which performs the required traversal without the extra <code>get()</code> operation.
+For a singly linked list, <code>removeLast()</code> must traverse to the second-to-last node:
 
-Therefore, even though both approaches involve traversal, <strong>Code fragment B is faster than Code fragment A.</strong>
+<pre><code>removeLast() → O(n)</code></pre>
+
+Both fragments therefore have the same asymptotic overall complexity when repeated for all elements:
+
+<pre><code>A → O(n²)
+B → O(n²)</code></pre>
+
+However, fragment B performs less work because it avoids the extra <code>get()</code> traversal.
+
+Therefore, <strong>Code fragment B runs faster than Code fragment A.</strong>
+
+<br><br>
+
+<button
+  type="button"
+  class="visual-explanation-btn"
+  onclick="openVisualExplanation('visuals/cosc2436/linked-list-remove-last-comparison-en-ru.html')">
+  ▶ Visual Explanation
+</button>
 `
 },
 {
@@ -4498,6 +4544,15 @@ Therefore:
 Heap sort  → O(n log n)</code></pre>
 
 In the answer choices, this is written as <strong>O(nlogn)</strong>.
+
+<br><br>
+
+<button
+  type="button"
+  class="visual-explanation-btn"
+  onclick="openVisualExplanation('visuals/cosc2436/merge-sort-heap-sort-complexity-en-ru.html')">
+  ▶ Visual Explanation
+</button>
 `
 },
 {
@@ -5000,7 +5055,18 @@ Example:
 <pre><code>Arrival: A → B → C
 Leaving: C → B → A</code></pre>
 
+The last participant to arrive is the first participant to leave.
+
 Therefore, the correct answer is <strong>Stack</strong>.
+
+<br><br>
+
+<button
+  type="button"
+  class="visual-explanation-btn"
+  onclick="openVisualExplanation('visuals/cosc2436/stack-party-lifo-en-ru.html')">
+  ▶ Visual Explanation
+</button>
 `
 },
 {
