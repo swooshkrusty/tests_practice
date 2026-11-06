@@ -4233,4 +4233,1030 @@ The correct answer is <strong>True</strong>.
 `
 },
 
+
+  // =====================================================
+  // PANDAS — UNIQUE QUIZ QUESTIONS
+  // 26 unique questions
+  // =====================================================
+
+
+  // =========================
+  // 1
+  // =========================
+  {
+    type: "radio",
+    question: `
+Pandas ____________ object can be thought as a sequence of Series objects.
+`,
+    answers: [
+      "Matrix",
+      "DataFrame",
+      "DataTable",
+      "DataSheet"
+    ],
+    correct: "DataFrame",
+    explanation: `
+A Pandas <strong>DataFrame</strong> can be viewed as a collection or sequence of
+<code>Series</code> objects that share the same index.
+
+Therefore, the correct answer is <strong>DataFrame</strong>.
+`
+  },
+
+
+  // =========================
+  // 2
+  // =========================
+  {
+    type: "radio",
+    question: `
+A DataFrame instance has been initialized below.
+
+<pre><code class="language-python">df = pd.DataFrame({
+    'item': ['Folder', 'Binder', 'Folder', 'Pen', 'Folder', 'Binder'],
+    'qty': [3, 6, 2, 5, 1, 7]
+})</code></pre>
+
+Which statement produces:
+
+<pre><code>        qty
+item
+Binder   13
+Folder    6
+Pen       5</code></pre>
+`,
+    answers: [
+      {
+        text: `<code>None of these are correct.</code>`,
+        value: "option1"
+      },
+      {
+        text: `<code>df.pivot_table('qty', index='item', aggfunc='sum')</code>`,
+        value: "option2"
+      },
+      {
+        text: `<code>df.pivot_table('item', index='qty', aggfunc='sum')</code>`,
+        value: "option3"
+      },
+      {
+        text: `<code>df.pivot_table('qty', index='item', columns='qty', aggfunc='sum')</code>`,
+        value: "option4"
+      }
+    ],
+    correct: "option2",
+    explanation: `
+We want to group by <code>item</code> and sum <code>qty</code>.
+
+<pre><code class="language-python">df.pivot_table(
+    'qty',
+    index='item',
+    aggfunc='sum'
+)</code></pre>
+
+produces Binder = 13, Folder = 6, and Pen = 5.
+`
+  },
+
+
+  // =========================
+  // 3
+  // =========================
+  {
+    type: "radio",
+    question: `
+True or False?
+
+Pandas <code>pivot()</code> function provides general purpose pivoting with various data types,
+however it can only handle unique rows specified by index and columns.
+
+Pandas also has <code>pivot_table()</code> for pivoting with aggregation of numeric data.
+It is similar to spreadsheet-style pivot tables.
+`,
+    answers: [
+      "True",
+      "False"
+    ],
+    correct: "True",
+    explanation: `
+For this course question, the statement is <strong>True</strong>.
+
+<code>pivot()</code> reshapes data without aggregation, while
+<code>pivot_table()</code> can aggregate duplicate combinations.
+`
+  },
+
+
+  // =========================
+  // 4
+  // =========================
+  {
+    type: "radio",
+    question: `
+True or False?
+
+Pandas uses <code>None</code> and <code>NaN</code> to represent missing data and uses them
+essentially interchangeably for indicating missing or null values.
+`,
+    answers: [
+      "True",
+      "False"
+    ],
+    correct: "True",
+    explanation: `
+For the purposes of this Pandas course, the statement is <strong>True</strong>.
+
+Pandas recognizes both <code>None</code> and <code>NaN</code> as representations of missing data.
+`
+  },
+
+
+  // =========================
+  // 5
+  // =========================
+  {
+    type: "radio",
+    question: `
+What is the output of the following code?
+
+<pre><code class="language-python">df1 = pd.DataFrame({
+    'item': ['Folder', 'Binder', 'Pen'],
+    'qty': [3, 6, 2]
+})
+
+df2 = pd.DataFrame({
+    'item': ['Folder', 'Binder', 'Marker'],
+    'price': [2.5, 5.5, 1.5]
+})
+
+pd.merge(df1, df2, how='right', on='item')</code></pre>
+`,
+    answers: [
+      {
+        text: `<pre><code>     item   qty  price
+0  Folder   3.0    2.5
+1  Binder   6.0    5.5
+2  Marker   NaN    1.5</code></pre>`,
+        value: "option1"
+      },
+      {
+        text: `<pre><code>     item   qty  price
+0  Folder   3.0    2.5
+1  Binder   6.0    5.5</code></pre>`,
+        value: "option2"
+      },
+      {
+        text: `<pre><code>     item   qty  price
+0  Folder   3.0    2.5
+1  Binder   6.0    5.5
+2     Pen   2.0    NaN
+3  Marker   NaN    1.5</code></pre>`,
+        value: "option3"
+      },
+      {
+        text: `<pre><code>     item   qty  price
+0  Folder   3.0    2.5
+1  Binder   6.0    5.5
+2     Pen   2.0    NaN</code></pre>`,
+        value: "option4"
+      }
+    ],
+    correct: "option1",
+    explanation: `
+A <strong>right join</strong> keeps every key from <code>df2</code>.
+
+Therefore:
+
+<pre><code>Folder → exists in both
+Binder → exists in both
+Marker → only in df2 → qty becomes NaN</code></pre>
+`
+  },
+
+
+  // =========================
+  // 6
+  // =========================
+  {
+    type: "checkbox",
+    question: `
+The DataFrame object has been initialized as follows:
+
+<pre><code class="language-python">df = pd.DataFrame({
+    "year": [2022, 2023],
+    "month": [11, 12],
+    "day": [21, 22]
+})</code></pre>
+
+Which code will produce:
+
+<pre><code>0    2022-11-21
+1    2023-12-22</code></pre>
+
+<strong>Select all that apply.</strong>
+`,
+    answers: [
+      {
+        text: `<code>pd.to_datetime(df[["year", "month", "day"]])</code>`,
+        value: "option1"
+      },
+      {
+        text: `<code>pd.to_datetime(df)</code>`,
+        value: "option2"
+      },
+      {
+        text: `<code>pd.to_datetime(pd.Series(["11/21/2022", "12/22/2023"]))</code>`,
+        value: "option3"
+      },
+      {
+        text: `<code>pd.Series(pd.date_range("2022", freq="Y", periods=2))</code>`,
+        value: "option4"
+      }
+    ],
+    correct: [
+      "option1",
+      "option2",
+      "option3"
+    ],
+    explanation: `
+The first three expressions produce the requested dates.
+
+The <code>date_range()</code> expression generates a yearly sequence instead,
+so it does not produce November 21, 2022 and December 22, 2023.
+`
+  },
+
+
+  // =========================
+  // 7
+  // =========================
+  {
+    type: "radio",
+    question: `
+True or False?
+
+Pandas is the package built on top of NumPy.
+`,
+    answers: [
+      "True",
+      "False"
+    ],
+    correct: "True",
+    explanation: `
+Pandas uses NumPy extensively for its underlying numerical and array operations.
+
+The correct answer is <strong>True</strong>.
+`
+  },
+
+
+  // =========================
+  // 8
+  // =========================
+  {
+    type: "matching",
+    question: `
+Pandas <code>groupby</code> operation can be used to group large amounts of data and compute
+operations on these groups.
+
+It involves three steps:
+
+<strong>split, apply, combine</strong>.
+
+Match each step with its involvement.
+`,
+    pairs: [
+      {
+        left: "Split",
+        right: "Breaking up and grouping a DataFrame depending on the value of the specified key."
+      },
+      {
+        left: "Apply",
+        right: "Computing some function, usually an aggregate, transformation, or filtering, within the individual groups."
+      },
+      {
+        left: "Combine",
+        right: "Merging the results of these operations into an output array."
+      }
+    ],
+    explanation: `
+The GroupBy process follows:
+
+<pre><code>Split → Apply → Combine</code></pre>
+`
+  },
+
+
+  // =========================
+  // 9
+  // =========================
+  {
+    type: "radio",
+    question: `
+What is the output after concatenating two Series objects?
+
+<pre><code class="language-python">s1 = pd.Series(['1', '2', '3'])
+s2 = pd.Series(['A', 'B', 'C'])
+
+display(pd.concat([s1, s2], axis=1))</code></pre>
+`,
+    answers: [
+      {
+        text: `<pre><code>   0  1
+0  1  A
+1  2  B
+2  3  C</code></pre>`,
+        value: "option1"
+      },
+      {
+        text: `<pre><code>0  1
+1  2
+2  3
+0  A
+1  B
+2  C</code></pre>`,
+        value: "option2"
+      },
+      {
+        text: `<pre><code>0  1
+1  2
+2  3
+3  A
+4  B
+5  C</code></pre>`,
+        value: "option3"
+      },
+      {
+        text: `<pre><code>   0  1  2
+0  1  2  3
+1  A  B  C</code></pre>`,
+        value: "option4"
+      }
+    ],
+    correct: "option1",
+    explanation: `
+With:
+
+<pre><code class="language-python">axis=1</code></pre>
+
+the two Series become two columns aligned by their indexes.
+`
+  },
+
+
+  // =========================
+  // 10
+  // =========================
+  {
+    type: "radio",
+    question: `
+Which Pandas operation allows you to quickly and efficiently compute aggregates on subsets of data?
+`,
+    answers: [
+      "merge",
+      "join",
+      "sortby",
+      "groupby"
+    ],
+    correct: "groupby",
+    explanation: `
+<code>groupby</code> splits data into groups and then allows aggregate operations such as:
+
+<pre><code>sum()
+mean()
+count()
+min()
+max()</code></pre>
+`
+  },
+
+
+  // =========================
+  // 11
+  // =========================
+  {
+    type: "radio",
+    question: `
+True or False?
+
+Pandas Series has an explicitly defined index which allows values of any desired type.
+NumPy array has an implicitly defined sequential integer index.
+`,
+    answers: [
+      "True",
+      "False"
+    ],
+    correct: "True",
+    explanation: `
+For this course question, the statement is <strong>True</strong>.
+
+A Series associates values with an explicit index, while ordinary NumPy array positions
+are based on integer locations.
+`
+  },
+
+
+  // =========================
+  // 12
+  // =========================
+  {
+    type: "radio",
+    question: `
+Which method in Pandas will quickly convert a multiply indexed Series into a conventionally indexed DataFrame?
+`,
+    answers: [
+      "unstack()",
+      "group()",
+      "merge()",
+      "stack()"
+    ],
+    correct: "unstack()",
+    explanation: `
+<code>unstack()</code> pivots one level of a MultiIndex into columns.
+
+Therefore, the correct answer is <strong>unstack()</strong>.
+`
+  },
+
+
+  // =========================
+  // 13 — CORRECTED VERSION
+  // =========================
+  {
+    type: "matching",
+    question: `
+Pandas provides indexer attributes such as <code>loc</code>, <code>iloc</code>, and
+<code>ix</code> to explicitly describe certain indexing schemes.
+
+Match each indexer attribute with its intended indexing scheme.
+
+<strong>Use the course/legacy Pandas terminology.</strong>
+`,
+    pairs: [
+      {
+        left: "loc",
+        right: "allows indexing and slicing using the explicit index"
+      },
+      {
+        left: "iloc",
+        right: "allows indexing and slicing using the implicit Python-style index"
+      },
+      {
+        left: "ix",
+        right: "is a hybrid of both loc and iloc"
+      }
+    ],
+    explanation: `
+This is the <strong>corrected version</strong>.
+
+<pre><code>loc  → explicit / label-based index
+iloc → implicit integer-position index
+ix   → hybrid of loc and iloc</code></pre>
+
+The earlier screenshot had <code>loc</code> matched incorrectly.
+`
+  },
+
+
+  // =========================
+  // 14
+  // =========================
+  {
+    type: "radio",
+    question: `
+Pandas <code>concat()</code> function preserves indices, which can lead to duplicate indices.
+
+Which flag is used to prevent duplicate indices by generating an exception?
+`,
+    answers: [
+      "verify_integrity",
+      "check_index",
+      "ignore_index",
+      "verify_index"
+    ],
+    correct: "verify_integrity",
+    explanation: `
+<code>verify_integrity=True</code> checks whether concatenation creates duplicate indexes
+and raises an exception if it does.
+`
+  },
+
+
+  // =========================
+  // 15
+  // =========================
+  {
+    type: "checkbox",
+    question: `
+A DataFrame object has been generated as follows:
+
+<pre><code class="language-python">df = pd.DataFrame({
+    'C1': range(6, 1, -1),
+    'C2': range(4, 9)
+})</code></pre>
+
+It contains:
+
+<pre><code>   C1  C2
+0   6   4
+1   5   5
+2   4   6
+3   3   7
+4   2   8</code></pre>
+
+You want to filter the rows where <code>C1 &lt; C2</code>.
+
+Which code choices accomplish this?
+
+<strong>Select all that apply.</strong>
+`,
+    answers: [
+      {
+        text: `<code>df.query('C1 &lt; C2')</code>`,
+        value: "option1"
+      },
+      {
+        text: `<code>df.query('C1' &lt; 'C2')</code>`,
+        value: "option2"
+      },
+      {
+        text: `<code>df[df.C1 &lt; df.C2]</code>`,
+        value: "option3"
+      },
+      {
+        text: `<code>df[df['C1'] &lt; df['C2']]</code>`,
+        value: "option4"
+      }
+    ],
+    correct: [
+      "option1",
+      "option3",
+      "option4"
+    ],
+    explanation: `
+These are valid:
+
+<pre><code class="language-python">df.query('C1 < C2')
+
+df[df.C1 < df.C2]
+
+df[df['C1'] < df['C2']]</code></pre>
+
+The expression comparing the literal strings <code>'C1'</code> and <code>'C2'</code>
+does not express the desired DataFrame column comparison.
+`
+  },
+
+
+  // =========================
+  // 16
+  // =========================
+  {
+    type: "radio",
+    question: `
+Pandas DataFrame object can be constructed from a list of dictionaries.
+
+The dictionary key becomes the ____________.
+`,
+    answers: [
+      "index name",
+      "row name",
+      "dataframe name",
+      "column name"
+    ],
+    correct: "column name",
+    explanation: `
+Dictionary keys define the DataFrame's columns.
+
+Therefore, the correct answer is <strong>column name</strong>.
+`
+  },
+
+
+  // =========================
+  // 17
+  // =========================
+  {
+    type: "matching",
+    question: `
+Pandas <code>fillna()</code> method allows null values to be filled.
+
+<code>ffill()</code> and <code>bfill()</code> fill null values in specific ways.
+
+Match each method with its action.
+`,
+    pairs: [
+      {
+        left: "bfill()",
+        right: "Fill values by using the next valid observation to fill the gap."
+      },
+      {
+        left: "ffill()",
+        right: "Fill values by propagating the last valid observation to next valid."
+      }
+    ],
+    explanation: `
+<pre><code>bfill → backward fill → use next valid observation
+ffill → forward fill  → propagate previous valid observation</code></pre>
+`
+  },
+
+
+  // =========================
+  // 18
+  // =========================
+  {
+    type: "radio",
+    question: `
+When importing a dictionary into a Pandas Series object, what will be the default index for the Series object?
+`,
+    answers: [
+      "Dictionary Values",
+      "Dictionary Keys",
+      "index with default alpha sequence starting from 'a'",
+      "index with default integer sequence"
+    ],
+    correct: "Dictionary Keys",
+    explanation: `
+When a dictionary is converted to a Series:
+
+<pre><code class="language-python">pd.Series(dictionary)</code></pre>
+
+the dictionary keys become the Series index.
+`
+  },
+
+
+  // =========================
+  // 19
+  // =========================
+  {
+    type: "radio",
+    question: `
+Pandas Series is a bit like a specialization of a Python dictionary.
+
+What is the output?
+
+<pre><code class="language-python">num_dict = {5:'five', 2:'two', 3:'three'}
+num = pd.Series(num_dict)
+num</code></pre>
+`,
+    answers: [
+      {
+        text: `<pre><code>5    five
+2    two
+3    three</code></pre>`,
+        value: "option1"
+      },
+      {
+        text: `<pre><code>two      1
+three    2
+five     3</code></pre>`,
+        value: "option2"
+      },
+      {
+        text: `<pre><code>2    two
+3    three
+5    five</code></pre>`,
+        value: "option3"
+      },
+      {
+        text: `<pre><code>two      2
+three    3
+five     5</code></pre>`,
+        value: "option4"
+      }
+    ],
+    correct: "option1",
+    explanation: `
+The dictionary keys become the Series index, while the dictionary values become
+the Series values.
+
+The insertion order shown in the dictionary is retained here.
+`
+  },
+
+
+  // =========================
+  // 20
+  // =========================
+  {
+    type: "radio",
+    question: `
+The following example uses implicit indexing slicing.
+
+What is the output?
+
+<pre><code class="language-python">data = pd.Series([10, 5, 75])
+data[0:2]</code></pre>
+`,
+    answers: [
+      {
+        text: `<pre><code>0    10
+1     5
+2    75</code></pre>`,
+        value: "option1"
+      },
+      {
+        text: `<pre><code>0     5
+1    10</code></pre>`,
+        value: "option2"
+      },
+      {
+        text: `<pre><code>0    10
+1     5</code></pre>`,
+        value: "option3"
+      },
+      {
+        text: `<pre><code>0     5
+1    10
+2    75</code></pre>`,
+        value: "option4"
+      }
+    ],
+    correct: "option3",
+    explanation: `
+Python-style positional slicing excludes the ending position.
+
+Therefore:
+
+<pre><code>data[0:2]</code></pre>
+
+returns positions 0 and 1.
+`
+  },
+
+
+  // =========================
+  // 21
+  // =========================
+  {
+    type: "matching",
+    question: `
+Pandas <code>merge()</code> merges DataFrame or named Series objects with a database-style join.
+
+Match each join with its definition.
+`,
+    pairs: [
+      {
+        left: "Cross Join",
+        right: "Creates the cartesian product from both frames, preserves the order of the left keys."
+      },
+      {
+        left: "Inner Join",
+        right: "Use intersection of keys from both frames, similar to a SQL inner join; preserve the order of the left keys."
+      },
+      {
+        left: "Left Join",
+        right: "Use only keys from left data frame, similar to a SQL left outer join; preserve key order."
+      },
+      {
+        left: "Outer Join",
+        right: "Use union of keys from both frames, similar to a SQL full outer join; sort keys lexicographically."
+      },
+      {
+        left: "Right Join",
+        right: "Use only keys from right data frame, similar to a SQL right outer join; preserve key order."
+      }
+    ],
+    explanation: `
+These correspond to the standard database-style merge operations used by Pandas.
+`
+  },
+
+
+  // =========================
+  // 22
+  // =========================
+  {
+    type: "radio",
+    question: `
+What is the output?
+
+<pre><code class="language-python">greeting = pd.Series(
+    {5:'hello', 3:'howdy', 2:'hi'},
+    index=[5, 3]
+)
+
+greeting</code></pre>
+`,
+    answers: [
+      {
+        text: `<pre><code>2    hi
+3    howdy
+5    hello</code></pre>`,
+        value: "option1"
+      },
+      {
+        text: `<pre><code>3    howdy
+5    hello</code></pre>`,
+        value: "option2"
+      },
+      {
+        text: `<pre><code>5    hello
+3    howdy</code></pre>`,
+        value: "option3"
+      },
+      {
+        text: `<pre><code>5    hello
+3    howdy
+2    hi</code></pre>`,
+        value: "option4"
+      }
+    ],
+    correct: "option3",
+    explanation: `
+The explicit index is:
+
+<pre><code>[5, 3]</code></pre>
+
+so only keys 5 and 3 are selected, in exactly that order.
+`
+  },
+
+
+  // =========================
+  // 23
+  // =========================
+  {
+    type: "matching",
+    question: `
+Match each of the following Pandas string-related methods with its definition.
+`,
+    pairs: [
+      {
+        left: "str.join()",
+        right: "Join lists contained as elements in the Series/Index with passed delimiter."
+      },
+      {
+        left: "str.match()",
+        right: "Determine if each string starts with a match of a regular expression."
+      },
+      {
+        left: "str.wrap()",
+        right: "Wrap strings in Series/Index at specified line width."
+      },
+      {
+        left: "str.zfill()",
+        right: "Pad string by prepending ‘0’ characters."
+      },
+      {
+        left: "str.rsplit()",
+        right: "Splits string around given separator/delimiter, starting from the right."
+      }
+    ],
+    explanation: `
+These are the method definitions shown in the course material.
+`
+  },
+
+
+  // =========================
+  // 24
+  // =========================
+  {
+    type: "radio",
+    question: `
+The following example uses explicit indexing slicing.
+
+What is the output?
+
+<pre><code class="language-python">states = pd.Series({
+    'a':'Texas',
+    'b':'Florida',
+    'c':'Arkansas'
+})
+
+states['a':'c']</code></pre>
+`,
+    answers: [
+      {
+        text: `<pre><code>a    Texas
+b    Florida
+c    Arkansas</code></pre>`,
+        value: "option1"
+      },
+      {
+        text: `<pre><code>a    Arkansas
+b    Florida</code></pre>`,
+        value: "option2"
+      },
+      {
+        text: `<pre><code>a    Texas
+b    Florida</code></pre>`,
+        value: "option3"
+      },
+      {
+        text: `<pre><code>a    Arkansas
+b    Florida
+c    Texas</code></pre>`,
+        value: "option4"
+      }
+    ],
+    correct: "option1",
+    explanation: `
+With explicit label slicing in this example, the end label is included.
+
+Therefore:
+
+<pre><code>states['a':'c']</code></pre>
+
+includes <code>a</code>, <code>b</code>, and <code>c</code>.
+`
+  },
+
+
+  // =========================
+  // 25
+  // =========================
+  {
+    type: "radio",
+    question: `
+You initialized a DataFrame object as follows:
+
+<pre><code class="language-python">df = pd.DataFrame({
+    'item': ['Folder', 'Binder', 'Folder', 'Pen', 'Folder', 'Binder'],
+    'qty': [3, 6, 2, 5, 1, 7]
+})</code></pre>
+
+Which statement produces:
+
+<pre><code>        qty
+item
+Binder   13
+Folder    6
+Pen       5</code></pre>
+
+using <code>groupby()</code>?
+`,
+    answers: [
+      {
+        text: `<code>df.groupby('item').total()</code>`,
+        value: "option1"
+      },
+      {
+        text: `<code>df.groupby.total('item')</code>`,
+        value: "option2"
+      },
+      {
+        text: `<code>df.groupby.sum('item')</code>`,
+        value: "option3"
+      },
+      {
+        text: `<code>df.groupby('item').sum()</code>`,
+        value: "option4"
+      }
+    ],
+    correct: "option4",
+    explanation: `
+First group rows by <code>item</code>, then sum the numeric columns:
+
+<pre><code class="language-python">df.groupby('item').sum()</code></pre>
+`
+  },
+
+
+  // =========================
+  // 26 — NEW UNIQUE QUESTION
+  // =========================
+  {
+    type: "radio",
+    question: `
+Pandas <code>dropna()</code> method allows the user to drop rows or columns with null values
+in different ways.
+
+The default is to drop rows.
+
+If you need to drop the <strong>columns</strong> with null values, which argument will be set and to what value?
+`,
+    answers: [
+      {
+        text: `<code>axis=0</code>`,
+        value: "option1"
+      },
+      {
+        text: `<code>axis=1</code>`,
+        value: "option2"
+      },
+      {
+        text: `<code>column=True</code>`,
+        value: "option3"
+      },
+      {
+        text: `<code>row=False</code>`,
+        value: "option4"
+      }
+    ],
+    correct: "option2",
+    explanation: `
+In Pandas:
+
+<pre><code>axis=0 → rows
+axis=1 → columns</code></pre>
+
+Therefore, to drop columns containing null values:
+
+<pre><code class="language-python">df.dropna(axis=1)</code></pre>
+`
+  }
+
 ];
