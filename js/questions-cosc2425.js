@@ -1,3 +1,65 @@
+function avlTreeSvg(nodes, edges, width = 500, height = 300) {
+  const edgeHTML = edges.map(([from, to]) => {
+    const a = nodes.find(n => n.id === from);
+    const b = nodes.find(n => n.id === to);
+
+    return `
+      <line
+        x1="${a.x}" y1="${a.y}"
+        x2="${b.x}" y2="${b.y}"
+        stroke="#24963a"
+        stroke-width="3"
+      />
+    `;
+  }).join("");
+
+  const nodeHTML = nodes.map(node => `
+    <g>
+      ${
+        node.h !== undefined
+          ? `<text
+               x="${node.x - 34}"
+               y="${node.y - 30}"
+               font-size="18"
+               font-weight="700"
+               fill="#2b9b40"
+             >${node.h}</text>`
+          : ""
+      }
+
+      <circle
+        cx="${node.x}"
+        cy="${node.y}"
+        r="31"
+        fill="#dcffd9"
+        stroke="#4caf50"
+        stroke-width="3"
+      />
+
+      <text
+        x="${node.x}"
+        y="${node.y + 6}"
+        text-anchor="middle"
+        font-size="18"
+        font-weight="700"
+        fill="#399b43"
+      >${node.label}</text>
+    </g>
+  `).join("");
+
+  return `
+    <div class="avl-tree-visual">
+      <svg
+        viewBox="0 0 ${width} ${height}"
+        style="width:100%; height:auto; display:block;"
+      >
+        ${edgeHTML}
+        ${nodeHTML}
+      </svg>
+    </div>
+  `;
+}
+
 const questions = [
   {
     type: "radio",

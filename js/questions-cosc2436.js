@@ -1,3 +1,65 @@
+function avlTreeSvg(nodes, edges, width = 500, height = 300) {
+  const edgeHTML = edges.map(([from, to]) => {
+    const a = nodes.find(n => n.id === from);
+    const b = nodes.find(n => n.id === to);
+
+    return `
+      <line
+        x1="${a.x}" y1="${a.y}"
+        x2="${b.x}" y2="${b.y}"
+        stroke="#24963a"
+        stroke-width="3"
+      />
+    `;
+  }).join("");
+
+  const nodeHTML = nodes.map(node => `
+    <g>
+      ${
+        node.h !== undefined
+          ? `<text
+               x="${node.x - 34}"
+               y="${node.y - 30}"
+               font-size="18"
+               font-weight="700"
+               fill="#2b9b40"
+             >${node.h}</text>`
+          : ""
+      }
+
+      <circle
+        cx="${node.x}"
+        cy="${node.y}"
+        r="31"
+        fill="#dcffd9"
+        stroke="#4caf50"
+        stroke-width="3"
+      />
+
+      <text
+        x="${node.x}"
+        y="${node.y + 6}"
+        text-anchor="middle"
+        font-size="18"
+        font-weight="700"
+        fill="#399b43"
+      >${node.label}</text>
+    </g>
+  `).join("");
+
+  return `
+    <div class="avl-tree-visual">
+      <svg
+        viewBox="0 0 ${width} ${height}"
+        style="width:100%; height:auto; display:block;"
+      >
+        ${edgeHTML}
+        ${nodeHTML}
+      </svg>
+    </div>
+  `;
+}
+
 const questions = [
   
   {
@@ -5355,6 +5417,2273 @@ Bucket sort    → distribute elements into buckets</code></pre>
 <pre><code>Counts the frequency of each distinct element...</code></pre>
 
 That definition describes <strong>Counting sort</strong>, which is not one of the algorithms being matched in this question.
+`
+},
+// ==============================
+// HASHING QUIZ — JAVA / COSC2436
+// Questions 1–25
+// ==============================
+
+{
+  type: "radio",
+  question: `
+The __________ places all entries with the same hash index into the same location, rather than finding new locations.
+`,
+  answers: [
+    "Open addressing scheme",
+    "separate chaining scheme"
+  ],
+  correct: "separate chaining scheme",
+  explanation: `
+<strong>Separate chaining</strong> stores all entries that map to the same hash-table index in the same bucket.
+
+A bucket may contain a linked list, tree, or another structure.
+
+Therefore, the correct answer is <strong>separate chaining scheme</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+_____________ is to find an open location in the hash table in the event of collision.
+`,
+  answers: [
+    "Open addressing",
+    "Separate chaining"
+  ],
+  correct: "Open addressing",
+  explanation: `
+<strong>Open addressing</strong> handles a collision by searching for another available position inside the hash table.
+
+Examples include:
+
+<pre><code>Linear probing
+Quadratic probing
+Double hashing</code></pre>
+
+Therefore, the correct answer is <strong>Open addressing</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+_______ measures how full the hash table is.
+`,
+  answers: [
+    "Load factor",
+    "Threshold"
+  ],
+  correct: "Load factor",
+  explanation: `
+The <strong>load factor</strong> measures how full a hash table is.
+
+<pre><code>load factor = number of entries / table size</code></pre>
+
+Therefore, the correct answer is <strong>Load factor</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+A collision occurs _____________.
+`,
+  answers: [
+    "when two or more keys are mapped to the same hash value.",
+    "when two elements have the same key value.",
+    "when two elements are mapped to the same key."
+  ],
+  correct: "when two or more keys are mapped to the same hash value.",
+  explanation: `
+A <strong>collision</strong> occurs when different keys are mapped to the same hash-table location.
+
+Therefore, the correct answer is:
+
+<strong>when two or more keys are mapped to the same hash value.</strong>
+`
+},
+
+{
+  type: "radio",
+  question: `
+A hash function __________.
+`,
+  answers: [
+    "stores an element in the hash table",
+    "maps a key to an index in the hash table"
+  ],
+  correct: "maps a key to an index in the hash table",
+  explanation: `
+A <strong>hash function</strong> takes a key and computes the index where the corresponding entry should be stored.
+
+<pre><code>key → hash function → table index</code></pre>
+
+Therefore, the correct answer is <strong>maps a key to an index in the hash table</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+If each key is mapped to a different index in the hash table, it is called _______.
+`,
+  answers: [
+    "normal hashing",
+    "perfect hashing"
+  ],
+  correct: "perfect hashing",
+  explanation: `
+If every key maps to a unique table index and there are no collisions, this is called <strong>perfect hashing</strong>.
+
+Therefore, the correct answer is <strong>perfect hashing</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+True or False? Two objects are equal if their hash codes are equal.
+`,
+  answers: [
+    "True",
+    "False"
+  ],
+  correct: "False",
+  explanation: `
+Two different objects can have the same hash code.
+
+That situation is possible because of a <strong>hash collision</strong>.
+
+Therefore:
+
+<pre><code>same hash code ≠ necessarily equal objects</code></pre>
+
+The correct answer is <strong>False</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+True or False? Two objects have the same hash codes if they are equal.
+`,
+  answers: [
+    "True",
+    "False"
+  ],
+  correct: "True",
+  explanation: `
+In Java, equal objects must produce the same hash code when the <code>equals()</code> and <code>hashCode()</code> contract is followed.
+
+<pre><code>objects equal → same hash code</code></pre>
+
+The reverse is not necessarily true.
+
+Therefore, the correct answer is <strong>True</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+When a collision occurs during the insertion of an entry to a hash table, ______ finds the next available location sequentially.
+`,
+  answers: [
+    "linear probing",
+    "quadratic probing",
+    "double hashing."
+  ],
+  correct: "linear probing",
+  explanation: `
+<strong>Linear probing</strong> checks consecutive table positions until an empty location is found.
+
+Example:
+
+<pre><code>index
+  ↓
+5 → occupied
+6 → occupied
+7 → empty ✓</code></pre>
+
+Therefore, the correct answer is <strong>linear probing</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+<code>1 & 3</code> is _________.
+`,
+  answers: [
+    "0",
+    "1",
+    "2",
+    "3"
+  ],
+  correct: "1",
+  explanation: `
+The <code>&</code> operator performs bitwise AND.
+
+<pre><code>1 = 001
+3 = 011
+    ---
+    001</code></pre>
+
+Therefore:
+
+<pre><code>1 & 3 = 1</code></pre>
+
+The correct answer is <strong>1</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+<code>1 &lt;&lt; 2</code> is _________.
+`,
+  answers: [
+    "2",
+    "3",
+    "4",
+    "5"
+  ],
+  correct: "4",
+  explanation: `
+<code>&lt;&lt;</code> is the left-shift operator.
+
+Starting with:
+
+<pre><code>1 = 0001</code></pre>
+
+Shift left two positions:
+
+<pre><code>0001 << 2
+= 0100
+= 4</code></pre>
+
+Therefore, the correct answer is <strong>4</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+True or False?
+
+Assume <code>N</code> and <code>hashCode</code> are positive and <code>N</code> is an integer power of 2.
+
+<pre><code>hashCode % N</code></pre>
+
+is the same as:
+
+<pre><code>hashCode & (N - 1)</code></pre>
+`,
+  answers: [
+    "True",
+    "False"
+  ],
+  correct: "True",
+  explanation: `
+When <code>N</code> is a power of 2:
+
+<pre><code>hashCode % N</code></pre>
+
+can be calculated using:
+
+<pre><code>hashCode & (N - 1)</code></pre>
+
+For example, if:
+
+<pre><code>N = 4
+hashCode = 11
+
+11 % 4 = 3
+11 & 3 = 3</code></pre>
+
+Therefore, the correct answer is <strong>True</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+[7.1.a.1235] What is a hash function?
+`,
+  answers: [
+    "A function that allocates memory to keys",
+    "A function that computes the location of the key in the array",
+    "A function that computes the key based on the value of the data",
+    "A function that encrypts and decrypts the key",
+    "None of these"
+  ],
+  correct: "A function that computes the location of the key in the array",
+  explanation: `
+A hash function converts a key into a hash-table index.
+
+<pre><code>key → hash function → array location</code></pre>
+
+Therefore, the correct answer is:
+
+<strong>A function that computes the location of the key in the array</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+[7.1.a.1235] If several elements are competing for the same bucket in the hash table, what is it called?
+`,
+  answers: [
+    "Diffusion",
+    "Conflict",
+    "Collision",
+    "None of these",
+    "Contention"
+  ],
+  correct: "Collision",
+  explanation: `
+When multiple keys map to the same hash-table bucket, a <strong>collision</strong> occurs.
+
+Therefore, the correct answer is <strong>Collision</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+[7.1.a.1235] What is a hash table?
+`,
+  answers: [
+    "A structure that maps values to keys",
+    "A structure that maps keys to values",
+    "A structure used for storage",
+    "A structure used to implement stack and queue"
+  ],
+  correct: "A structure that maps keys to values",
+  explanation: `
+A hash table stores associations between:
+
+<pre><code>key → value</code></pre>
+
+A hash function determines where the key-value entry should be stored.
+
+Therefore, the correct answer is <strong>A structure that maps keys to values</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+[7.1.a.1235] If collision resolution is handled using linear probing, every hash-entry should have a status field to indicate the following possible states:
+`,
+  answers: [
+    "empty or full",
+    "empty, occupied, or available",
+    "occupied or available",
+    "valid or invalid"
+  ],
+  correct: "empty, occupied, or available",
+  explanation: `
+With linear probing, a table position must distinguish among three states:
+
+<pre><code>empty     → never used
+occupied  → currently contains an entry
+available → previously occupied but deleted</code></pre>
+
+The third state is important because searches must be able to continue past deleted entries.
+
+Therefore, the correct answer is <strong>empty, occupied, or available</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+[7.1.a.1235] Which of the following strategy is used to handle collisions in hash tables?
+`,
+  answers: [
+    "Chaining",
+    "Clustering",
+    "Sequencing",
+    "None of these"
+  ],
+  correct: "Chaining",
+  explanation: `
+<strong>Chaining</strong> is a standard collision-resolution strategy.
+
+Multiple entries that hash to the same index are stored in the same bucket.
+
+Therefore, the correct answer is <strong>Chaining</strong>.
+`
+},
+
+{
+  type: "input",
+  question: `
+[7.2.c.1235]
+
+Assume data is stored in a hash table using the following keys and in the order listed:
+
+<pre><code>12, 84, 26, 48, 51, 76</code></pre>
+
+Assume:
+
+<pre><code>table size = 7
+h(key) = key % table_size</code></pre>
+
+Collisions are handled using <strong>linear probing</strong>.
+
+What's the content of the table after all keys are mapped to the hash table?
+
+List keys starting from table index <code>0</code> and on. Separate numbers by a comma and a single space, and indicate an empty slot with an upper-case <code>X</code>.
+`,
+  correct: "84, 48, 51, 76, X, 12, 26",
+  explanation: `
+Calculate each hash index in insertion order:
+
+<pre><code>12 % 7 = 5
+84 % 7 = 0
+26 % 7 = 5   → collision → index 6
+48 % 7 = 6   → collision → 0 occupied → index 1
+51 % 7 = 2
+76 % 7 = 6   → collision
+             → 0 occupied
+             → 1 occupied
+             → 2 occupied
+             → index 3</code></pre>
+
+Final table:
+
+<pre><code>Index:  0   1   2   3   4   5   6
+Value: 84  48  51  76   X  12  26</code></pre>
+
+Correct answer:
+
+<strong>84, 48, 51, 76, X, 12, 26</strong>
+`
+},
+
+{
+  type: "input",
+  question: `
+[7.2.c.1235]
+
+Assume data is stored in a hash table using the following keys and in the order listed:
+
+<pre><code>12, 84, 26, 48, 51, 76, 24</code></pre>
+
+Assume:
+
+<pre><code>table size = 7
+h(key) = key % table_size</code></pre>
+
+Collisions are handled using <strong>linear probing</strong>.
+
+What's the content of the table after all keys are mapped to the hash table?
+
+List keys starting from table index <code>0</code> and on. Separate numbers by a comma and a single space, and indicate an empty slot with an upper-case <code>X</code>.
+`,
+  correct: "84, 48, 51, 76, 24, 12, 26",
+  explanation: `
+After the first six insertions, the table is:
+
+<pre><code>Index:  0   1   2   3   4   5   6
+Value: 84  48  51  76   X  12  26</code></pre>
+
+Now insert <code>24</code>:
+
+<pre><code>24 % 7 = 3</code></pre>
+
+Index <code>3</code> is occupied by <code>76</code>.
+
+Linear probing checks the next position:
+
+<pre><code>index 4 → empty</code></pre>
+
+So <code>24</code> is stored at index <code>4</code>.
+
+Final table:
+
+<pre><code>84, 48, 51, 76, 24, 12, 26</code></pre>
+`
+},
+
+{
+  type: "radio",
+  question: `
+[7.3.b.134]
+
+Assume a hash table where every possible key maps to a distinct array position in the hash table (i.e. no collisions).
+
+What is the worst-case time complexity of the search operation?
+
+Assume <code>n</code> is the size of data.
+`,
+  answers: [
+    "O(1)",
+    "O(Log2(n))",
+    "O(n2)",
+    "O(n)"
+  ],
+  correct: "O(1)",
+  explanation: `
+If every key maps directly to a unique position, no collision resolution or searching through other entries is necessary.
+
+The hash function gives the location directly.
+
+Therefore:
+
+<pre><code>Search → O(1)</code></pre>
+
+The correct answer is <strong>O(1)</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+[7.3.b.134]
+
+Assume a hash table is implemented with linear probing.
+
+What's the worst-case time complexity of inserting a new data item?
+
+Assume <code>n</code> is the size of data.
+`,
+  answers: [
+    "O(1)",
+    "O(n)",
+    "O(Log2(n))",
+    "O(n2)",
+    "None of the other answer choices is correct"
+  ],
+  correct: "O(n)",
+  explanation: `
+With <strong>linear probing</strong>, a collision can require checking many consecutive table positions.
+
+In the worst case, almost the entire table may need to be examined before an available location is found.
+
+Therefore:
+
+<pre><code>Worst-case insertion → O(n)</code></pre>
+
+The correct answer is <strong>O(n)</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+[7.3.b.134]
+
+Assume a hash table is implemented using chaining with buckets implemented using binary search trees.
+
+What's the average-case time complexity of searching for a data item?
+
+Assume the size of data, <code>n</code>, is much larger than the size of the hash table.
+`,
+  answers: [
+    "O(1)",
+    "O(log2(n))",
+    "O(n)",
+    "O(n2)"
+  ],
+  correct: "O(log2(n))",
+  explanation: `
+When <code>n</code> is much larger than the number of buckets, each bucket may contain many entries.
+
+Because each bucket is implemented as a <strong>binary search tree</strong>, searching within the bucket takes logarithmic time on average.
+
+Therefore:
+
+<pre><code>Average search → O(log n)</code></pre>
+
+The correct answer is <strong>O(log2(n))</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+[7.3.b.134]
+
+Assume a hash table is implemented using chaining with buckets implemented using binary search trees.
+
+What's the average-case time complexity of searching for a data item?
+
+Assume the size of data, <code>n</code>, is not much larger than the size of the hash table (e.g. <code>n = 2k</code>).
+`,
+  answers: [
+    "O(1)",
+    "O(log2(n))",
+    "O(n)",
+    "O(n2)"
+  ],
+  correct: "O(1)",
+  explanation: `
+If the number of data items is approximately proportional to the number of hash-table buckets, the average number of entries per bucket remains approximately constant.
+
+For example:
+
+<pre><code>n = 2k</code></pre>
+
+means an average of approximately two entries per bucket.
+
+Searching a constant-sized bucket takes constant time on average.
+
+Therefore:
+
+<pre><code>Average search → O(1)</code></pre>
+
+The correct answer is <strong>O(1)</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+[7.3.b.134]
+
+Assume a hash table is implemented using chaining.
+
+Assume also that the hash function distributes the hash values evenly across hash table entries ("buckets") and that the size of the table is at least half the size of the data.
+
+What's the worst-case time complexity of inserting a data item?
+
+<em>Note: n is the size of data, n^2 denotes n², and log(n) is log₂(n).</em>
+`,
+  answers: [
+    "O(n^2)",
+    "O(Log(n))",
+    "O(1)",
+    "O(n)",
+    "None of the other answer choices is correct"
+  ],
+  correct: "O(1)",
+  explanation: `
+The table size is at least half the number of data items:
+
+<pre><code>table size ≥ n / 2</code></pre>
+
+and the hash function distributes entries evenly.
+
+Therefore, each bucket contains only a constant number of entries on average.
+
+With chaining, a new entry can be inserted directly into its bucket.
+
+Therefore:
+
+<pre><code>Insertion → O(1)</code></pre>
+
+The correct answer is <strong>O(1)</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+[7.1.a.1235] Which of the following methods can reduce or avoid Hash table collisions?
+`,
+  answers: [
+    "Use a table multiple times the size of the data",
+    "Use a hash function that distributes keys uniformly over the range of the table index",
+    "Use chaining",
+    "All of these"
+  ],
+  correct: "All of these",
+  explanation: `
+Several techniques help reduce the effects of collisions or handle them effectively:
+
+<ul>
+  <li>A larger table reduces crowding.</li>
+  <li>A good hash function distributes keys uniformly.</li>
+  <li>Chaining handles entries that map to the same bucket.</li>
+</ul>
+
+For this course question, the correct answer is <strong>All of these</strong>.
+`
+},
+// ==========================================
+// JAVA / COSC2436
+// BINARY TREES & BINARY SEARCH TREES
+// Questions 1–23
+// ==========================================
+
+{
+  type: "radio",
+  question: `
+[5.1.a.1235] A node in a binary tree is called a(n) ________ if it has no left and right children.
+`,
+  answers: [
+    "edge",
+    "branch",
+    "leaf",
+    "path"
+  ],
+  correct: "leaf",
+  explanation: `
+A node that has <strong>no children</strong> is called a <strong>leaf</strong> node.
+
+<pre><code>      10
+     /  \\
+    5    15
+        /  \\
+       12   20
+
+Leaves: 5, 12, 20</code></pre>
+
+Therefore, the correct answer is <strong>leaf</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+The _________ is to visit the current node first, then the left subtree of the current node, and finally the right subtree of the current node.
+`,
+  answers: [
+    "inorder traversal",
+    "preorder traversal",
+    "postorder traversal",
+    "breadth-first traversal"
+  ],
+  correct: "preorder traversal",
+  explanation: `
+<strong>Preorder traversal</strong> visits nodes in this order:
+
+<pre><code>Root → Left → Right</code></pre>
+
+Therefore, the correct answer is <strong>preorder traversal</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+True or False? A new element is in a leaf node.
+`,
+  answers: [
+    "True",
+    "False"
+  ],
+  correct: "True",
+  explanation: `
+When a new element is inserted into a binary search tree, it is placed at an available child position.
+
+At the moment it is inserted, the new node has no children.
+
+Therefore, it is a <strong>leaf node</strong>.
+
+The correct answer is <strong>True</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+The _______ of a nonempty tree is the length of the path from the root node to its furthest leaf.
+`,
+  answers: [
+    "length",
+    "depth",
+    "height",
+    "degree"
+  ],
+  correct: "height",
+  explanation: `
+The <strong>height</strong> of a nonempty tree is the length of the longest path from the root to a leaf.
+
+<pre><code>root
+ |
+ |
+ |
+furthest leaf</code></pre>
+
+Therefore, the correct answer is <strong>height</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+The _________ is to visit the nodes level by level. First visit the root, then all children of the root from left to right, then grandchildren of the root from left to right, and so on.
+`,
+  answers: [
+    "inorder traversal",
+    "preorder traversal",
+    "postorder traversal",
+    "breadth-first traversal"
+  ],
+  correct: "breadth-first traversal",
+  explanation: `
+<strong>Breadth-first traversal</strong> visits a tree one level at a time.
+
+Example:
+
+<pre><code>        1
+       / \\
+      2   3
+     / \\ / \\
+    4  5 6  7
+
+Traversal:
+1, 2, 3, 4, 5, 6, 7</code></pre>
+
+Therefore, the correct answer is <strong>breadth-first traversal</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+The worst time complexity for searching an element in a binary search tree is _______.
+`,
+  answers: [
+    "O(n)",
+    "O(logn)",
+    "O(nlogn)",
+    "O(n^2)"
+  ],
+  correct: "O(n)",
+  explanation: `
+A binary search tree can become completely unbalanced.
+
+For example:
+
+<pre><code>1
+ \\
+  2
+   \\
+    3
+     \\
+      4</code></pre>
+
+In the worst case, searching may require visiting every node.
+
+Therefore:
+
+<pre><code>Worst-case search → O(n)</code></pre>
+
+The correct answer is <strong>O(n)</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+If you insert <code>4, 5, 1, 2, 9, 3</code> into a binary search tree in this order, what is the inorder traversal of this tree?
+`,
+  answers: [
+    "4, 5, 1, 2, 9, 3",
+    "3, 9, 2, 1, 5, 4",
+    "1, 2, 3, 4, 5, 9",
+    "2, 5, 1, 4, 9, 3"
+  ],
+  correct: "1, 2, 3, 4, 5, 9",
+  explanation: `
+Inorder traversal follows:
+
+<pre><code>Left → Root → Right</code></pre>
+
+For a binary search tree, inorder traversal produces the keys in sorted order.
+
+The inserted values are:
+
+<pre><code>4, 5, 1, 2, 9, 3</code></pre>
+
+Sorted order:
+
+<pre><code>1, 2, 3, 4, 5, 9</code></pre>
+
+Therefore, the correct answer is <strong>1, 2, 3, 4, 5, 9</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+Suppose the keys <code>3, 4, 45, 21, 92, 12</code> are inserted into a BST in this order.
+
+What is the preorder traversal of the elements?
+`,
+  answers: [
+    "3 4 12 21 45 92",
+    "3 4 45 21 12 92",
+    "12 21 92 45 4 3",
+    "4 45 21 12 92 3",
+    "4 21 12 92 45 3"
+  ],
+  correct: "3 4 45 21 12 92",
+  explanation: `
+The BST is:
+
+<pre><code>3
+ \\
+  4
+   \\
+    45
+   /  \\
+  21   92
+ /
+12</code></pre>
+
+Preorder traversal follows:
+
+<pre><code>Root → Left → Right</code></pre>
+
+Therefore:
+
+<pre><code>3 4 45 21 12 92</code></pre>
+
+The correct answer is <strong>3 4 45 21 12 92</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+Suppose the keys <code>3, 4, 45, 21, 92, 12</code> are inserted into a BST in this order.
+
+What is the postorder traversal of the elements?
+`,
+  answers: [
+    "3 4 12 21 45 92",
+    "3 4 45 21 12 92",
+    "12 21 92 45 4 3",
+    "4 45 21 12 92 3",
+    "4 21 12 92 45 3"
+  ],
+  correct: "12 21 92 45 4 3",
+  explanation: `
+The BST is:
+
+<pre><code>3
+ \\
+  4
+   \\
+    45
+   /  \\
+  21   92
+ /
+12</code></pre>
+
+Postorder traversal follows:
+
+<pre><code>Left → Right → Root</code></pre>
+
+Therefore:
+
+<pre><code>12 21 92 45 4 3</code></pre>
+
+The correct answer is <strong>12 21 92 45 4 3</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+The worst time complexity for deleting an element in a binary search tree is _______.
+`,
+  answers: [
+    "O(n)",
+    "O(logn)",
+    "O(nlogn)",
+    "O(n^2)"
+  ],
+  correct: "O(n)",
+  explanation: `
+In the worst case, a binary search tree can become completely unbalanced.
+
+Deleting an element may require traversing through as many as <code>n</code> nodes.
+
+Therefore:
+
+<pre><code>Worst-case deletion → O(n)</code></pre>
+
+The correct answer is <strong>O(n)</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+Suppose the keys <code>3, 4, 45, 21, 92, 12</code> are inserted into a BST in this order.
+
+What is the inorder traversal of the elements?
+`,
+  answers: [
+    "3 4 12 21 45 92",
+    "3 4 45 21 12 92",
+    "12 21 92 45 4 3",
+    "4 45 21 12 92 3",
+    "4 21 12 92 45 3"
+  ],
+  correct: "3 4 12 21 45 92",
+  explanation: `
+Inorder traversal follows:
+
+<pre><code>Left → Root → Right</code></pre>
+
+For a binary search tree, this produces the keys in ascending order.
+
+Therefore:
+
+<pre><code>3 4 12 21 45 92</code></pre>
+
+The correct answer is <strong>3 4 12 21 45 92</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+If a set of the same elements is inserted into a binary tree in two different orders, which of the following statements are true?
+`,
+  answers: [
+    "The two corresponding binary trees look the same.",
+    "The inorder traversal generate the same sequence of nodes.",
+    "The preorder traversal generate the same sequence of nodes.",
+    "The postorder traversal generate the same sequence of nodes."
+  ],
+  correct: "The inorder traversal generate the same sequence of nodes.",
+  explanation: `
+For this course question, the correct answer is:
+
+<strong>The inorder traversal generate the same sequence of nodes.</strong>
+
+Different insertion orders can produce different tree shapes, so preorder and postorder traversals can differ.
+
+The inorder traversal of a BST produces the elements in sorted order.
+`
+},
+
+{
+  type: "radio",
+  question: `
+The ________ is to visit the left subtree of the current node first, then the current node itself, and finally the right subtree of the current node.
+`,
+  answers: [
+    "inorder traversal",
+    "preorder traversal",
+    "postorder traversal",
+    "breadth-first traversal"
+  ],
+  correct: "inorder traversal",
+  explanation: `
+<strong>Inorder traversal</strong> follows:
+
+<pre><code>Left → Root → Right</code></pre>
+
+Therefore, the correct answer is <strong>inorder traversal</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+Suppose the keys <code>3, 4, 45, 21, 92, 12</code> are inserted into a BST in this order.
+
+What is the preorder traversal of the elements after inserting <code>2</code> into the tree?
+`,
+  answers: [
+    "3 2 4 12 21 45 92",
+    "3 2 4 45 21 12 92",
+    "12 2 21 92 45 4 3",
+    "4 2 45 21 12 92 3",
+    "4 2 21 12 92 45 3"
+  ],
+  correct: "3 2 4 45 21 12 92",
+  explanation: `
+Before inserting <code>2</code>:
+
+<pre><code>3
+ \\
+  4
+   \\
+    45
+   /  \\
+  21   92
+ /
+12</code></pre>
+
+Since:
+
+<pre><code>2 < 3</code></pre>
+
+the value <code>2</code> becomes the left child of <code>3</code>.
+
+The tree becomes:
+
+<pre><code>      3
+     / \\
+    2   4
+         \\
+          45
+         /  \\
+        21   92
+       /
+      12</code></pre>
+
+Preorder traversal:
+
+<pre><code>Root → Left → Right
+
+3 2 4 45 21 12 92</code></pre>
+
+Therefore, the correct answer is <strong>3 2 4 45 21 12 92</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+The height of a tree that contains a single node is _______.
+`,
+  answers: [
+    "-1",
+    "0",
+    "1",
+    "2"
+  ],
+  correct: "0",
+  explanation: `
+The height of a tree is measured by the number of <strong>edges</strong> on the longest path from the root to a leaf.
+
+A tree with one node has no edges.
+
+Therefore:
+
+<pre><code>height = 0</code></pre>
+
+The correct answer is <strong>0</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+A Huffman tree is constructed using a ____________ algorithm.
+`,
+  answers: [
+    "dynamic programming",
+    "divide-and-conquer",
+    "greedy",
+    "back-tracking"
+  ],
+  correct: "greedy",
+  explanation: `
+The Huffman coding algorithm repeatedly combines the two nodes with the smallest frequencies.
+
+At every step, it makes a locally optimal choice.
+
+This is a <strong>greedy algorithm</strong>.
+
+Therefore, the correct answer is <strong>greedy</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+The ________ of a path is the number of the edges in the path.
+`,
+  answers: [
+    "length",
+    "depth",
+    "height",
+    "degree"
+  ],
+  correct: "length",
+  explanation: `
+The <strong>length</strong> of a path is the number of edges contained in that path.
+
+Example:
+
+<pre><code>A → B → C → D
+
+Edges = 3
+Path length = 3</code></pre>
+
+Therefore, the correct answer is <strong>length</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+The average time complexity for searching an element in a binary search tree is _______.
+`,
+  answers: [
+    "O(n)",
+    "O(logn)",
+    "O(nlogn)",
+    "O(n^2)"
+  ],
+  correct: "O(logn)",
+  explanation: `
+For an approximately balanced binary search tree, each comparison eliminates about half of the remaining search space.
+
+Therefore, the average search complexity is:
+
+<pre><code>O(log n)</code></pre>
+
+The correct answer is <strong>O(logn)</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+The average time complexity for deleting an element in a binary search tree is _______.
+`,
+  answers: [
+    "O(n)",
+    "O(logn)",
+    "O(nlogn)",
+    "O(n^2)"
+  ],
+  correct: "O(logn)",
+  explanation: `
+In an approximately balanced BST, locating the node to delete takes approximately:
+
+<pre><code>O(log n)</code></pre>
+
+The additional tree restructuring is also bounded by the tree height.
+
+Therefore, the average deletion complexity is:
+
+<pre><code>O(log n)</code></pre>
+
+The correct answer is <strong>O(logn)</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+Suppose the keys <code>3, 4, 45, 21, 92, 12</code> are inserted into a BST in this order.
+
+What is the preorder traversal of the elements after deleting <code>45</code> from the tree?
+`,
+  answers: [
+    "3 4 12 21 92",
+    "3 4 21 12 92",
+    "12 21 92 45 4 3",
+    "4 21 12 92 3",
+    "4 21 12 92 3"
+  ],
+  correct: "3 4 21 12 92",
+  explanation: `
+The original tree is:
+
+<pre><code>3
+ \\
+  4
+   \\
+    45
+   /  \\
+  21   92
+ /
+12</code></pre>
+
+Node <code>45</code> has two children.
+
+For the deletion method used in this course, <code>45</code> is replaced by its inorder predecessor, <code>21</code>.
+
+The resulting tree is:
+
+<pre><code>3
+ \\
+  4
+   \\
+    21
+   /  \\
+  12   92</code></pre>
+
+Preorder traversal is:
+
+<pre><code>3 4 21 12 92</code></pre>
+
+Therefore, the correct answer is <strong>3 4 21 12 92</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+The height of an empty tree is _______.
+`,
+  answers: [
+    "-1",
+    "0",
+    "1",
+    "2"
+  ],
+  correct: "-1",
+  explanation: `
+Using the height convention in this course:
+
+<pre><code>Empty tree      → height -1
+Single-node tree → height 0</code></pre>
+
+Therefore, the correct answer is <strong>-1</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+The _________ is to visit the left subtree of the current node first, then the right subtree of the current node, and finally the current node itself.
+`,
+  answers: [
+    "inorder traversal",
+    "preorder traversal",
+    "postorder traversal",
+    "breadth-first traversal"
+  ],
+  correct: "postorder traversal",
+  explanation: `
+<strong>Postorder traversal</strong> follows:
+
+<pre><code>Left → Right → Root</code></pre>
+
+The current node is visited only after both of its subtrees.
+
+Therefore, the correct answer is <strong>postorder traversal</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+A __________ (with no duplicate elements) has the property that for every node in the tree the value of any node in its left subtree is less than the value of the node and the value of any node in its right subtree is greater than the value of the node.
+`,
+  answers: [
+    "binary tree",
+    "binary search tree",
+    "list",
+    "linked list"
+  ],
+  correct: "binary search tree",
+  explanation: `
+A <strong>binary search tree</strong> satisfies the ordering rule:
+
+<pre><code>left subtree  < node < right subtree</code></pre>
+
+For every node:
+
+<ul>
+  <li>all values in its left subtree are smaller,</li>
+  <li>all values in its right subtree are larger.</li>
+</ul>
+
+Therefore, the correct answer is <strong>binary search tree</strong>.
+`
+},
+
+// =====================================================
+// COSC2436 — AVL TREE QUIZ
+// Canvas Questions 1–25
+// =====================================================
+
+{
+  type: "checkbox",
+  question: `
+A __________ (with no duplicate elements) has the property that for every node in the tree
+the value of any node in its left subtree is less than the value of the node and the value
+of any node in its right subtree is greater than the value of the node.
+
+<strong>Please select all that apply.</strong>
+`,
+  answers: [
+    "binary tree",
+    "binary search tree",
+    "AVL tree",
+    "binary heap"
+  ],
+  correct: [
+    "binary search tree",
+    "AVL tree"
+  ],
+  explanation: `
+A <strong>binary search tree</strong> satisfies:
+
+<pre><code>left subtree &lt; node &lt; right subtree</code></pre>
+
+An <strong>AVL tree</strong> is also a binary search tree, but it additionally maintains balance.
+
+Therefore both are correct:
+
+<pre><code>binary search tree
+AVL tree</code></pre>
+`
+},
+
+{
+  type: "radio",
+  question: `
+Suppose you insert the numbers <code>1, 2, 3, 4, 5</code> into an AVL tree in this order.
+
+What is the preorder traversal of the tree?
+`,
+  answers: [
+    "1 2 3 4 5",
+    "2 1 4 3 5",
+    "1 3 5 4 2",
+    "2 3 4 1 5"
+  ],
+  correct: "2 1 4 3 5",
+  explanation: `
+AVL rotations keep the tree balanced.
+
+The resulting tree is:
+
+<pre><code>      2
+     / \\
+    1   4
+       / \\
+      3   5</code></pre>
+
+Preorder means:
+
+<pre><code>Root → Left → Right</code></pre>
+
+Therefore:
+
+<pre><code>2 1 4 3 5</code></pre>
+`
+},
+
+{
+  type: "radio",
+  question: `
+In a _______, the element to be removed is always at the root.
+`,
+  answers: [
+    "binary tree",
+    "binary search tree",
+    "AVL tree",
+    "binary heap"
+  ],
+  correct: "binary heap",
+  explanation: `
+A heap removes its highest-priority element from the <strong>root</strong>.
+
+For example, in a max-heap the root contains the maximum value.
+
+Therefore, the correct answer is <strong>binary heap</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+What is the preorder traversal of the elements in an AVL tree after inserting
+<code>3, 4, 45, 21, 92, 12</code> in this order?
+`,
+  answers: [
+    "3 4 12 21 92 45",
+    "3 4 12 21 45 92",
+    "45 4 3 21 12 92",
+    "45 21 12 92 3 4",
+    "21 4 3 12 45 92"
+  ],
+  correct: "21 4 3 12 45 92",
+  explanation: `
+After AVL rotations, the balanced tree is:
+
+<pre><code>       21
+      /  \\
+     4    45
+    / \\     \\
+   3  12     92</code></pre>
+
+Preorder:
+
+<pre><code>Root → Left → Right
+
+21 4 3 12 45 92</code></pre>
+`
+},
+
+{
+  type: "radio",
+  question: `
+The ________ of a node is the height of its right subtree minus the height of its left subtree.
+`,
+  answers: [
+    "balance factor",
+    "depth",
+    "length",
+    "degree"
+  ],
+  correct: "balance factor",
+  explanation: `
+For this course, the balance factor is:
+
+<pre><code>balance factor =
+height(right subtree) - height(left subtree)</code></pre>
+
+Therefore, the answer is <strong>balance factor</strong>.
+`
+},
+
+{
+  type: "radio",
+  question: `
+The time complexity for insertion, deletion, and search is <code>O(n)</code> for a __________.
+`,
+  answers: [
+    "binary tree",
+    "binary search tree",
+    "AVL tree",
+    "binary heap"
+  ],
+  correct: "binary tree",
+  explanation: `
+According to the Canvas answer key, the correct answer is:
+
+<strong>binary tree</strong>
+
+A general binary tree does not guarantee the ordering or balancing properties needed for logarithmic searching.
+`
+},
+
+{
+  type: "radio",
+  question: `
+The average time-complexity for insertion, deletion, and search in a ________ is <code>O(logn)</code>.
+`,
+  answers: [
+    "binary search tree",
+    "AVL tree",
+    "binary heap"
+  ],
+  correct: "AVL tree",
+  explanation: `
+An AVL tree maintains its height at <code>O(log n)</code> through rotations.
+
+Therefore search, insertion, and deletion are logarithmic.
+
+<pre><code>O(log n)</code></pre>
+`
+},
+
+{
+  type: "radio",
+  question: `
+In a(n) __________, the element just inserted is always at the leaf.
+`,
+  answers: [
+    "binary search tree",
+    "AVL tree",
+    "binary heap"
+  ],
+  correct: "binary search tree",
+  explanation: `
+Normal BST insertion follows left/right links until an empty child position is found.
+
+The newly inserted node initially has no children, so it is a leaf.
+
+Therefore the Canvas answer is <strong>binary search tree</strong>.
+`
+},
+
+{
+  type: "checkbox",
+  question: `
+The balance factor of every node in an AVL tree may be __________.
+
+<strong>Please select all that apply.</strong>
+`,
+  answers: [
+    "0",
+    "1",
+    "-1",
+    "2"
+  ],
+  correct: [
+    "0",
+    "1",
+    "-1"
+  ],
+  explanation: `
+For an AVL tree, every node must remain balanced.
+
+With the course definition:
+
+<pre><code>BF = height(right) - height(left)</code></pre>
+
+A valid AVL balance factor can be:
+
+<pre><code>-1
+ 0
++1</code></pre>
+
+A balance factor of <code>2</code> means the node is unbalanced.
+`
+},
+
+{
+  type: "radio",
+  question: `
+[6.1.a.1235] An AVL tree is ________.
+`,
+  answers: [
+    "a binary search tree in which the heights of the subtrees at each node differ by at most one",
+    "a binary tree in which the left and right subtree have heights that differ by at most one",
+    "a binary tree in which the high of the left child and right child of each node are equal",
+    "a binary search tree that's also a complete binary tree"
+  ],
+  correct: "a binary search tree in which the heights of the subtrees at each node differ by at most one",
+  explanation: `
+An AVL tree is a <strong>self-balancing binary search tree</strong>.
+
+For every node:
+
+<pre><code>|height(left) - height(right)| ≤ 1</code></pre>
+
+Therefore, the correct definition is:
+
+<strong>a binary search tree in which the heights of the subtrees at each node differ by at most one</strong>.
+`
+},
+
+// =====================================================
+// QUESTION 11 — ADD 40
+// =====================================================
+
+{
+  type: "input",
+  question: `
+[6.2.c.1235] Consider the AVL Tree below.
+
+Use the AVL Tree Insertion algorithm to <strong>add 0040</strong> to the tree.
+
+List the nodes of the resulting tree in <strong>pre-order traversal order</strong>
+separated by one blank character.
+
+${avlTreeSvg(
+  [
+    { id:"50", label:"0050", x:250, y:55,  h:3 },
+    { id:"33", label:"0033", x:135, y:150, h:1 },
+    { id:"80", label:"0080", x:365, y:150, h:2 },
+    { id:"77", label:"0077", x:305, y:245, h:1 },
+    { id:"85", label:"0085", x:425, y:245, h:1 }
+  ],
+  [
+    ["50","33"],
+    ["50","80"],
+    ["80","77"],
+    ["80","85"]
+  ],
+  500,
+  300
+)}
+`,
+  correct: "50 33 40 80 77 85",
+  explanation: `
+Insert <code>40</code>:
+
+<pre><code>40 < 50
+40 > 33</code></pre>
+
+So <code>40</code> becomes the right child of <code>33</code>.
+
+The tree remains AVL-balanced.
+
+Preorder:
+
+<pre><code>50 33 40 80 77 85</code></pre>
+`
+},
+
+// =====================================================
+// QUESTION 12 — ADD 88
+// =====================================================
+
+{
+  type: "input",
+  question: `
+[6.2.c.1235] Consider the AVL Tree below.
+
+Use the AVL Tree Insertion algorithm to <strong>add 0088</strong> to the tree.
+
+List the nodes of the resulting tree in <strong>pre-order traversal order</strong>
+separated by one blank character.
+
+${avlTreeSvg(
+  [
+    { id:"50", label:"0050", x:250, y:55,  h:3 },
+    { id:"33", label:"0033", x:130, y:150, h:1 },
+    { id:"77", label:"0077", x:365, y:150, h:2 },
+    { id:"85", label:"0085", x:425, y:245, h:1 }
+  ],
+  [
+    ["50","33"],
+    ["50","77"],
+    ["77","85"]
+  ],
+  500,
+  300
+)}
+`,
+  correct: "50 33 85 77 88",
+  explanation: `
+Insert <code>88</code>:
+
+<pre><code>88 > 50
+88 > 77
+88 > 85</code></pre>
+
+This creates a right-right imbalance at <code>77</code>.
+
+Perform a left rotation at <code>77</code>:
+
+<pre><code>      50
+     /  \\
+   33    85
+        /  \\
+       77   88</code></pre>
+
+Preorder:
+
+<pre><code>50 33 85 77 88</code></pre>
+`
+},
+
+// =====================================================
+// QUESTION 13 — ADD 17
+// =====================================================
+
+{
+  type: "input",
+  question: `
+[6.2.c.1235] Consider the AVL Tree below.
+
+Use the AVL Tree Insertion algorithm to <strong>add 0017</strong> to the tree.
+
+List the nodes of the resulting tree in <strong>pre-order traversal order</strong>
+separated by one blank character.
+
+${avlTreeSvg(
+  [
+    { id:"50", label:"0050", x:250, y:55,  h:3 },
+    { id:"33", label:"0033", x:135, y:150, h:1 },
+    { id:"80", label:"0080", x:365, y:150, h:2 },
+    { id:"77", label:"0077", x:305, y:245, h:1 },
+    { id:"85", label:"0085", x:425, y:245, h:1 }
+  ],
+  [
+    ["50","33"],
+    ["50","80"],
+    ["80","77"],
+    ["80","85"]
+  ],
+  500,
+  300
+)}
+`,
+  correct: "50 33 17 80 77 85",
+  explanation: `
+Insert <code>17</code>:
+
+<pre><code>17 < 50
+17 < 33</code></pre>
+
+So <code>17</code> becomes the left child of <code>33</code>.
+
+No rotation is required.
+
+Preorder:
+
+<pre><code>50 33 17 80 77 85</code></pre>
+`
+},
+
+// =====================================================
+// QUESTION 14 — DELETE 33
+// =====================================================
+
+{
+  type: "input",
+  question: `
+[6.3.c.1235] Consider the AVL Tree below.
+
+Use the AVL Tree Deletion algorithm to <strong>delete 0033</strong> from the tree.
+
+List the nodes of the resulting tree in <strong>pre-order traversal order</strong>
+separated by one blank character.
+
+${avlTreeSvg(
+  [
+    { id:"50", label:"0050", x:250, y:55,  h:3 },
+    { id:"33", label:"0033", x:135, y:150, h:1 },
+    { id:"77", label:"0077", x:365, y:150, h:2 },
+    { id:"60", label:"0060", x:305, y:245, h:1 }
+  ],
+  [
+    ["50","33"],
+    ["50","77"],
+    ["77","60"]
+  ],
+  500,
+  300
+)}
+`,
+  correct: "60 50 77",
+  explanation: `
+After removing <code>33</code>, node <code>50</code> becomes right-heavy.
+
+The right child <code>77</code> is left-heavy, producing a <strong>Right-Left (RL)</strong> case.
+
+After AVL rotations:
+
+<pre><code>      60
+     /  \\
+    50   77</code></pre>
+
+Preorder:
+
+<pre><code>60 50 77</code></pre>
+`
+},
+
+// =====================================================
+// QUESTION 15 — DELETE 35
+// =====================================================
+
+{
+  type: "input",
+  question: `
+[6.3.c.1235] Consider the AVL Tree below.
+
+Use the AVL Tree Deletion algorithm to <strong>delete 0035</strong> from the tree.
+
+List the nodes of the resulting tree in <strong>pre-order traversal order</strong>
+separated by one blank character.
+
+${avlTreeSvg(
+  [
+    { id:"50", label:"0050", x:250, y:55,  h:3 },
+    { id:"35", label:"0035", x:135, y:150, h:1 },
+    { id:"77", label:"0077", x:365, y:150, h:2 },
+    { id:"60", label:"0060", x:305, y:245, h:1 },
+    { id:"85", label:"0085", x:425, y:245, h:1 }
+  ],
+  [
+    ["50","35"],
+    ["50","77"],
+    ["77","60"],
+    ["77","85"]
+  ],
+  500,
+  300
+)}
+`,
+  correct: "77 50 60 85",
+  explanation: `
+Delete <code>35</code>.
+
+The root becomes too right-heavy, so an AVL rotation is required.
+
+The resulting tree is:
+
+<pre><code>       77
+      /  \\
+     50   85
+       \\
+        60</code></pre>
+
+Preorder:
+
+<pre><code>77 50 60 85</code></pre>
+`
+},
+
+// =====================================================
+// QUESTION 16 — DELETE 60
+// =====================================================
+
+{
+  type: "input",
+  question: `
+[6.3.c.1235] Consider the AVL Tree below.
+
+Use the AVL Tree Deletion algorithm to <strong>delete 0060</strong> from the tree.
+
+List the nodes of the resulting tree in <strong>pre-order traversal order</strong>
+separated by one blank character.
+
+${avlTreeSvg(
+  [
+    { id:"50", label:"0050", x:250, y:55,  h:3 },
+    { id:"35", label:"0035", x:135, y:150, h:1 },
+    { id:"77", label:"0077", x:365, y:150, h:2 },
+    { id:"60", label:"0060", x:305, y:245, h:1 },
+    { id:"85", label:"0085", x:425, y:245, h:1 }
+  ],
+  [
+    ["50","35"],
+    ["50","77"],
+    ["77","60"],
+    ["77","85"]
+  ],
+  500,
+  300
+)}
+`,
+  correct: "50 35 77 85",
+  explanation: `
+Node <code>60</code> is a leaf.
+
+Remove it directly:
+
+<pre><code>      50
+     /  \\
+    35   77
+           \\
+            85</code></pre>
+
+The AVL balance condition is still satisfied.
+
+Preorder:
+
+<pre><code>50 35 77 85</code></pre>
+`
+},
+
+// =====================================================
+// QUESTION 17 — DELETE 68
+// =====================================================
+
+{
+  type: "input",
+  question: `
+[6.3.c.1235] Consider the AVL Tree below.
+
+Use the AVL Tree Deletion algorithm to <strong>delete 0068</strong> from the tree.
+
+List the nodes of the resulting tree in <strong>pre-order traversal order</strong>
+separated by one blank character.
+
+${avlTreeSvg(
+  [
+    { id:"64", label:"0064", x:300, y:45,  h:4 },
+
+    { id:"33", label:"0033", x:155, y:130, h:3 },
+    { id:"70", label:"0070", x:445, y:130, h:3 },
+
+    { id:"20", label:"0020", x:75,  y:215, h:1 },
+    { id:"55", label:"0055", x:230, y:215, h:2 },
+
+    { id:"68", label:"0068", x:380, y:215, h:1 },
+    { id:"95", label:"0095", x:515, y:215, h:2 },
+
+    { id:"40", label:"0040", x:185, y:300, h:1 },
+    { id:"60", label:"0060", x:275, y:300, h:1 },
+
+    { id:"98", label:"0098", x:550, y:300, h:1 }
+  ],
+  [
+    ["64","33"],
+    ["64","70"],
+
+    ["33","20"],
+    ["33","55"],
+
+    ["55","40"],
+    ["55","60"],
+
+    ["70","68"],
+    ["70","95"],
+
+    ["95","98"]
+  ],
+  600,
+  355
+)}
+`,
+  correct: "64 33 20 55 40 60 95 70 98",
+  explanation: `
+Delete <code>68</code>.
+
+The right subtree becomes unbalanced around <code>70</code>.
+
+After rebalancing:
+
+<pre><code>             64
+           /    \\
+         33      95
+        / \\     / \\
+      20  55   70  98
+         / \\
+        40 60</code></pre>
+
+Preorder:
+
+<pre><code>64 33 20 55 40 60 95 70 98</code></pre>
+`
+},
+
+// =====================================================
+// QUESTION 18 — DELETE 33
+// =====================================================
+
+{
+  type: "input",
+  question: `
+[6.3.c.1235] Consider the AVL Tree below.
+
+Use the AVL Tree Deletion algorithm to <strong>delete 0033</strong> from the tree.
+
+List the nodes of the resulting tree in <strong>pre-order traversal order</strong>
+separated by one blank character.
+
+${avlTreeSvg(
+  [
+    { id:"50", label:"0050", x:250, y:55,  h:3 },
+    { id:"33", label:"0033", x:135, y:150, h:1 },
+    { id:"77", label:"0077", x:365, y:150, h:2 },
+    { id:"85", label:"0085", x:425, y:245, h:1 }
+  ],
+  [
+    ["50","33"],
+    ["50","77"],
+    ["77","85"]
+  ],
+  500,
+  300
+)}
+`,
+  correct: "77 50 85",
+  explanation: `
+Delete <code>33</code>.
+
+The tree becomes right-heavy:
+
+<pre><code>50
+  \\
+   77
+     \\
+      85</code></pre>
+
+This is a Right-Right case, so perform a left rotation.
+
+Result:
+
+<pre><code>     77
+    /  \\
+   50   85</code></pre>
+
+Preorder:
+
+<pre><code>77 50 85</code></pre>
+`
+},
+
+// =====================================================
+// QUESTION 19
+// =====================================================
+
+{
+  type: "radio",
+  question: `
+[6.4.b.34] True or False?
+
+Assume a list of data items is stored in an <strong>AVL tree</strong>.
+
+In the worst-case, 20 lookup comparisons are needed to search the list if the tree has one million nodes.
+`,
+  answers: [
+    "True",
+    "False"
+  ],
+  correct: "True",
+  explanation: `
+For this Canvas/course question, the expected reasoning uses:
+
+<pre><code>log₂(1,000,000) ≈ 19.93</code></pre>
+
+which is approximately <code>20</code> comparisons.
+
+Therefore, the Canvas answer is <strong>True</strong>.
+`
+},
+
+// =====================================================
+// QUESTION 20
+// =====================================================
+
+{
+  type: "radio",
+  question: `
+[6.4.b.34] The time-complexity of searching an AVL tree is ____ in the worst case and ____ in the average case.
+`,
+  answers: [
+    "O(log2n), O(log2n)",
+    "O(n^2), O(n)",
+    "O(n), O(n)",
+    "O(n), O(log2n)"
+  ],
+  correct: "O(log2n), O(log2n)",
+  explanation: `
+An AVL tree remains height-balanced.
+
+Its height is proportional to:
+
+<pre><code>log₂(n)</code></pre>
+
+Therefore both worst-case and average-case search are:
+
+<pre><code>O(log₂ n)</code></pre>
+`
+},
+
+// =====================================================
+// QUESTION 21
+// =====================================================
+
+{
+  type: "radio",
+  question: `
+[6.4.b.34] The time-complexity of deleting a node from an AVL tree is ____ in the worst case and ____ in the average case.
+`,
+  answers: [
+    "O(log2n), O(log2n)",
+    "O(n^2), O(n)",
+    "O(n), O(n)",
+    "O(n), O(log2n)"
+  ],
+  correct: "O(log2n), O(log2n)",
+  explanation: `
+Deleting requires locating the node and possibly performing AVL rotations.
+
+Because the height remains logarithmic:
+
+<pre><code>Worst case   → O(log n)
+Average case → O(log n)</code></pre>
+`
+},
+
+// =====================================================
+// QUESTION 22
+// =====================================================
+
+{
+  type: "radio",
+  question: `
+[6.4.b.34] The worst-case time complexity of inserting a new node into an AVL tree is
+`,
+  answers: [
+    "O(log2n)",
+    "O(n)",
+    "O(n^2)",
+    "None of these",
+    "O(nlog2n)"
+  ],
+  correct: "O(log2n)",
+  explanation: `
+AVL insertion follows a search path through a tree whose height is:
+
+<pre><code>O(log n)</code></pre>
+
+Any required AVL rotations take constant time per rotation.
+
+Therefore the overall worst-case insertion complexity is:
+
+<pre><code>O(log n)</code></pre>
+`
+},
+
+// =====================================================
+// QUESTION 23
+// =====================================================
+
+{
+  type: "radio",
+  question: `
+[6.4.b.34] The worst-case time complexity of deleting a node from an AVL tree is
+`,
+  answers: [
+    "O(log2n)",
+    "O(n)",
+    "O(n^2)",
+    "None of these",
+    "O(nlog2n)"
+  ],
+  correct: "O(log2n)",
+  explanation: `
+An AVL tree maintains logarithmic height.
+
+Deleting a node and restoring balance requires work proportional to the height:
+
+<pre><code>O(log n)</code></pre>
+
+Therefore, the correct answer is <strong>O(log2n)</strong>.
+`
+},
+
+// =====================================================
+// QUESTION 24
+// =====================================================
+
+{
+  type: "radio",
+  question: `
+[6.4.b.34] The time-complexity of inserting a new node in an AVL tree is ____ in the worst case and ____ in the average case.
+`,
+  answers: [
+    "O(log2n), O(log2n)",
+    "O(n^2), O(n)",
+    "O(n), O(n)",
+    "O(n), O(log2n)"
+  ],
+  correct: "O(log2n), O(log2n)",
+  explanation: `
+Because an AVL tree remains balanced:
+
+<pre><code>height = O(log n)</code></pre>
+
+Insertion follows one root-to-leaf path and performs any necessary rotations.
+
+Therefore:
+
+<pre><code>Worst case   → O(log n)
+Average case → O(log n)</code></pre>
+`
+},
+
+// =====================================================
+// QUESTION 25
+// =====================================================
+
+{
+  type: "radio",
+  question: `
+[6.4.b.34] The worst-case time complexity of searching an AVL tree is
+`,
+  answers: [
+    "O(log2n)",
+    "O(n)",
+    "O(n^2)",
+    "None of these",
+    "O(nlog2n)"
+  ],
+  correct: "O(log2n)",
+  explanation: `
+AVL trees maintain logarithmic height.
+
+A search follows at most one path from the root toward a leaf.
+
+Therefore:
+
+<pre><code>Worst-case search → O(log n)</code></pre>
+
+The correct answer is <strong>O(log2n)</strong>.
 `
 },
 
